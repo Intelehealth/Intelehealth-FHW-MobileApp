@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activities.draftSurvey.DraftSurveyActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_custom_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_draftSurvey"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="false"
+        android:layout_below="@+id/toolbar"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/followup_list_item"
+        android:padding="@dimen/card_padding"
+        />
+
+</RelativeLayout>

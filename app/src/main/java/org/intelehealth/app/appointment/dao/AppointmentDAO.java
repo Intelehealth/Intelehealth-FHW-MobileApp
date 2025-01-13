@@ -185,10 +185,13 @@ public class AppointmentDAO {
     public void deleteAllAppointments() {
         CustomLog.v(TAG, "deleteAllAppointments ");
         SQLiteDatabase db = IntelehealthApplication.inteleHealthDatabaseHelper.getWritableDatabase();
+        try{
         db.beginTransaction();
         db.delete("tbl_appointments", null, null);
         db.setTransactionSuccessful();
-        db.endTransaction();
+        }finally {
+            db.endTransaction();
+        }
         //db.close();
     }
 

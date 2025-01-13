@@ -32,7 +32,7 @@ class PatientViewModel(
     var activeStatusAddressSection = true
     var activeStatusOtherSection = true
     var isEditMode: Boolean = false
-
+    var activeStatusRosterSection = false
 
     fun loadPatientDetails(
         patientId: String
@@ -52,8 +52,13 @@ class PatientViewModel(
     fun savePatient() = executeLocalInsertUpdateQuery {
         return@executeLocalInsertUpdateQuery patientData.value?.let {
             return@let if (isEditMode) repository.updatePatient(it)
-            else repository.createNewPatient(it)
+            else repository.createNewPatient(it) // TODO: check with mithun this is creating a new record again with parent ID.
         } ?: false
     }.asLiveData()
 
+    private val _addressInfoConfigCityVillageEnabled = MutableLiveData<Boolean>()
+    val addressInfoConfigCityVillageEnabled: LiveData<Boolean> get() = _addressInfoConfigCityVillageEnabled
+    fun setCityVillageEnabled(enabled: Boolean) {
+        _addressInfoConfigCityVillageEnabled.value = enabled
+    }
 }

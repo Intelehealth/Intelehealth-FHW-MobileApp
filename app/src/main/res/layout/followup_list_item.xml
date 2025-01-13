@@ -115,6 +115,7 @@
                     android:layout_height="@dimen/cal_size"
                     android:layout_below="@+id/lll"
                     android:layout_marginTop="@dimen/cal_margin_top"
+                    android:layout_marginEnd="@dimen/cal_margnin_start"
                     android:src="@drawable/followup_item_calendar" />
 
                 <TextView
@@ -122,7 +123,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lll"
-                    android:layout_marginStart="@dimen/cal_margnin_start"
                     android:layout_marginTop="@dimen/cal_margnin_start"
                     android:layout_toEndOf="@+id/fu_item_calendar"
                     android:gravity="center_vertical"
@@ -200,6 +200,7 @@
             </LinearLayout>
 
             <ImageButton
+                android:id="@+id/shareImgBtn"
                 android:layout_width="@dimen/btn_prioirty_w_60dp"
                 android:layout_height="@dimen/btn_prioirty_h_20dp"
                 android:src="@drawable/visit_share_presc_icon"

@@ -5,47 +5,47 @@
     android:viewportHeight="41">
   <path
       android:pathData="M20,0.5L20,0.5A20,20 0,0 1,40 20.5L40,20.5A20,20 0,0 1,20 40.5L20,40.5A20,20 0,0 1,0 20.5L0,20.5A20,20 0,0 1,20 0.5z"
-      android:fillColor="#E6FFF3"/>
+      android:fillColor="@color/colorAccentLightCard"/>
   <path
       android:pathData="M18.5,18.75H21.5"
       android:strokeLineJoin="round"
       android:strokeWidth="1.33"
       android:fillColor="#00000000"
-      android:strokeColor="#0FD197"
+      android:strokeColor="@color/colorAccent"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M20,17.25V20.25"
       android:strokeLineJoin="round"
       android:strokeWidth="1.33"
       android:fillColor="#00000000"
-      android:strokeColor="#0FD197"
+      android:strokeColor="@color/colorAccent"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M16.75,22.75H23.25"
       android:strokeLineJoin="round"
       android:strokeWidth="1.33"
       android:fillColor="#00000000"
-      android:strokeColor="#0FD197"
+      android:strokeColor="@color/colorAccent"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M16.75,25.25H23.25"
       android:strokeLineJoin="round"
       android:strokeWidth="1.33"
       android:fillColor="#00000000"
-      android:strokeColor="#0FD197"
+      android:strokeColor="@color/colorAccent"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M23.25,12.75H25.75C26.579,12.75 27.25,13.422 27.25,14.25V27.75C27.25,28.579 26.579,29.25 25.75,29.25H14.25C13.422,29.25 12.75,28.579 12.75,27.75V14.25C12.75,13.422 13.422,12.75 14.25,12.75H16.75"
       android:strokeLineJoin="round"
       android:strokeWidth="1.33"
       android:fillColor="#00000000"
-      android:strokeColor="#0FD197"
+      android:strokeColor="@color/colorAccent"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M21.75,10.75C21.364,10.75 18.524,10.75 18.25,10.75C17.421,10.75 16.75,11.422 16.75,12.25C16.75,13.078 17.421,13.75 18.25,13.75C18.524,13.75 21.364,13.75 21.75,13.75C22.579,13.75 23.25,13.078 23.25,12.25C23.25,11.422 22.579,10.75 21.75,10.75Z"
       android:strokeLineJoin="round"
       android:strokeWidth="1.33"
       android:fillColor="#00000000"
-      android:strokeColor="#0FD197"
+      android:strokeColor="@color/colorAccent"
       android:strokeLineCap="round"/>
 </vector>

@@ -18,6 +18,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.LocaleList;
 import android.util.DisplayMetrics;
+
+import org.intelehealth.app.BuildConfig;
+import org.intelehealth.app.activities.onboarding.PersonalConsentActivity;
+import org.intelehealth.app.utilities.AddPatientUtils;
 import org.intelehealth.app.utilities.CustomLog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,13 +34,11 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentOnAttachListener;
 import androidx.lifecycle.LifecycleObserver;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.apache.commons.lang3.time.DateUtils;
 import org.intelehealth.app.R;
 import org.intelehealth.app.activities.followuppatients.FollowUpPatientActivity_New;
 import org.intelehealth.app.activities.onboarding.PrivacyPolicyActivity_New;
@@ -45,21 +47,17 @@ import org.intelehealth.app.activities.visit.EndVisitActivity;
 import org.intelehealth.app.activities.visit.VisitActivity;
 import org.intelehealth.app.app.IntelehealthApplication;
 import org.intelehealth.app.appointment.dao.AppointmentDAO;
-import org.intelehealth.app.appointment.model.AppointmentInfo;
-import org.intelehealth.app.appointmentNew.MyAppointmentActivity;
 import org.intelehealth.app.appointmentNew.MyAppointmentNew.MyAppointmentActivityNew;
 import org.intelehealth.app.appointmentNew.UpdateFragmentOnEvent;
 import org.intelehealth.app.database.dao.EncounterDAO;
 import org.intelehealth.app.database.dao.VisitsDAO;
 import org.intelehealth.app.enums.AppointmentTabType;
 import org.intelehealth.app.models.FollowUpModel;
-import org.intelehealth.app.models.FollowUpNotificationData;
 import org.intelehealth.app.models.PrescriptionModel;
 import org.intelehealth.app.shared.BaseFragment;
 import org.intelehealth.app.utilities.CustomLog;
 import org.intelehealth.app.utilities.DateAndTimeUtils;
 import org.intelehealth.app.utilities.NetworkUtils;
-import org.intelehealth.app.utilities.NotificationSchedulerUtils;
 import org.intelehealth.app.utilities.SessionManager;
 import org.intelehealth.app.utilities.StringUtils;
 import org.intelehealth.app.utilities.UuidDictionary;
@@ -74,7 +72,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 public class HomeFragment_New extends BaseFragment implements NetworkUtils.InternetCheckUpdateInterface, LifecycleObserver {
     private static final String TAG = "HomeFragment_New";
@@ -401,10 +398,7 @@ public class HomeFragment_New extends BaseFragment implements NetworkUtils.Inter
         });
 
         addpatient_cardview.setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), PrivacyPolicyActivity_New.class);
-            intent.putExtra("intentType", "navigateFurther");
-            intent.putExtra("add_patient", "add_patient");
-            startActivity(intent);
+            AddPatientUtils.navigate(requireActivity());
         });
     }
 
@@ -520,8 +514,8 @@ public class HomeFragment_New extends BaseFragment implements NetworkUtils.Inter
                     // Fetch encounters who have emergency set and udpate modelist.
                     String visitUuid = cursor.getString(cursor.getColumnIndexOrThrow("visituuid"));
                     String value_text = cursor.getString(cursor.getColumnIndexOrThrow("value_text"));
-                    CustomLog.v(TAG, "value_text - " + value_text);
-                    CustomLog.v(TAG, "visitUuid - " + visitUuid);
+//                    CustomLog.v(TAG, "value_text - " + value_text);
+//                    CustomLog.v(TAG, "visitUuid - " + visitUuid);
                         modelList.add(new FollowUpModel(visitUuid,
                                 cursor.getString(cursor.getColumnIndexOrThrow("patientuuid")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("openmrs_id")),

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="patientSurveyAttributes"
+            type="org.intelehealth.app.ui.householdSurvey.models.HouseholdSurveyModel" />
+
+        <variable
+            name="isEditMode"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/frag2_btn_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/std_16dp">
+
+                <TextView
+                    android:id="@+id/defecation_in_open_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    android:text="@string/in_the_past_week_has_anyone_in_your_household_including_children_defecated_in_the_open_for_example_in_the_field_or_in_the_river"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioGroup
+                    android:id="@+id/defecation_in_open_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/defecation_in_open_text_view">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/defecation_yes_radio_button"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/radio_buttons_between_margin"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/yes"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/defecation_no_radio_button"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/no"
+                        app:useMaterialThemeColors="false" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/food_prepared_in_the_past_twenty_four_hours_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:text="@string/what_kind_of_food_items_were_cooked_prepared_in_the_last_twenty_four_hours_in_your_household"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/defecation_in_open_radio_group" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/food_prepared_in_the_past_twenty_four_hours_linear_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/food_prepared_in_the_past_twenty_four_hours_text_view">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/starch_staple_food_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/starch_staple_food"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <TextView
+                        style="@style/HouseholdSurveyTexts"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="-12dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rice_roti_bread" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/beans_and_peas_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/beans_and_peas"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <TextView
+                        style="@style/HouseholdSurveyTexts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-12dp"
+                        android:text="@string/beans_peas_mung_dal_chana_dal" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/nuts_and_seeds_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nuts_and_seeds"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <TextView
+                        style="@style/HouseholdSurveyTexts"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="-12dp"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/groundnut_apricort_almond_pista" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/dairy_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dairy"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <TextView
+                        style="@style/HouseholdSurveyTexts"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="-12dp"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/milk_cow_goat_buffalo" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/eggs_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/eggs"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/flesh_food_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/flesh_food"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <TextView
+                        style="@style/HouseholdSurveyTexts"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="-12dp"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/meat_lamb_beef_pork" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/any_vegetables_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/any_vegetables"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/frag2_btn_back"
+            style="@style/AppTheme.OutlinedButton.White"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_16dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:text="@string/generic_back"
+            android:textColor="@color/primary_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/frag2_btn_next"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/frag2_btn_next"
+            style="@style/AppTheme.OutlinedButton.Primary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_16dp"
+            android:layout_marginEnd="@dimen/std_16dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:text="@string/next"
+            app:icon="@drawable/ui2_ic_baseline_arrow_forward_24"
+            app:iconGravity="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/frag2_btn_back" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

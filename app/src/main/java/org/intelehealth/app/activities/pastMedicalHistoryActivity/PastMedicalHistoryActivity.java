@@ -115,7 +115,6 @@ public class PastMedicalHistoryActivity extends BaseActivity implements Question
     QuestionsAdapter adapter;
     ScrollingPagerIndicator recyclerViewIndicator;
     String new_result;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sessionManager = new SessionManager(this);
@@ -215,6 +214,7 @@ public class PastMedicalHistoryActivity extends BaseActivity implements Question
                     intent.putExtra("gender", patientGender);
                     intent.putExtra("float_ageYear_Month", float_ageYear_Month);
                     intent.putExtra("tag", intentTag);
+
                     //    intent.putStringArrayListExtra("exams", physicalExams);
                     startActivity(intent);
 

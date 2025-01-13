@@ -3,7 +3,6 @@ package org.intelehealth.app.ayu.visit.reason.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
-import org.intelehealth.app.utilities.CustomLog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import com.google.gson.Gson;
 
 import org.intelehealth.app.R;
 import org.intelehealth.app.knowledgeEngine.Node;
+import org.intelehealth.app.utilities.CustomLog;
 
 import java.util.ArrayList;
 import java.util.List;

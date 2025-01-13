@@ -80,99 +80,7 @@ public class SearchPatientAdapter_New extends RecyclerView.Adapter<SearchPatient
     public void onBindViewHolder(@NonNull SearchPatientAdapter_New.SearchHolderView holder, int position) {
         final PatientDTO model = patientDTOS.get(position);
         holder.patientDTO = model;
-        if (model != null) {
-
-            //  1. Age
-            /*String age = DateAndTimeUtils.getAge_FollowUp(model.getDateofbirth(), context);
-            holder.search_gender.setText(model.getGender() + " " + age);*/
-            setGenderAgeLocal(context, holder.search_gender, model.getDateofbirth(), model.getGender(), sessionManager);
-
-            //  2. Name
-            holder.search_name.setText(model.getFirstname() + " " + model.getLastname());
-
-            //  3. Priority Tag
-            if (model.isEmergency())
-                holder.fl_priority.setVisibility(View.VISIBLE);
-            else
-                holder.fl_priority.setVisibility(View.GONE);
-
-            //  4. Visit Start Date else No visit created text display.
-            if (model.getVisit_startdate() != null) {
-                if (model.isPrescription_exists()) {
-                    holder.presc_receivingCV.setVisibility(View.VISIBLE);
-                    holder.presc_pendingCV.setVisibility(View.GONE);
-                } else if (!model.isPrescription_exists()) {
-                    holder.presc_pendingCV.setVisibility(View.VISIBLE);
-                    holder.presc_receivingCV.setVisibility(View.GONE);
-                }
-
-                //  5. Checking visit uploaded or not and Prescription received/pending tag display. - start
-                if (model.getVisitDTO() != null) {
-                    if (model.getVisitDTO().getSyncd() != null && model.getVisitDTO().getSyncd()) {
-                        //holder.visitNotUploadCV.setVisibility(View.GONE);
-                    } else {
-                        //holder.visitNotUploadCV.setVisibility(View.VISIBLE);
-                        holder.presc_pendingCV.setVisibility(View.GONE);
-                        holder.presc_receivingCV.setVisibility(View.GONE);
-                    }
-
-                    if (model.getVisitDTO().getEnddate() != null) {
-                        //holder.visitNotUploadCV.setVisibility(View.GONE);
-                    }
-                }
-                // checking visit uploaded or not - end
-
-                holder.fu_item_calendar.setVisibility(View.VISIBLE);
-                String visitDate = model.getVisit_startdate();
-                if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
-                    visitDate = StringUtils.en_hi_dob_three(visitDate);
-                holder.search_date_relative.setVisibility(View.VISIBLE);
-                holder.search_date_relative.setText(visitDate);
-            } else {
-                holder.presc_pendingCV.setVisibility(View.GONE);
-                holder.presc_receivingCV.setVisibility(View.GONE);
-
-                holder.fu_item_calendar.setVisibility(View.GONE);
-                //holder.search_date_relative.setText(R.string.no_visit_created);
-                holder.search_date_relative.setVisibility(View.GONE);
-                holder.fu_item_calendar.setVisibility(View.GONE);
-            }
-
-            //  6. Patient Profile Pic
-            //1.
-            try {
-                profileImage = imagesDAO.getPatientProfileChangeTime(model.getUuid());
-            } catch (DAOException e) {
-                FirebaseCrashlytics.getInstance().recordException(e);
-            }
-            //2.
-            if (model.getPatientPhoto() == null || model.getPatientPhoto().equalsIgnoreCase("")) {
-                if (NetworkConnection.isOnline(context)) {
-                    profilePicDownloaded(model, holder);
-                }
-            }
-            //3.
-            if (!profileImage.equalsIgnoreCase(profileImage1)) {
-                if (NetworkConnection.isOnline(context)) {
-                    profilePicDownloaded(model, holder);
-                }
-            }
-
-            if (model.getPatientPhoto() != null) {
-                RequestBuilder<Drawable> requestBuilder = Glide.with(holder.itemView.getContext())
-                        .asDrawable().sizeMultiplier(0.3f);
-                Glide.with(context)
-                        .load(model.getPatientPhoto())
-                        .thumbnail(requestBuilder)
-                        .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(true)
-                        .into(holder.profile_imgview);
-            } else {
-                holder.profile_imgview.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.avatar1));
-            }
-
-        }
+        holder.bind(model);
     }
 
     @Override
@@ -221,6 +129,110 @@ public class SearchPatientAdapter_New extends RecyclerView.Adapter<SearchPatient
                     context.startActivity(intent);
                 }
             });
+
+        }
+
+        void bind(PatientDTO model){
+            if (model != null) {
+
+                //  1. Age
+            /*String age = DateAndTimeUtils.getAge_FollowUp(model.getDateofbirth(), context);
+            holder.search_gender.setText(model.getGender() + " " + age);*/
+                search_gender.setText(model.getGenderAgeString());
+
+                //  2. Name
+                search_name.setText(model.getFirstname() + " " + model.getLastname());
+
+                //  3. Priority Tag
+                if (model.isEmergency())
+                    fl_priority.setVisibility(View.VISIBLE);
+                else
+                    fl_priority.setVisibility(View.GONE);
+
+                //  4. Visit Start Date else No visit created text display.
+                if (model.getVisit_startdate() != null) {
+                    if (model.isPrescription_exists()) {
+                        presc_receivingCV.setVisibility(View.VISIBLE);
+                        presc_pendingCV.setVisibility(View.GONE);
+                    } else if (!model.isPrescription_exists()) {
+                        presc_pendingCV.setVisibility(View.VISIBLE);
+                        presc_receivingCV.setVisibility(View.GONE);
+                    }
+
+                    //  5. Checking visit uploaded or not and Prescription received/pending tag display. - start
+                    if (model.getVisitDTO() != null) {
+                        if (model.getVisitDTO().getSyncd() != null && model.getVisitDTO().getSyncd()) {
+                            //visitNotUploadCV.setVisibility(View.GONE);
+                        } else {
+                            //visitNotUploadCV.setVisibility(View.VISIBLE);
+                            presc_pendingCV.setVisibility(View.GONE);
+                            presc_receivingCV.setVisibility(View.GONE);
+                        }
+
+                        if (model.getVisitDTO().getEnddate() != null) {
+                            //visitNotUploadCV.setVisibility(View.GONE);
+                        }
+                    }
+                    // checking visit uploaded or not - end
+
+                    fu_item_calendar.setVisibility(View.VISIBLE);
+                    String visitDate = model.getVisit_startdate();
+                    if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
+                        visitDate = StringUtils.en_hi_dob_three(visitDate);
+                    search_date_relative.setVisibility(View.VISIBLE);
+                    search_date_relative.setText(visitDate);
+                } else {
+                    presc_pendingCV.setVisibility(View.GONE);
+                    presc_receivingCV.setVisibility(View.GONE);
+
+                    fu_item_calendar.setVisibility(View.GONE);
+                    //search_date_relative.setText(R.string.no_visit_created);
+                    search_date_relative.setVisibility(View.GONE);
+                    fu_item_calendar.setVisibility(View.GONE);
+                }
+
+                //  6. Patient Profile Pic
+                //1.
+                profileImage = model.getPatientImageFromImageDao();
+
+                //2.
+               /* if (model.getPatientPhoto() == null || model.getPatientPhoto().equalsIgnoreCase("")) {
+                    if (NetworkConnection.isOnline(context)) {
+                        profilePicDownloaded(model, this);
+                    }
+                }
+                //3.
+                if (profileImage == null || !profileImage.equalsIgnoreCase(profileImage1)) {
+                    if (NetworkConnection.isOnline(context)) {
+                        profilePicDownloaded(model, this);
+                    }
+                }*/
+                RequestBuilder<Drawable> requestBuilder = Glide.with(itemView.getContext())
+                        .asDrawable().sizeMultiplier(0.3f);
+
+                if (model.getPatientPhoto() != null) {
+
+                    Glide.with(context)
+                            .load(model.getPatientPhoto())
+                            .thumbnail(requestBuilder)
+                            .centerCrop()
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
+                            .into(profile_imgview);
+                }
+                else if(model.getPatientImageFromDownload() != null){
+                    Glide.with(context)
+                            .load(model.getPatientImageFromDownload())
+                            .thumbnail(requestBuilder)
+                            .centerCrop()
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
+                            .into(profile_imgview);
+                }else {
+                    profile_imgview.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.avatar1));
+                }
+
+            }
         }
     }
 

@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ayu.visit.vital.VitalCollectionSummaryFragment">
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:minHeight="?actionBarSize"
+            android:paddingHorizontal="@dimen/toolbar_margin_left">
+
+            <ImageButton
+                android:id="@+id/img_btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:contentDescription="img_btn_cancel"
+                app:srcCompat="@drawable/cancel_btn_cross" />
+
+
+            <ImageButton
+                android:id="@+id/imb_btn_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/common_title_margin_top"
+                android:layout_toStartOf="@+id/img_btn_cancel"
+                android:background="@null"
+                android:contentDescription="imb_btn_refresh"
+                app:srcCompat="@drawable/ic_refreshbtn" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="@dimen/button_skip_margin_start"
+            android:layout_marginBottom="@dimen/button_skip_margin_bottom"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_weight="1"
+                android:background="@drawable/ui2_common_input_bg"
+                android:drawableTint="@color/iconTintWhite"
+                android:lineHeight="@dimen/button_skip_line_height"
+                android:paddingStart="@dimen/common_button_padding_left"
+                android:paddingTop="@dimen/common_button_padding_top"
+                android:paddingEnd="@dimen/common_button_padding_right"
+                android:paddingBottom="@dimen/common_button_padding_bottom"
+                android:text="@string/generic_back"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/common_button_text_size"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_weight="1"
+                android:background="@drawable/ui2_common_primary_bg"
+                android:drawableEnd="@drawable/ui2_ic_baseline_arrow_forward_24"
+                android:drawableTint="@color/iconTintWhite"
+                android:lineHeight="@dimen/button_skip_line_height"
+                android:paddingStart="@dimen/common_button_padding_left"
+                android:paddingTop="@dimen/common_button_padding_top"
+                android:paddingEnd="@dimen/common_button_padding_right"
+                android:paddingBottom="@dimen/common_button_padding_bottom"
+                android:text="@string/confirm"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/common_button_text_size" />
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_summary_body"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll_footer"
+            android:layout_below="@id/toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/toolbar_margin_left">
+
+                <ImageView
+                    android:id="@+id/iv_vital_image"
+                    android:layout_width="64dip"
+                    android:layout_height="64dip"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/diagnostics_summary" />
+
+                <TextView
+                    android:id="@+id/tv_sub_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/toolbar"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:gravity="center"
+                    android:lineSpacingExtra="1sp"
+                    android:paddingHorizontal="@dimen/toolbar_margin_left"
+                    android:text="@string/_diagnostics_summary"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/toolbar_text_size"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24">
+
+                    <TextView
+                        android:id="@+id/tv_details_label"
+                        style="@style/label_misc_txt_14sp_dark_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:lineSpacingExtra="1sp"
+                        android:text="@string/details" />
+
+                    <TextView
+                        android:id="@+id/tv_change"
+                        style="@style/label_misc_txt_12sp_primary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/ui2_common_gray_round_stroke_bg"
+                        android:drawablePadding="4dip"
+                        android:gravity="center"
+                        android:lineSpacingExtra="1sp"
+                        android:padding="@dimen/padding_5"
+                        android:text="@string/change"
+                        app:drawableStartCompat="@drawable/ui2_ic_edit"
+                        app:drawableTint="?attr/colorPrimary" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/ll_glucose_random_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <ImageView
+                            android:layout_width="6dip"
+                            android:layout_height="6dip"
+                            android:layout_marginEnd="@dimen/padding_5"
+                            android:src="@drawable/ic_baseline_lens_24" />
+
+                        <TextView
+                            android:id="@+id/tv_glucose_random_label"
+                            style="@style/label_misc_txt_14sp_dark_1"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/blood_glucose_random" />
+
+                        <TextView
+                            android:id="@+id/tv_glucose_random"
+                            style="@style/label_misc_txt_14sp_dark"
+                            android:layout_width="0dip"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/no_information" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_fasting_glucose_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_8"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <ImageView
+                            android:layout_width="6dip"
+                            android:layout_height="6dip"
+                            android:layout_marginEnd="@dimen/padding_5"
+                            android:src="@drawable/ic_baseline_lens_24" />
+
+                        <TextView
+                            android:id="@+id/tv_fasting_glucose_label"
+                            style="@style/label_misc_txt_14sp_dark_1"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/blood_glucose_fasting" />
+
+                        <TextView
+                            android:id="@+id/tv_fasting_glucose"
+                            style="@style/label_misc_txt_14sp_dark"
+                            android:layout_width="0dip"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/no_information" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_glucose_post_prandial_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_8"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <ImageView
+                            android:layout_width="6dip"
+                            android:layout_height="6dip"
+                            android:layout_marginEnd="@dimen/padding_5"
+                            android:src="@drawable/ic_baseline_lens_24" />
+
+                        <TextView
+                            android:id="@+id/tv_glucose_post_prandial_label"
+                            style="@style/label_misc_txt_14sp_dark_1"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/blood_glucose_post_prandial" />
+
+                        <TextView
+                            android:id="@+id/tv_glucose_post_prandial"
+                            style="@style/label_misc_txt_14sp_dark"
+                            android:layout_width="0dip"
+                            android:layout_marginStart="@dimen/margin_10"
+
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/no_information" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_blood_glucose_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_8"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <ImageView
+                            android:layout_width="6dip"
+                            android:layout_height="6dip"
+                            android:layout_marginEnd="@dimen/padding_5"
+                            android:src="@drawable/ic_baseline_lens_24" />
+
+                        <TextView
+                            android:id="@+id/tv_blood_glucose_label"
+                            style="@style/label_misc_txt_14sp_dark_1"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/blood_glucose_non_fasting" />
+
+                        <TextView
+                            android:id="@+id/tv_blood_glucose"
+                            style="@style/label_misc_txt_14sp_dark"
+                            android:layout_width="0dip"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/no_information" />
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_hemoglobin_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_8"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <ImageView
+                            android:layout_width="6dip"
+                            android:layout_height="6dip"
+                            android:layout_marginEnd="@dimen/padding_5"
+                            android:src="@drawable/ic_baseline_lens_24" />
+
+                        <TextView
+                            android:id="@+id/tv_hemoglobin_label"
+                            style="@style/label_misc_txt_14sp_dark_1"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/haemoglobin" />
+
+                        <TextView
+                            android:id="@+id/tv_hemoglobin"
+                            style="@style/label_misc_txt_14sp_dark"
+                            android:layout_width="0dip"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/no_information" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_uric_acid_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_8"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <ImageView
+                            android:layout_width="6dip"
+                            android:layout_height="6dip"
+                            android:layout_marginEnd="@dimen/padding_5"
+                            android:src="@drawable/ic_baseline_lens_24" />
+
+                        <TextView
+                            android:id="@+id/tv_uric_acid_label"
+                            style="@style/label_misc_txt_14sp_dark_1"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/uric_acid" />
+
+                        <TextView
+                            android:id="@+id/tv_uric_acid"
+                            style="@style/label_misc_txt_14sp_dark"
+                            android:layout_width="0dip"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/no_information" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_cholesetrol_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_8"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <ImageView
+                            android:layout_width="6dip"
+                            android:layout_height="6dip"
+                            android:layout_marginEnd="@dimen/padding_5"
+                            android:src="@drawable/ic_baseline_lens_24" />
+
+                        <TextView
+                            android:id="@+id/tv_cholesetrol_label"
+                            style="@style/label_misc_txt_14sp_dark_1"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/total_cholestrol" />
+
+                        <TextView
+                            android:id="@+id/tv_cholesetrol"
+                            style="@style/label_misc_txt_14sp_dark"
+                            android:layout_width="0dip"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="1sp"
+                            android:text="@string/no_information" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
+</layout>

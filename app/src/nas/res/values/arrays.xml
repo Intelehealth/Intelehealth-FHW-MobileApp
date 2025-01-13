@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="default_state">
+        <item>@string/default_state</item>
+    </string-array>
+    <string-array name="nas_district">
+        <item>@string/default_district</item>
+    </string-array>
+</resources>

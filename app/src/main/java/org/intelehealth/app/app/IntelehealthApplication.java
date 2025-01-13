@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.Settings;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,9 +18,11 @@ import androidx.multidex.MultiDexApplication;
 import com.github.ajalt.timberkt.Timber;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.parse.Parse;
+import com.rt.printerlibrary.printer.RTPrinter;
 
 import org.intelehealth.app.BuildConfig;
 import org.intelehealth.app.R;
+import org.intelehealth.app.activities.prescription.thermalprinter.BaseEnum;
 import org.intelehealth.app.database.InteleHealthDatabaseHelper;
 import org.intelehealth.app.utilities.CustomLog;
 import org.intelehealth.app.utilities.SessionManager;
@@ -34,11 +35,13 @@ import org.intelehealth.klivekit.socket.SocketManager;
 import org.intelehealth.klivekit.utils.DateTimeResource;
 import org.intelehealth.klivekit.utils.Manager;
 
+import dagger.hilt.android.HiltAndroidApp;
 import io.reactivex.plugins.RxJavaPlugins;
 import okhttp3.Dispatcher;
 import okhttp3.OkHttpClient;
 
 //Extend Application class with MultiDexApplication for multidex support
+@HiltAndroidApp
 public class IntelehealthApplication extends MultiDexApplication implements DefaultLifecycleObserver {
 
     private static final String TAG = IntelehealthApplication.class.getSimpleName();
@@ -67,6 +70,9 @@ public class IntelehealthApplication extends MultiDexApplication implements Defa
 //    private RealTimeDataChangedObserver dataChangedObserver;
 
     private final SocketManager socketManager = SocketManager.getInstance();
+    @BaseEnum.CmdType
+    private static int currentCmdType = BaseEnum.CMD_PIN;
+    private static RTPrinter rtPrinter;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -94,7 +100,6 @@ public class IntelehealthApplication extends MultiDexApplication implements Defa
         androidId = String
                 .format("%16s", Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID))
                 .replace(' ', '0');
-
 //        String url = BuildConfig.SERVER_URL;
 //        if (url == null) {
 //            Log.i(TAG, "onCreate: Parse not init");
@@ -198,4 +203,22 @@ public class IntelehealthApplication extends MultiDexApplication implements Defa
     public void disconnectSocket() {
         socketManager.disconnect();
     }
+
+    @BaseEnum.CmdType
+    public int getCurrentCmdType() {
+        return currentCmdType;
+    }
+
+    public void setCurrentCmdType(@BaseEnum.CmdType int currentCmdType) {
+        this.currentCmdType = currentCmdType;
+    }
+
+    public RTPrinter getRtPrinter() {
+        return rtPrinter;
+    }
+
+    public void setRtPrinter(RTPrinter rtPrinter) {
+        this.rtPrinter = rtPrinter;
+    }
+
 }

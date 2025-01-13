@@ -141,9 +141,10 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textInputETFName"
-                            style="@style/AppTheme.InputBox.Name"
+                            style="@style/AppTheme.InputBox.Name1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="text"
                             android:hint="@string/enter_first_name"
                             android:text="@{patient.firstname}" />
                     </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
@@ -182,7 +183,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textInputETMName"
-                            style="@style/AppTheme.InputBox.Name"
+                            style="@style/AppTheme.InputBox.Name1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/enter_middle_name"
@@ -223,7 +224,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textInputETLName"
-                            style="@style/AppTheme.InputBox.Name"
+                            style="@style/AppTheme.InputBox.Name1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/enter_last_name"
@@ -256,8 +257,6 @@
 
                     <com.google.android.material.button.MaterialButtonToggleGroup
                         android:id="@+id/toggleGender"
-                        config="@{personalConfig.gender}"
-                        editMode="@{isEditMode}"
                         gender="@{patient.gender}"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -445,7 +444,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textInputETGuardianName"
-                            style="@style/AppTheme.InputBox.Name"
+                            style="@style/AppTheme.InputBox.Name1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/enter_guardian_name"
@@ -644,7 +643,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textInputETECName"
-                            style="@style/AppTheme.InputBox.Name"
+                            style="@style/AppTheme.InputBox.Name1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/enter_emergency_contact_name"

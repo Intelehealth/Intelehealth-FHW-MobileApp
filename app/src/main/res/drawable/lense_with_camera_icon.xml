@@ -5,7 +5,7 @@
     android:viewportWidth="21"
     android:viewportHeight="20">
     <path
-        android:fillColor="@color/colorPrimaryLightCard"
+        android:fillColor="@color/colorAccentLightCard"
         android:pathData="M10.5,0L10.5,0A10,10 0,0 1,20.5 10L20.5,10A10,10 0,0 1,10.5 20L10.5,20A10,10 0,0 1,0.5 10L0.5,10A10,10 0,0 1,10.5 0z" />
     <group>
         <clip-path android:pathData="M5.5,5h10v10h-10z" />
@@ -13,14 +13,14 @@
             android:fillColor="#00000000"
             android:pathData="M15.084,12.917C15.084,13.138 14.996,13.35 14.84,13.506C14.683,13.662 14.471,13.75 14.25,13.75H6.75C6.529,13.75 6.317,13.662 6.161,13.506C6.005,13.35 5.917,13.138 5.917,12.917V8.333C5.917,8.112 6.005,7.9 6.161,7.744C6.317,7.588 6.529,7.5 6.75,7.5H8.417L9.25,6.25H11.75L12.584,7.5H14.25C14.471,7.5 14.683,7.588 14.84,7.744C14.996,7.9 15.084,8.112 15.084,8.333V12.917Z"
             android:strokeWidth="1"
-            android:strokeColor="@color/colorPrimary"
+            android:strokeColor="@color/colorAccent"
             android:strokeLineCap="round"
             android:strokeLineJoin="round" />
         <path
             android:fillColor="#00000000"
             android:pathData="M10.5,12.083C11.42,12.083 12.166,11.337 12.166,10.417C12.166,9.496 11.42,8.75 10.5,8.75C9.579,8.75 8.833,9.496 8.833,10.417C8.833,11.337 9.579,12.083 10.5,12.083Z"
             android:strokeWidth="1"
-            android:strokeColor="@color/colorPrimary"
+            android:strokeColor="@color/colorAccent"
             android:strokeLineCap="round"
             android:strokeLineJoin="round" />
     </group>

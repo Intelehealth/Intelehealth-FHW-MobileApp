@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.github.ajalt.timberkt.Timber
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.Gson
+import org.intelehealth.app.BuildConfig
 import org.intelehealth.app.R
 import org.intelehealth.app.app.AppConstants
 import org.intelehealth.app.databinding.Dialog2NumbersPickerBinding
@@ -26,6 +27,7 @@ import org.intelehealth.app.ui.filter.FirstLetterUpperCaseInputFilter
 import org.intelehealth.app.utilities.AgeUtils
 import org.intelehealth.app.utilities.ArrayAdapterUtils
 import org.intelehealth.app.utilities.DateAndTimeUtils
+import org.intelehealth.app.utilities.FlavorKeys
 import org.intelehealth.app.utilities.LanguageUtils
 import org.intelehealth.app.utilities.PatientRegFieldsUtils
 import org.intelehealth.app.utilities.PatientRegStage
@@ -165,6 +167,11 @@ class PatientPersonalInfoFragment :
         Timber.d { "onPatientDataLoaded" }
         Timber.d { Gson().toJson(patient) }
         fetchPersonalInfoConfig()
+        if(BuildConfig.FLAVOR_client == FlavorKeys.UNFPA){
+            patient.apply {
+                gender = gender?:"F"
+            }
+        }
         binding.patient = patient
         binding.isEditMode = patientViewModel.isEditMode
     }
@@ -246,6 +253,11 @@ class PatientPersonalInfoFragment :
     }
 
     private fun setGender() {
+        if(BuildConfig.FLAVOR_client == FlavorKeys.UNFPA){
+            binding.btnMale.isCheckable = false
+            binding.btnFemale.isCheckable = false
+            binding.btnOther.isCheckable = false
+        }
         binding.toggleGender.addOnButtonCheckedListener { _, checkedId, _ ->
             binding.tvGenderError.isVisible = false
             bindGenderValue()

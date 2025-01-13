@@ -25,7 +25,7 @@ class CustomLog {
         fun v(key: String, msg: String?) {
             if (BuildConfig.FLAVOR_server != "production") {
                 tag(key).v(msg)
-                saveLogData(key, msg?:"", "verbose")
+               // saveLogData(key, msg?:"", "verbose")
             }
         }
 

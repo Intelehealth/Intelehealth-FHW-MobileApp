@@ -5,7 +5,7 @@
     android:viewportHeight="40">
   <path
       android:pathData="M20.334,0L20.334,0A20,20 0,0 1,40.334 20L40.334,20A20,20 0,0 1,20.334 40L20.334,40A20,20 0,0 1,0.334 20L0.334,20A20,20 0,0 1,20.334 0z"
-      android:fillColor="#E6FFF3"/>
+      android:fillColor="@color/colorAccentLightCard"/>
   <group>
     <clip-path
         android:pathData="M10.334,10h20v20h-20z"/>
@@ -14,12 +14,12 @@
         android:strokeLineJoin="round"
         android:strokeWidth="1.33"
         android:fillColor="#00000000"
-        android:strokeColor="#0FD197"
+        android:strokeColor="@color/colorAccent"
         android:strokeLineCap="round"/>
     <path
         android:pathData="M20.334,21m-2.335,0a2.335,2.335 0,1 1,4.67 0a2.335,2.335 0,1 1,-4.67 0"
         android:strokeWidth="1.33"
         android:fillColor="#00000000"
-        android:strokeColor="#0FD197"/>
+        android:strokeColor="@color/colorAccent"/>
   </group>
 </vector>

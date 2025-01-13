@@ -4,54 +4,54 @@
     android:viewportWidth="40"
     android:viewportHeight="40">
     <path
-        android:fillColor="@color/colorPrimaryLightCard"
+        android:fillColor="@color/colorAccentLightCard"
         android:pathData="M20,0L20,0A20,20 0,0 1,40 20L40,20A20,20 0,0 1,20 40L20,40A20,20 0,0 1,0 20L0,20A20,20 0,0 1,20 0z" />
     <path
         android:fillColor="#00000000"
         android:pathData="M25.75,10.75H14.25C13.422,10.75 12.75,11.422 12.75,12.25V27.75C12.75,28.579 13.422,29.25 14.25,29.25H25.75C26.579,29.25 27.25,28.579 27.25,27.75V12.25C27.25,11.422 26.579,10.75 25.75,10.75Z"
         android:strokeWidth="1.33"
-        android:strokeColor="?attr/colorPrimary"
+        android:strokeColor="@color/colorAccent"
         android:strokeLineJoin="round" />
     <path
         android:fillColor="#00000000"
         android:pathData="M24.627,21.75H22.127"
         android:strokeWidth="1.33"
-        android:strokeColor="?attr/colorPrimary"
+        android:strokeColor="@color/colorAccent"
         android:strokeLineCap="round" />
     <path
         android:fillColor="#00000000"
         android:pathData="M24.627,18.25H22.127"
         android:strokeWidth="1.33"
-        android:strokeColor="?attr/colorPrimary"
+        android:strokeColor="@color/colorAccent"
         android:strokeLineCap="round" />
     <path
         android:fillColor="#00000000"
         android:pathData="M24.627,14.75H22.127"
         android:strokeWidth="1.33"
-        android:strokeColor="?attr/colorPrimary"
+        android:strokeColor="@color/colorAccent"
         android:strokeLineCap="round" />
     <path
         android:fillColor="#00000000"
         android:pathData="M24.627,25.25H22.127"
         android:strokeWidth="1.33"
-        android:strokeColor="?attr/colorPrimary"
+        android:strokeColor="@color/colorAccent"
         android:strokeLineCap="round" />
     <path
         android:fillColor="#00000000"
         android:pathData="M19.123,14.75V25.25"
         android:strokeWidth="1.33"
-        android:strokeColor="?attr/colorPrimary"
+        android:strokeColor="@color/colorAccent"
         android:strokeLineCap="round" />
     <path
-        android:fillColor="?attr/colorPrimary"
+        android:fillColor="@color/colorAccent"
         android:pathData="M16.123,15.5C15.708,15.5 15.373,15.164 15.373,14.75C15.373,14.336 15.708,14 16.123,14C16.537,14 16.873,14.336 16.873,14.75C16.873,15.164 16.537,15.5 16.123,15.5Z" />
     <path
-        android:fillColor="?attr/colorPrimary"
+        android:fillColor="@color/colorAccent"
         android:pathData="M16.123,19C15.708,19 15.373,18.664 15.373,18.25C15.373,17.836 15.708,17.5 16.123,17.5C16.537,17.5 16.873,17.836 16.873,18.25C16.873,18.664 16.537,19 16.123,19Z" />
     <path
-        android:fillColor="?attr/colorPrimary"
+        android:fillColor="@color/colorAccent"
         android:pathData="M16.123,22.5C15.708,22.5 15.373,22.164 15.373,21.75C15.373,21.336 15.708,21 16.123,21C16.537,21 16.873,21.336 16.873,21.75C16.873,22.164 16.537,22.5 16.123,22.5Z" />
     <path
-        android:fillColor="?attr/colorPrimary"
+        android:fillColor="@color/colorAccent"
         android:pathData="M16.123,26C15.708,26 15.373,25.664 15.373,25.25C15.373,24.836 15.708,24.5 16.123,24.5C16.537,24.5 16.873,24.836 16.873,25.25C16.873,25.664 16.537,26 16.123,26Z" />
 </vector>

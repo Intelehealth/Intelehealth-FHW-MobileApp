@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Keep this as the final toolbar custom view to be
+    used in all the activities as others do not
+    have proper view alignment.-->
+
+<!--toolbar-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_action_bar"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:layout_marginStart="@dimen/back_arrow_margin_start"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingEnd="@dimen/space_10dp"
+        android:src="@drawable/ui2_ic_arrow_back_new" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/title_margin_start"
+        android:gravity="center_vertical"
+        android:text="@string/title"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/setup_privacy_screen_info"
+        android:textStyle="bold" />
+</LinearLayout><!--toolbar end-->

@@ -28,11 +28,14 @@ import org.intelehealth.klivekit.socket.SocketManager;
 
 import java.util.UUID;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
 /**
  * Created by Vaghela Mithun R. on 03-06-2023 - 19:29.
  * Email : mithun@intelehealth.org
  * Mob   : +919727206702
  **/
+@AndroidEntryPoint
 public class BaseActivity extends LanguageActivity implements SocketManager.NotificationListener {
     private static final String TAG = "BaseActivity";
     private FeatureActiveStatus featureActiveStatus;

@@ -1,0 +1,19 @@
+<!-- res/drawable/button_background_selector.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Disabled state -->
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+
+            <corners android:radius="@dimen/corner_radius_8dp" /> <!-- Rounded corners -->
+            <solid android:color="#732E1E91" /> <!-- Disabled background color -->
+        </shape>
+    </item>
+
+    <!-- Enabled state -->
+    <item android:state_enabled="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/corner_radius_8dp" /> <!-- Rounded corners -->
+            <solid android:color="@color/colorPrimary" /> <!-- Enabled background color -->
+        </shape>
+    </item>
+</selector>

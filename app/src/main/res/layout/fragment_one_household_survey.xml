@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="patientSurveyAttributes"
+            type="org.intelehealth.app.ui.householdSurvey.models.HouseholdSurveyModel" />
+
+        <variable
+            name="isEditMode"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/btnFirstFragNext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/std_16dp">
+
+                <LinearLayout
+                    android:id="@+id/llPrimaryRespondentName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/lblNameOfPrimaryRespondent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/name_of_primary_respondent"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayNameOfPrimaryRespondent"
+                        style="@style/AppTheme.OutlineInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        tools:hint="@string/identification_screen_prompt_city">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputNameOfPrimaryRespondent"
+                            style="@style/AppTheme.InputBox"
+                            android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:inputType="text"
+                            android:text="@{patientSurveyAttributes.namePrimaryRespondent}"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_name_of_primary_respondent" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llHouseholdNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llPrimaryRespondentName"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblHouseholdNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/household_no_survey"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayHouseholdNumber"
+                        style="@style/AppTheme.OutlineInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        tools:hint="@string/household_no">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputHouseholdNumber"
+                            style="@style/AppTheme.InputBox"
+                            android:layout_width="match_parent"
+                            android:text="@{patientSurveyAttributes.householdNumberOfSurvey}"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:inputType="text"
+                            android:hint="@string/hint_household_number" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+                <!-- Household Structure Type Field -->
+                <LinearLayout
+                    android:id="@+id/llHouseholdStructureType"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llHouseholdNumber"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/labelStructureType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/household_structure_type"
+                        android:textAppearance="@style/blur_txtview"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/llHouseholdNumber" />
+
+                    <RadioGroup
+                        android:id="@+id/rgStructureType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/labelStructureType">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbKucha"
+                            style="@style/CommonRadioButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/radio_buttons_between_margin"
+
+                            android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                            android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                            android:text="@string/kucha"
+                            app:useMaterialThemeColors="false" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbPucca"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                            android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                            style="@style/CommonRadioButtonStyle"
+                            android:text="@string/pucca"
+                            app:useMaterialThemeColors="false" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/labelResultOFVisit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/result_of_visit"
+                    android:textAppearance="@style/blur_txtview"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llHouseholdStructureType" />
+
+                <RadioGroup
+                    android:id="@+id/rgResultOfVisit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/radio_group_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/labelResultOFVisit">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rbAvailableAndAccepted"
+                        style="@style/CommonRadioButtonStyle"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/available_and_accepted"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rbAvailableAndDeferred"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/available_and_deferred"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rbNotAvailableForSurvey"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/not_available_at_time_of_the_survey"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rbNotAvailableForSecondVisit"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/not_available_on_the_second_visit"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rbNotAvailableForThirdVisit"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/not_available_on_the_third_visit"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rbRefusedForVisit"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/refused_to_participate"
+                        app:useMaterialThemeColors="false" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/btnFirstFragNext"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fu_btn_size"
+            android:layout_marginStart="@dimen/margin_24"
+            android:layout_marginEnd="@dimen/margin_24"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:background="@drawable/ui2_common_primary_bg"
+            android:drawableEnd="@drawable/ui2_ic_baseline_arrow_forward_24"
+            android:paddingHorizontal="@dimen/margin_10"
+            android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

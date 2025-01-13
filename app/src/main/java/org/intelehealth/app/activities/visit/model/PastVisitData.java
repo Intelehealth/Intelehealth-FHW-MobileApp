@@ -9,6 +9,7 @@ public class PastVisitData implements Parcelable {
     private String chiefComplain;
     private String encounterAdultInitial;
     private String encounterVitals;
+    private String diagnostics;
 
 
     public PastVisitData() {
@@ -20,6 +21,7 @@ public class PastVisitData implements Parcelable {
         chiefComplain = in.readString();
         encounterAdultInitial = in.readString();
         encounterVitals = in.readString();
+        diagnostics = in.readString();
     }
 
     public static final Creator<PastVisitData> CREATOR = new Creator<PastVisitData>() {
@@ -86,5 +88,6 @@ public class PastVisitData implements Parcelable {
         parcel.writeString(chiefComplain);
         parcel.writeString(encounterAdultInitial);
         parcel.writeString(encounterVitals);
+        parcel.writeString(diagnostics);
     }
 }

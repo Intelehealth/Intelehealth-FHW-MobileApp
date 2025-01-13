@@ -1,5 +1,8 @@
 package org.intelehealth.app.ayu.visit.model;
 
+import org.intelehealth.app.BuildConfig;
+import org.intelehealth.app.utilities.FlavorKeys;
+
 import java.io.Serializable;
 
 public class ReasonData implements Serializable {
@@ -7,7 +10,8 @@ public class ReasonData implements Serializable {
     private String reasonNameLocalized; // locale wise name
     private boolean isSelected;
     private boolean isEnabled;
-
+    private boolean isCustom;
+    private String defaultReasonName;
 
     public boolean isSelected() {
         return isSelected;
@@ -39,5 +43,21 @@ public class ReasonData implements Serializable {
 
     public void setReasonNameLocalized(String reasonNameLocalized) {
         this.reasonNameLocalized = reasonNameLocalized;
+    }
+
+    public void setCustom(boolean custom) {
+        isCustom = custom;
+    }
+
+    public String getDefaultReasonName() {
+        return defaultReasonName;
+    }
+
+    public boolean isCustom() {
+        return isCustom;
+    }
+
+    public void setDefaultReasonName(String defaultReasonName) {
+        this.defaultReasonName = defaultReasonName;
     }
 }

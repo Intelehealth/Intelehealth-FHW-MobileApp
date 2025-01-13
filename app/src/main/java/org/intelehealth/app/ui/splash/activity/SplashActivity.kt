@@ -216,6 +216,13 @@ class SplashActivity : LanguageActivity(), BaseViewHolder.ViewHolderClickListene
             ContextCompat.checkSelfPermission(this, Manifest.permission.GET_ACCOUNTS)
         var writeExternalStoragePermission =
             ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        val bluetoothPermission =
+            ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH)
+        val bluetoothAdminPermission =
+            ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_ADMIN)
+        val coarseLocationPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+        val fineLocationPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             writeExternalStoragePermission =
                 ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
@@ -252,6 +259,35 @@ class SplashActivity : LanguageActivity(), BaseViewHolder.ViewHolderClickListene
         if (phoneStatePermission != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.READ_PHONE_STATE)
         }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            val bluetoothScanPermission =
+                ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN)
+            val bluetoothConnectPermission =
+                ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT)
+
+            if (bluetoothScanPermission != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(Manifest.permission.BLUETOOTH_SCAN)
+            }
+
+            if (bluetoothConnectPermission != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(Manifest.permission.BLUETOOTH_CONNECT)
+            }
+        } else {
+            if (bluetoothPermission != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(Manifest.permission.BLUETOOTH)
+            }
+
+            if (bluetoothAdminPermission != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(Manifest.permission.BLUETOOTH_ADMIN)
+            }
+        }
+        if (coarseLocationPermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.ACCESS_COARSE_LOCATION)
+        }
+        if (fineLocationPermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+
         if (!listPermissionsNeeded.isEmpty()) {
             ActivityCompat.requestPermissions(
                 this,

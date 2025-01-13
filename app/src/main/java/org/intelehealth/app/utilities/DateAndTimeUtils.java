@@ -118,8 +118,8 @@ public class DateAndTimeUtils {
     }
 
     public static String getAge_FollowUp(String s, Context context) {
-        CustomLog.d(TAG, "getAge_FollowUp: s: " + s);
-        CustomLog.d("TAG", "getAge_FollowUp: s : " + s);
+//        CustomLog.d(TAG, "getAge_FollowUp: s: " + s);
+//        CustomLog.d("TAG", "getAge_FollowUp: s : " + s);
         if (s == null) return "";
         DateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         DateFormat targetFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -149,7 +149,7 @@ public class DateAndTimeUtils {
         if (period.getValue(0) > 0) {  // o index -> years
             tyears = String.valueOf(period.getValue(0));
             age = tyears;
-            CustomLog.d("TAG", "getAge_FollowUp: s : " + age);
+            //CustomLog.d("TAG", "getAge_FollowUp: s : " + age);
         } else {
             age = "0";
         }
@@ -1160,5 +1160,12 @@ public class DateAndTimeUtils {
         SimpleDateFormat simpleFormat = new SimpleDateFormat(format, Locale.ENGLISH);
         Date date = new Date(currentTimeMillis);
         return simpleFormat.format(date);
+    }
+    public static String currentDateTimeFormat() {
+        Locale.setDefault(Locale.ENGLISH);
+        DateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+// you can get seconds by adding  "...:ss" to it
+        Date todayDate = new Date();
+        return date.format(todayDate);
     }
 }

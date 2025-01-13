@@ -21,7 +21,7 @@
         <path
             android:pathData="M8 0H36C40.4183 0 44 3.58172 44 8V36C44 40.4183 40.4183 44 36 44H8C3.58172 44 0 40.4183 0 36V8C0 3.58172 3.58172 0 8 0Z"
             android:strokeWidth="2"
-            android:strokeColor="#2E1E91"
+            android:strokeColor="@color/colorPrimary"
             />
 
     </group>

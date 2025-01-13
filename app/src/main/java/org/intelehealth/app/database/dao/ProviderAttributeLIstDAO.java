@@ -4,17 +4,15 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import org.intelehealth.app.utilities.CustomLog;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import org.intelehealth.app.app.AppConstants;
 import org.intelehealth.app.app.IntelehealthApplication;
 import org.intelehealth.app.models.Uuid_Value;
 import org.intelehealth.app.models.dto.ProviderAttributeListDTO;
 import org.intelehealth.app.utilities.exception.DAOException;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Prajwal Waingankar
@@ -63,11 +61,11 @@ public class ProviderAttributeLIstDAO {
                     attributeListDTO.getAttributetypeuuid().equalsIgnoreCase("ed1715f5-93e2-404e-b3c9-2a2d9600f062")) {
                 createdRecordsCount = db.insertWithOnConflict("tbl_dr_speciality", null, values, SQLiteDatabase.CONFLICT_REPLACE);
 
-                if (createdRecordsCount != -1) {
+                /*if (createdRecordsCount != -1) {
                     CustomLog.d("SPECI", "SIZEXXX: " + createdRecordsCount);
                 } else {
                     CustomLog.d("SPECI", "SIZEXXX: " + createdRecordsCount);
-                }
+                }*/
 
             }
 

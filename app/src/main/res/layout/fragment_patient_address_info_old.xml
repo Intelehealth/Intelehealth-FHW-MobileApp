@@ -1,0 +1,594 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="patient"
+            type="org.intelehealth.app.models.dto.PatientDTO" />
+
+        <variable
+            name="addressInfoConfig"
+            type="org.intelehealth.app.ui.patient.config.AddressInfoConfig" />
+
+        <variable
+            name="isEditMode"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="org.intelehealth.app.ui.patient.viewmodel.PatientViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/margin_24"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@id/frag2_btn_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/std_16dp">
+
+
+                <!--Postal code and Country-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clPostalCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:id="@+id/llPostalCode"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="@{addressInfoConfig.postalCode.enabled ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintEnd_toStartOf="@id/llCountry"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/lblPostalCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@{ addressInfoConfig.postalCode.mandatory ? @string/identification_screen_prompt_postal_code + ` *` : @string/identification_screen_prompt_postal_code}"
+                            android:textAppearance="@style/blur_txtview"
+                            android:textSize="@null"
+                            tools:text="@string/identification_screen_prompt_postal_code" />
+
+                        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                            android:id="@+id/textInputLayPostalCode"
+                            style="@style/AppTheme.OutlineInputBox"
+                            config="@{addressInfoConfig.postalCode}"
+                            editMode="@{isEditMode}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintEnabled="false"
+                            tools:hint="@string/identification_screen_prompt_postal_code">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/textInputPostalCode"
+                                style="@style/AppTheme.InputBox.Phone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/enter_postal_code"
+                                android:inputType="textPostalAddress"
+                                android:maxLength="6"
+                                android:text="@{patient.postalcode}" />
+                        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llCountry"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="@{addressInfoConfig.country.enabled ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/llPostalCode"
+                        app:layout_constraintTop_toTopOf="parent"
+                        bind:config="@{addressInfoConfig.postalCode}"
+                        bind:dynamicMargin="@{@dimen/std_16dp}"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/lblCountry"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@{ addressInfoConfig.country.mandatory ? @string/identification_screen_prompt_country + ` *` : @string/identification_screen_prompt_country}"
+                            android:textAppearance="@style/blur_txtview"
+                            android:textSize="@null"
+                            tools:text="@string/identification_screen_prompt_country" />
+
+                        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                            android:id="@+id/textInputLayCountry"
+                            style="@style/AppTheme.OutlineInputBox.DropDown"
+                            config="@{addressInfoConfig.country}"
+                            editMode="@{isEditMode}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_4"
+                            app:hintEnabled="false">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/autoCompleteCountry"
+                                style="@style/AppTheme.InputBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/hint_drop_down_country"
+                                android:inputType="none" />
+                        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/llState"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/std_12dp"
+                    android:orientation="vertical"
+                    android:visibility="@{addressInfoConfig.state.enabled ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/clPostalCountry"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblState"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@{ addressInfoConfig.state.mandatory ? @string/identification_screen_prompt_state + ` *` : @string/identification_screen_prompt_state}"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null"
+                        tools:text="@string/identification_screen_prompt_state" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayState"
+                        style="@style/AppTheme.OutlineInputBox.DropDown"
+                        config="@{addressInfoConfig.state}"
+                        editMode="@{isEditMode}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_4"
+                        app:hintEnabled="false">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteState"
+                            style="@style/AppTheme.InputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_drop_down_state"
+                            android:inputType="none" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayOtherState"
+                        style="@style/AppTheme.OutlineInputBox"
+                        config="@{addressInfoConfig.state}"
+                        editMode="@{isEditMode}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:hintEnabled="false"
+                        tools:hint="@string/identification_screen_prompt_postal_code">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputOtherState"
+                            style="@style/AppTheme.InputBox.Name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/enter_state"
+                            android:text="@{patient.stateprovince}" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llDistrict"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/std_12dp"
+                    android:orientation="vertical"
+                    android:visibility="@{addressInfoConfig.district.enabled ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llState"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblDistrict"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@{ addressInfoConfig.district.mandatory ? @string/identification_screen_prompt_district + ` *` : @string/identification_screen_prompt_district}"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null"
+                        tools:text="@string/identification_screen_prompt_district" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayDistrict"
+                        style="@style/AppTheme.OutlineInputBox.DropDown"
+                        config="@{addressInfoConfig.district}"
+                        editMode="@{isEditMode}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_4"
+                        app:hintEnabled="false">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteDistrict"
+                            style="@style/AppTheme.InputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_drop_down_district"
+                            android:inputType="none" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayOtherDistrict"
+                        style="@style/AppTheme.OutlineInputBox"
+                        config="@{addressInfoConfig.district}"
+                        editMode="@{isEditMode}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:hintEnabled="false"
+                        tools:hint="@string/identification_screen_prompt_district">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputOtherDistrict"
+                            style="@style/AppTheme.InputBox.Name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/enter_district"
+                            android:text="@{patient.stateprovince}" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llBlock"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/std_12dp"
+                    android:orientation="vertical"
+                    android:visibility="@{addressInfoConfig.block.enabled ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llDistrict"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblBlock"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@{addressInfoConfig.block.mandatory ? @string/identification_screen_prompt_block + ` *` : @string/identification_screen_prompt_block}"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null"
+                        tools:text="@string/identification_screen_prompt_block" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayBlock"
+                        style="@style/AppTheme.OutlineInputBox.DropDown"
+                        config="@{addressInfoConfig.block}"
+                        editMode="@{isEditMode}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_4"
+                        app:hintEnabled="false">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteBlock"
+                            style="@style/AppTheme.InputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_drop_down_block"
+                            android:inputType="none" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llOtherBlock"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/std_12dp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llBlock">
+
+                    <TextView
+                        android:id="@+id/lblOtherBlock"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@{addressInfoConfig.block.mandatory ? @string/identification_screen_prompt_other_block + ` *` : @string/identification_screen_prompt_other_block}"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null"
+                        tools:text="@string/identification_screen_prompt_other_block" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayOtherBlock"
+                        style="@style/AppTheme.OutlineInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_4"
+                        app:hintEnabled="false"
+                        tools:hint="@string/identification_screen_prompt_block">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputOtherBlock"
+                            style="@style/AppTheme.InputBox.Name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={patient.block}"
+                            android:hint="@string/enter_block" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llVillageDropdown"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/std_12dp"
+                    android:orientation="vertical"
+                    android:visibility="@{addressInfoConfig.block.enabled ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llOtherBlock"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblVillageVillageDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@{addressInfoConfig.block.mandatory ? @string/identification_screen_prompt_city + ` *` : @string/identification_screen_prompt_city}"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null"
+                        tools:text="@string/village_town_city" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayVillageDropdown"
+                        style="@style/AppTheme.OutlineInputBox.DropDown"
+                        config="@{addressInfoConfig.block}"
+                        editMode="@{isEditMode}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_4"
+                        app:hintEnabled="false">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteVillageDropdown"
+                            style="@style/AppTheme.InputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_drop_down_village"
+                            android:inputType="none" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCityVillage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/std_12dp"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.addressInfoConfigCityVillageEnabled ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llVillageDropdown">
+
+                    <TextView
+                        android:id="@+id/lblCityVillage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@{ addressInfoConfig.cityVillage.mandatory ? @string/identification_screen_prompt_city + ` *` : @string/identification_screen_prompt_city}"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null"
+                        tools:text="@string/identification_screen_prompt_city" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayCityVillage"
+                        style="@style/AppTheme.OutlineInputBox"
+                        config="@{addressInfoConfig.cityVillage}"
+                        editMode="@{isEditMode}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        tools:hint="@string/identification_screen_prompt_city">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputCityVillage"
+                            style="@style/AppTheme.InputBox.Name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/enter_village_town_city"
+                            android:text="@{patient.villageWithoutDistrict}" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/llHouseholdNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/std_12dp"
+                    android:orientation="vertical"
+                    android:visibility="@{addressInfoConfig.householdNumber.enabled ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llCityVillage">
+
+                    <TextView
+                        android:id="@+id/lblHouseholdNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@{ addressInfoConfig.householdNumber.mandatory ? @string/identification_screen_prompt_household_no + ` *` : @string/identification_screen_prompt_household_no}"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null"
+                        tools:text="@string/identification_screen_prompt_household_no" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayHouseholdNumber"
+                        style="@style/AppTheme.OutlineInputBox"
+                        config="@{addressInfoConfig.householdNumber}"
+                        editMode="@{isEditMode}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        tools:hint="@string/identification_screen_prompt_household_no">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputHouseholdNumber"
+                            style="@style/AppTheme.InputBox.Phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/enter_household_number"
+                            android:inputType="number"
+                            android:text="@={patient.address1}" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/llAddress1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/std_12dp"
+                    android:orientation="vertical"
+                    android:visibility="@{addressInfoConfig.address1.enabled ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llHouseholdNumber"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblAddress1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@{ addressInfoConfig.address1.mandatory ? @string/corresponding_address_1 + ` *` : @string/corresponding_address_1}"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null"
+                        tools:text="@string/corresponding_address_1" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayAddress1"
+                        style="@style/AppTheme.OutlineInputBox"
+                        config="@{addressInfoConfig.address1}"
+                        editMode="@{isEditMode}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        tools:hint="@string/identification_screen_prompt_city">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputAddress1"
+                            style="@style/AppTheme.InputBox.Address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/enter_patient_address"
+                            android:text="@={patient.address1}" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAddress2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/std_12dp"
+                    android:orientation="vertical"
+                    android:visibility="@{addressInfoConfig.address2.enabled ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llAddress1"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblAddress2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@{ addressInfoConfig.address2.mandatory ? @string/corresponding_address_1 + ` *` : @string/corresponding_address_1}"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null"
+                        tools:text="@string/corresponding_address_2" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayAddress2"
+                        style="@style/AppTheme.OutlineInputBox"
+                        config="@{addressInfoConfig.address2}"
+                        editMode="@{isEditMode}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        tools:hint="@string/identification_screen_prompt_city">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputAddress2"
+                            style="@style/AppTheme.InputBox.Address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/enter_patient_address"
+                            android:text="@{patient.address2}" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/frag2_btn_back"
+            style="@style/AppTheme.OutlinedButton.White"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_16dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:text="@string/generic_back"
+            android:textColor="@color/primary_text"
+            android:visibility="@{isEditMode ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/frag2_btn_next"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/frag2_btn_next"
+            style="@style/AppTheme.OutlinedButton.Primary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_16dp"
+            android:layout_marginEnd="@dimen/std_16dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:text="@string/next"
+            app:icon="@drawable/ui2_ic_baseline_arrow_forward_24"
+            app:iconGravity="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/frag2_btn_back" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

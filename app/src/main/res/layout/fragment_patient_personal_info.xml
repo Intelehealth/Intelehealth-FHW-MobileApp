@@ -383,6 +383,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textInputLayPhoneNumber"
+                    tools:visibility="visible"
                     tools:hint="@string/contact_type_non_required">
 
                     <AutoCompleteTextView

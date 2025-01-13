@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
+import dagger.hilt.android.AndroidEntryPoint
 import org.intelehealth.app.utilities.SessionManager
 import org.intelehealth.config.presenter.language.data.LanguageRepository
 import org.intelehealth.config.presenter.language.factory.LanguageViewModelFactory
@@ -23,6 +24,7 @@ import java.util.Locale
  * Email : mithun@intelehealth.org
  * Mob   : +919727206702
  **/
+@AndroidEntryPoint
 abstract class LanguageActivity : AppCompatActivity() {
     protected lateinit var sessionManager: SessionManager
     private val languageViewModel by viewModels<LanguageViewModel> {

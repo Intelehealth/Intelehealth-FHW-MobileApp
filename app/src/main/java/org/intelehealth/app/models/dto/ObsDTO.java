@@ -85,6 +85,14 @@ public class ObsDTO {
         return obsServerModifiedDate;
     }
 
+    public String getConceptsetuuid() {
+        return conceptsetuuid;
+    }
+
+    public void setConceptsetuuid(String conceptsetuuid) {
+        this.conceptsetuuid = conceptsetuuid;
+    }
+
     public void setObsServerModifiedDate(String obsServerModifiedDate) {
         this.obsServerModifiedDate = obsServerModifiedDate;
     }
@@ -96,4 +104,5 @@ public class ObsDTO {
     public void setComments(String comments) {
         this.comments = comments;
     }
+    private String conceptsetuuid;
 }

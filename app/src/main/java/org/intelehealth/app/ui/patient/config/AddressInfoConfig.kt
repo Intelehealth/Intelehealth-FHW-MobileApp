@@ -10,9 +10,14 @@ import org.intelehealth.config.room.entity.PatientRegistrationFields
 class AddressInfoConfig {
     var postalCode: PatientRegistrationFields? = null
     var country: PatientRegistrationFields? = null
+    var province: PatientRegistrationFields? = null
+    var city: PatientRegistrationFields? = null
     var state: PatientRegistrationFields? = null
+    var registrationAddressOfHf: PatientRegistrationFields? = null
     var district: PatientRegistrationFields? = null
     var cityVillage: PatientRegistrationFields? = null
     var address1: PatientRegistrationFields? = null
     var address2: PatientRegistrationFields? = null
+    var block: PatientRegistrationFields? = null
+    var householdNumber: PatientRegistrationFields? = null
 }

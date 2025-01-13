@@ -52,8 +52,8 @@ android {
         nas {
             dimension client
             applicationId "org.intelehealth.nas"
-            versionCode 1
-            versionName '1.0'
+            versionCode 50
+            versionName '1.5.4'
             archivesBaseName = "intelehealth_nas-" + versionName + " - " + date
         }
 
@@ -63,6 +63,22 @@ android {
             versionCode 45
             versionName '5.1.1'
             archivesBaseName = "intelehealth_unicef-" + versionName + " - " + date
+        }
+
+        kcdo {
+            dimension client
+            applicationId 'org.intelehealth.kcdo'
+            versionCode 1
+            versionName '1.0.0'
+            archivesBaseName = "intelehealth_kcdo-" + versionName + " - " + date
+        }
+
+        unfpa {
+            dimension client
+            applicationId 'org.intelehealth.unfpa'
+            versionCode 1
+            versionName '1.0'
+            archivesBaseName = "intelehealth_unfpa-" + versionName + " - " + date
         }
 
         // This flavor used to handle different type of endpoint
@@ -100,6 +116,11 @@ android {
             domain = "NAS"
         } else if (name.contains("unicef")) {
             domain = "UNICEF"
+        }
+        else if (name.contains("kcdo")) {
+            domain = "KCDO"
+        } else if (name.contains("unfpa")) {
+            domain = "UNFPA"
         } else {
             domain = "IDA"
         }

@@ -170,7 +170,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="16dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ui2_image_prescription_green_bg"
+                    android:src="@drawable/ic_home_prescription_card_bg"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
@@ -179,7 +179,7 @@
                     android:layout_height="@dimen/card_prescription_image_height"
                     android:layout_alignParentEnd="true"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ui2_image_prescription_green"
+                    android:src="@drawable/ic_home_prescription_card"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 

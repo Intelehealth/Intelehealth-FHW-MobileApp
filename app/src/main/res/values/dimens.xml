@@ -816,6 +816,18 @@
     <dimen name="tv_cal_view_date_day_margin_top">5dp</dimen>
     <dimen name="tv_cal_view_date_day_text_size">12sp</dimen>
     <dimen name="icons_appoint_height">40dp</dimen>
+    <dimen name="padding_visit_summary_screen">10dp</dimen>
+    <dimen name="text_size_title">20sp</dimen>
+    <dimen name="text_size_normal">16sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="bluetooth_dialog_height">250dp</dimen>
+    <dimen name="form_fields_common_margin_top">12dp</dimen>
+    <dimen name="radio_buttons_padding_start_end">10dp</dimen>
+    <dimen name="radio_buttons_margin_top">4dp</dimen>
+    <dimen name="radio_buttons_between_margin">30dp</dimen>
+    <dimen name="radio_group_margin_top">2dp</dimen>
+    <dimen name="dialog_margin">32dp</dimen>
+    <dimen name="dialog_margin_vertical">62dp</dimen>
 
 
 </resources>

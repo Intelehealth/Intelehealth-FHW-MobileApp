@@ -135,8 +135,19 @@
             android:layout_marginStart="@dimen/margin_8"
             android:progress="0"
             android:progressTint="@color/colorPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/prog_bar_step5"
             app:layout_constraintStart_toEndOf="@id/prog_bar_step3"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ProgressBar
+            android:id="@+id/prog_bar_step5"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dip"
+            android:layout_height="4dip"
+            android:layout_marginStart="@dimen/margin_8"
+            android:progress="0"
+            android:progressTint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/prog_bar_step4"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!--    <LinearLayout-->

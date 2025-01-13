@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvQuestion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="@dimen/margin_5"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:text="@string/name"
+            android:textAppearance="@style/caption"
+            android:textColor="@color/hint_text_color"
+            android:textSize="@dimen/find_patient_hint_size" />
+
+        <TextView
+            android:id="@+id/tvAnswer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/bullet_gray"
+            android:drawablePadding="@dimen/margin_4"
+            android:text="Kiran Devi Prakash"
+            android:textAppearance="@style/caption"
+            android:textColor="@color/textview_color"
+            android:textSize="@dimen/find_patient_hint_size"
+            android:paddingStart="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_4"
+            app:layout_constraintTop_toBottomOf="@+id/tvQuestion" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

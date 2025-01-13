@@ -13,7 +13,6 @@
     app:cardElevation="@dimen/margin_5">
 
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -113,8 +112,8 @@
 
                     <ImageView
                         android:id="@+id/fu_item_calendar"
-                        android:layout_width="@dimen/cal_size"
-                        android:layout_height="@dimen/cal_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_below="@+id/lll"
                         android:layout_marginTop="@dimen/cal_margin_top"
                         android:src="@drawable/followup_item_calendar" />

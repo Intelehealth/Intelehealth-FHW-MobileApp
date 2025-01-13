@@ -14,6 +14,8 @@ import androidx.core.view.WindowCompat
 import org.intelehealth.app.R
 import org.intelehealth.app.app.AppConstants
 import org.intelehealth.app.ui.patient.activity.PatientRegistrationActivity
+import org.intelehealth.app.ui.rosterquestionnaire.ui.RosterQuestionnaireMainActivity.Companion.startRosterQuestionnaire
+import org.intelehealth.app.ui.rosterquestionnaire.utilities.RosterQuestionnaireStage
 import org.intelehealth.app.utilities.ConfigUtils
 import org.intelehealth.app.utilities.DialogUtils
 import org.intelehealth.app.utilities.SessionManager
@@ -86,9 +88,22 @@ class PersonalConsentActivity : AppCompatActivity(), WebViewStatus {
 //                IdentificationActivity_New::class.java
 //            )
 //        )
-        PatientRegistrationActivity.startPatientRegistration(this)
-        setResult(AppConstants.PERSONAL_CONSENT_ACCEPT)
-        finish()
+       PatientRegistrationActivity.startPatientRegistration(this)
+      setResult(AppConstants.PERSONAL_CONSENT_ACCEPT)
+       finish()
+
+       /* startRosterQuestionnaire(
+            this,
+           " patient.uuid",
+            RosterQuestionnaireStage.GENERAL_ROSTER
+        )*/
+
+      /*  startRosterQuestionnaire(
+            this,
+            "hgfdhbgdshj",
+            RosterQuestionnaireStage.GENERAL_ROSTER
+        )*/
+
     }
 
     override fun attachBaseContext(newBase: Context) {

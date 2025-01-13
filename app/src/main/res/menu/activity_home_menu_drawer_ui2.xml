@@ -35,6 +35,13 @@
             android:icon="@drawable/ui2_ic_icon_about_us"
             android:title="@string/about_us"
             app:iconTint="?colorPrimary" />
+
+        <item
+            android:id="@+id/menu_draft_survey"
+            android:icon="@drawable/draft_survey_svgicon"
+            android:title="@string/draft_survey"
+            app:iconTint="?colorPrimary" />
+
         <item
             android:id="@+id/menu_logout"
             android:icon="@drawable/ui2_ic_icon_logout"

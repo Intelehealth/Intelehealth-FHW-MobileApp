@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:paddingVertical="@dimen/std_16dp"
+    app:layout_collapseMode="parallax">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutTabs"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/std_16dp"
+        android:paddingHorizontal="40dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <!-- General Card -->
+
+        <ImageView
+            android:id="@+id/tvIndicatorGeneralRoster"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/general_roster_icon_unselected"
+            app:layout_constraintEnd_toStartOf="@id/line_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- First Line -->
+        <View
+            android:id="@+id/line_1"
+            android:layout_width="40dp"
+            android:layout_height="5dp"
+            android:background="@drawable/line_11"
+            app:layout_constraintBottom_toBottomOf="@id/tvIndicatorGeneralRoster"
+            app:layout_constraintEnd_toStartOf="@id/tvIndicatorPregnancyRoster"
+            app:layout_constraintStart_toEndOf="@id/tvIndicatorGeneralRoster"
+            app:layout_constraintTop_toTopOf="@id/tvIndicatorGeneralRoster" />
+
+        <!-- Pregnancy Card -->
+
+        <ImageView
+            android:id="@+id/tvIndicatorPregnancyRoster"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/pregnancy_roster_icon_unselected"
+            app:layout_constraintEnd_toStartOf="@id/line_2"
+            app:layout_constraintStart_toEndOf="@id/line_1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Second Line -->
+        <View
+            android:id="@+id/line_2"
+            android:layout_width="40dp"
+            android:layout_height="5dp"
+            android:background="@drawable/line_11"
+            app:layout_constraintBottom_toBottomOf="@id/tvIndicatorPregnancyRoster"
+            app:layout_constraintEnd_toStartOf="@id/tvIndicatorHealthService"
+            app:layout_constraintStart_toEndOf="@id/tvIndicatorPregnancyRoster"
+            app:layout_constraintTop_toTopOf="@id/tvIndicatorPregnancyRoster" />
+
+        <!-- Health Service Card -->
+
+        <ImageView
+            android:id="@+id/tvIndicatorHealthService"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/health_service_roster_icon_unselected"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/line_2"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="@dimen/std_8dp"
+        android:weightSum="3"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutTabs">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvIndicatorPatientPersonal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingEnd="-10dp"
+            android:gravity="center"
+            android:text="@string/general_roster"
+            android:textAppearance="@style/personal_txtview"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvIndicatorPatientAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingEnd="-2dp"
+            android:text="@string/pregnancy_roster"
+
+            android:textAppearance="@style/personal_txtview"
+            app:layout_constraintEnd_toStartOf="@id/tvIndicatorPatientOther"
+            app:layout_constraintStart_toEndOf="@id/tvIndicatorPatientPersonal"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvIndicatorPatientOther"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/health_service_roster"
+            android:textAppearance="@style/personal_txtview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvIndicatorPatientAddress"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

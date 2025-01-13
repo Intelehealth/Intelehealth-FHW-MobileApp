@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">आरोग्य पथ</string>
+    <string name="intro_title_1">हम कौन हैं?</string>
+    <string name="intro_tagline_1">आरोग्य पथ एक अभिनव टेलीमेडिसिन प्लेटफ़ॉर्म है जिसे उच्च गुणवत्ता वाली स्वास्थ्य सेवाएँ प्रदान करने के लिए फ्रंटलाइन स्वास्थ्य कार्यकर्ता और रोगी को एक आभासी डॉक्टर से जोड़कर दूरदराज के क्षेत्रों में स्वास्थ्य सेवा पहुँच के अंतर को पाटने के लिए डिज़ाइन किया गया है।</string>
+    <string name="intro_title_2">मरीज़ों से मिलें</string>
+    <string name="intro_tagline_2">यह प्लेटफॉर्म आयु द्वारा संचालित है, जो एक प्रोग्रामेबल डिजिटल सहायक है जो क्षेत्रीय भाषाओं में प्राथमिक स्वास्थ्य देखभाल के लिए साक्ष्य-आधारित प्रोटोकॉल के साथ फ्रंटलाइन स्वास्थ्य कार्यकर्ताओं का समर्थन करता है</string>
+    <string name="intro_title_3">नुस्खे उपलब्ध कराएं</string>
+    <string name="intro_tagline_3">कम संसाधन वाले वातावरण के लिए डिज़ाइन किया गया क्लाउड-आधारित ओपन-सोर्स प्लेटफ़ॉर्म, अनुकूलित कार्यान्वयन रणनीति के साथ मिलकर प्रभावशाली स्वास्थ्य परिणामों के लिए एक डिजिटल स्वास्थ्य समाधान बनाता है</string>
+
+    <string name="are_you_sure_you_want_to_send_visit">क्या आप वाकई इस यात्रा को सहेजना चाहते हैं?</string>
+    <string name="send_visit">विज़िट सहेजें?</string>
+    <string name="visit_successfully_sent">यात्रा सफलतापूर्वक सहेजी गई!</string>
+    <string name="patient_visit_sent">मरीज़ की यात्रा सफलतापूर्वक सहेज ली गई है।</string>
+    <string name="visit_data_failed">यात्रा सफलतापूर्वक सहेजी गई!</string>
+    <string name="visit_uploaded_failed">मरीज़ की यात्रा सफलतापूर्वक सहेज ली गई है।</string>
+
+    <string name="relapse_info">Relapse Info</string>
+    <string name="relapse">Relapse</string>
+    <string name="_relapse">%1$d/%2$d Relapse</string>
+    <string name="ui2_relapse_summary_title">%1$d/%2$d Relapse summary</string>
+
+
+<!--    <string name="visit_left_action_btn_label">@string/preview</string>-->
+<!--    <string name="visit_right_action_btn_label">@string/save_visit_button</string>-->
+<!--    <string name="visit_save_and_upload_status">@string/visit_saving</string>-->
+</resources>

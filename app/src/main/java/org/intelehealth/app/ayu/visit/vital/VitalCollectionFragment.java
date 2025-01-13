@@ -4,13 +4,16 @@ import static org.intelehealth.app.ayu.visit.common.VisitUtils.convertCtoF;
 import static org.intelehealth.app.ayu.visit.common.VisitUtils.convertFtoC;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+
 import org.intelehealth.app.utilities.CustomLog;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +34,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.codeglo.coyamore.data.PreferenceHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
@@ -105,6 +109,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
     private CardView mHeightCardView, mWeightCardView, mBMICardView, mSBPCardView, mDBPCardView, mPulseCardView, mTemperatureCardView, mSpo2CardView, mRespiratoryCardView, mBloodGroupCardView;
 
     private List<PatientVital> mPatientVitalList;
+    private VitalPreference vitalPref;
 
     public VitalCollectionFragment() {
         // Required empty public constructor
@@ -160,6 +165,12 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (SessionManager.getInstance(getContext()).getVitalPreference() != null) {
+            vitalPref = SessionManager.getInstance(getContext()).getVitalPreference();
+        } else {
+            vitalPref = new VitalPreference();
+        }
+
 
     }
 
@@ -318,7 +329,39 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
             }
         });
 
+        setDataIfExist();
+
         return mRootView;
+    }
+
+
+    private void setDataIfExist() {
+        vitalPref = SessionManager.getInstance(getContext()).getVitalPreference();
+        if (vitalPref != null) {
+            mHeightEditText.setText(vitalPref.getHeight());
+            mWeightEditText.setText(vitalPref.getWeight());
+            mBMITextView.setText(vitalPref.getBmi());
+            mBpSysEditText.setText(vitalPref.getBpSystolic());
+            mBpSysEditText.setText(vitalPref.getBpSystolic());
+            mBpDiaEditText.setText(vitalPref.getBpDiastolic());
+            mTemperatureEditText.setText(vitalPref.getTemperature());
+            mSpo2EditText.setText(vitalPref.getSpO2());
+            mRespEditText.setText(vitalPref.getRespiratoryRate());
+            mBloodGroupErrorTextView.setText(vitalPref.getRespiratoryRate());
+        }
+    }
+
+    private void updatePreference() {
+        VitalPreference vitalPref = new VitalPreference();
+        vitalPref.setHeight(mHeightEditText.getText().toString());
+        vitalPref.setWeight(mWeightEditText.getText().toString());
+        vitalPref.setBmi(mBMITextView.getText().toString());
+        vitalPref.setBpDiastolic(mBpDiaEditText.getText().toString());
+        vitalPref.setBpSystolic(mBpSysEditText.getText().toString());
+        vitalPref.setTemperature(mTemperatureEditText.getText().toString());
+        vitalPref.setSpO2(mSpo2EditText.getText().toString());
+        vitalPref.setRespiratoryRate(mRespEditText.getText().toString());
+        SessionManager.getInstance(getContext()).saveVitalPreference(vitalPref);
     }
 
 
@@ -364,7 +407,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
             bmiLinearLayout.setVisibility(View.VISIBLE);*/
 
         for (PatientVital patientVital : mPatientVitalList) {
-            CustomLog.v(TAG,patientVital.getName() + "\t" + patientVital.getVitalKey());
+            CustomLog.v(TAG, patientVital.getName() + "\t" + patientVital.getVitalKey());
 
             if (patientVital.getVitalKey().equals(PatientVitalConfigKeys.HEIGHT)) {
                 mHeightCardView.setVisibility(View.VISIBLE);
@@ -452,20 +495,23 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            updatePreference();
         }
 
         @Override
         public void afterTextChanged(Editable editable) {
+
             String val = editable.toString().trim();
             if (val.equals(".")) {
                 editText.setText("");
                 return;
             }
             boolean isValid = isValidaForm();
+            updatePreference();
             setDisabledSubmit(!isValid);
         }
     }
+
 
     private boolean isValidaForm() {
         boolean isValid = true;
@@ -885,77 +931,6 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
         }
     }
 
-    private ArrayAdapter<String> mHeightArrayAdapter;
-
-    /*private void showHeightListing() {
-        // add a list
-        final String[] data = new String[mHeightMasterList.size() + 1];
-        data[0] = getResources().getString(R.string.select_height);
-        for (int i = 1; i < data.length; i++) {
-            data[i] = String.valueOf(mHeightMasterList.get(i - 1)) + " " + getResources().getString(R.string.cm);
-        }
-
-        mHeightArrayAdapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.simple_spinner_item_1, data);
-        mHeightArrayAdapter.setDropDownViewResource(R.layout.ui2_custome_dropdown_item_view);
-
-        mHeightSpinner.setAdapter(mHeightArrayAdapter);
-        mHeightSpinner.setPopupBackgroundDrawable(getActivity().getDrawable(R.drawable.popup_menu_background));
-        mHeightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int which, long l) {
-                if (which != 0) {
-                    heightvalue = data[which].split(" ")[0];
-                    calculateBMI();
-                    mHeightErrorTextView.setVisibility(View.GONE);
-                    mHeightSpinner.setBackgroundResource(R.drawable.edittext_border);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-    }*/
-
-    private ArrayAdapter<String> mWeightArrayAdapter;
-
-    /*private void showWeightListing() {
-
-        // add a list
-        final String[] data = new String[mWeightMasterList.size() + 1];
-        data[0] = getResources().getString(R.string.select_weight);
-        for (int i = 1; i < data.length; i++) {
-            data[i] = String.valueOf(mWeightMasterList.get(i - 1)) + " " + getResources().getString(R.string.kg);
-        }
-        mWeightArrayAdapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.simple_spinner_item_1, data);
-        mWeightArrayAdapter.setDropDownViewResource(R.layout.ui2_custome_dropdown_item_view);
-
-        mWeightSpinner.setAdapter(mWeightArrayAdapter);
-        mWeightSpinner.setPopupBackgroundDrawable(getActivity().getDrawable(R.drawable.popup_menu_background));
-
-        mWeightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int which, long l) {
-                if (which != 0) {
-                    weightvalue = data[which].split(" ")[0];
-                    calculateBMI();
-                    mWeightErrorTextView.setVisibility(View.GONE);
-                    mWeightSpinner.setBackgroundResource(R.drawable.edittext_border);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-
-    }*/
 
     @Override
     public void onResume() {
@@ -1534,6 +1509,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                     }
                     //obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, UuidDictionary.HEIGHT));
                     obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, patientVital.getUuid()));
+                    obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                     obsDAO.updateObs(obsDTO);
                 }
@@ -1547,6 +1523,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                     obsDTO.setValue(results.getWeight());
                     //obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, UuidDictionary.WEIGHT));
                     obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, patientVital.getUuid()));
+                    obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                     obsDAO.updateObs(obsDTO);
                 }
@@ -1560,6 +1537,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                     obsDTO.setValue(results.getPulse());
                     //obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, UuidDictionary.PULSE));
                     obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, patientVital.getUuid()));
+                    obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                     obsDAO.updateObs(obsDTO);
                 }
@@ -1573,6 +1551,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                     obsDTO.setValue(results.getBpsys());
                     //obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, UuidDictionary.SYSTOLIC_BP));
                     obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, patientVital.getUuid()));
+                    obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                     obsDAO.updateObs(obsDTO);
                 }
@@ -1586,6 +1565,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                     obsDTO.setValue(results.getBpdia());
                     //obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, UuidDictionary.DIASTOLIC_BP));
                     obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, patientVital.getUuid()));
+                    obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                     obsDAO.updateObs(obsDTO);
                 }
@@ -1599,6 +1579,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                     obsDTO.setValue(results.getTemperature());
                     //obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, UuidDictionary.TEMPERATURE));
                     obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, patientVital.getUuid()));
+                    obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                     obsDAO.updateObs(obsDTO);
                 }
@@ -1612,6 +1593,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                     obsDTO.setValue(results.getResp());
                     //obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, UuidDictionary.RESPIRATORY));
                     obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, patientVital.getUuid()));
+                    obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                     obsDAO.updateObs(obsDTO);
                 }
@@ -1625,6 +1607,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                     obsDTO.setValue(results.getSpo2());
                     //obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, UuidDictionary.SPO2));
                     obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, patientVital.getUuid()));
+                    obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                     obsDAO.updateObs(obsDTO);
                 }
@@ -1638,7 +1621,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                     obsDTO.setValue(results.getBloodGroup());
                     //obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, UuidDictionary.BLOOD_GROUP));
                     obsDTO.setUuid(obsDAO.getObsuuid(encounterVitals, patientVital.getUuid()));
-
+                    obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                     obsDAO.updateObs(obsDTO);
                 }
@@ -1683,6 +1666,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                 }
 
                 obsDTO.setUuid(AppConstants.NEW_UUID);
+                obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                 try {
                     obsDAO.insertObs(obsDTO);
@@ -1699,6 +1683,8 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                 obsDTO.setEncounteruuid(encounterVitals);
                 obsDTO.setCreator(sessionManager.getCreatorID());
                 obsDTO.setValue(results.getWeight());
+                obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
+
 
                 try {
                     obsDAO.insertObs(obsDTO);
@@ -1716,6 +1702,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                 obsDTO.setEncounteruuid(encounterVitals);
                 obsDTO.setCreator(sessionManager.getCreatorID());
                 obsDTO.setValue(results.getPulse());
+                obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                 try {
                     obsDAO.insertObs(obsDTO);
@@ -1732,6 +1719,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                 obsDTO.setEncounteruuid(encounterVitals);
                 obsDTO.setCreator(sessionManager.getCreatorID());
                 obsDTO.setValue(results.getBpsys());
+                obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                 try {
                     obsDAO.insertObs(obsDTO);
@@ -1748,6 +1736,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                 obsDTO.setEncounteruuid(encounterVitals);
                 obsDTO.setCreator(sessionManager.getCreatorID());
                 obsDTO.setValue(results.getBpdia());
+                obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                 try {
                     obsDAO.insertObs(obsDTO);
@@ -1764,6 +1753,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                 obsDTO.setEncounteruuid(encounterVitals);
                 obsDTO.setCreator(sessionManager.getCreatorID());
                 obsDTO.setValue(results.getTemperature());
+                obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                 try {
                     obsDAO.insertObs(obsDTO);
@@ -1780,6 +1770,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                 obsDTO.setEncounteruuid(encounterVitals);
                 obsDTO.setCreator(sessionManager.getCreatorID());
                 obsDTO.setValue(results.getResp());
+                obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                 try {
                     obsDAO.insertObs(obsDTO);
@@ -1796,6 +1787,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                 obsDTO.setEncounteruuid(encounterVitals);
                 obsDTO.setCreator(sessionManager.getCreatorID());
                 obsDTO.setValue(results.getSpo2());
+                obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                 try {
                     obsDAO.insertObs(obsDTO);
@@ -1812,6 +1804,7 @@ public class VitalCollectionFragment extends Fragment implements View.OnClickLis
                 obsDTO.setEncounteruuid(encounterVitals);
                 obsDTO.setCreator(sessionManager.getCreatorID());
                 obsDTO.setValue(results.getBloodGroup());
+                obsDTO.setConceptsetuuid(UuidDictionary.OBS_TYPE_VITAL_SET);
 
                 try {
                     obsDAO.insertObs(obsDTO);
