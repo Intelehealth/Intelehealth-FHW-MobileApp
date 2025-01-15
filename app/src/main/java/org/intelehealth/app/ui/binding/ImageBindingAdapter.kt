@@ -31,7 +31,8 @@ fun bindProfileImage(imageView: ImageView?, url: String?) {
             .load(File(url))
             .thumbnail(requestBuilder)
             .centerCrop()
-            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
             .into(imageView)
     }
 }

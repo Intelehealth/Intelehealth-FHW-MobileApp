@@ -23,4 +23,10 @@ open class RegFieldViewModel(private val repository: RegFieldRepository) : BaseV
     fun fetchAddressRegFields() = repository.getGroupFields(FieldGroup.ADDRESS)
 
     fun fetchOtherRegFields() = repository.getGroupFields(FieldGroup.OTHER)
+
+    suspend fun fetchPersonalRegFieldsSuspended() = repository.getGroupFieldsSuspended(FieldGroup.PERSONAL)
+
+    suspend fun fetchAddressRegFieldsSuspended() = repository.getGroupFieldsSuspended(FieldGroup.ADDRESS)
+
+    suspend fun fetchOtherRegFieldsSuspended() = repository.getGroupFieldsSuspended(FieldGroup.OTHER)
 }

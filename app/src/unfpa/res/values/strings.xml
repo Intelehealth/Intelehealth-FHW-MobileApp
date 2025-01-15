@@ -10,8 +10,8 @@
 
     <string name="are_you_sure_you_want_to_send_visit">Are you sure you want to send the visit?</string>
     <string name="send_visit">Send visit?</string>
-    <string name="visit_successfully_sent">Visit successfully saved!</string>
-    <string name="patient_visit_sent">Patient\'s visit has been successfully saved.</string>
+    <string name="visit_successfully_sent">Visit successfully sent!</string>
+    <string name="patient_visit_sent">Patient\'s visit has been successfully sent.</string>
     <string name="visit_data_failed">Visit successfully saved!</string>
     <string name="visit_uploaded_failed">Patient\'s visit has been successfully saved.</string>
 

@@ -4,11 +4,13 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwnerKt;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.github.ajalt.timberkt.Timber;
 import com.google.gson.Gson;
 
+import org.intelehealth.app.ayu.visit.vital.CoroutineProvider;
 import org.intelehealth.app.database.dao.ProviderDAO;
 import org.intelehealth.app.database.dao.RTCConnectionDAO;
 import org.intelehealth.app.models.dto.ProviderDTO;
@@ -58,6 +60,32 @@ public class BaseActivity extends LanguageActivity implements SocketManager.Noti
         });
     }
 
+    /**
+     * method to handle feature active/deactivate from suspended function
+     * added this to disable "active/inactive" feature whenever user entering their data
+     * currently using only from patient registration
+     * <p>
+     * not calling from BaseActivity onCreate
+     * if need to use this on any other activity
+     * then just call from newly created activity
+     */
+    public void loadFeatureActiveStatusFromSuspended() {
+        FeatureActiveStatusRepository repository = new FeatureActiveStatusRepository(ConfigDatabase.getInstance(this).featureActiveStatusDao());
+        FeatureActiveStatusViewModelFactory factory = new FeatureActiveStatusViewModelFactory(repository);
+        FeatureActiveStatusViewModel featureActiveStatusViewModel = new ViewModelProvider(this, factory).get(FeatureActiveStatusViewModel.class);
+
+        //normally we are not able to access coroutine from JAVA
+        //hence using Coroutine Provider to access coroutineScope
+        CoroutineProvider.useFeatureActiveStatusScope(
+                LifecycleOwnerKt.getLifecycleScope(this),
+                featureActiveStatusViewModel,
+                data -> {
+                    onFeatureActiveStatusLoadedFromSuspended((FeatureActiveStatus) data);
+                }
+        );
+    }
+
+
     @Override
     public void showNotification(@NonNull ChatMessage chatMessage) {
         if (featureActiveStatus != null && featureActiveStatus.getChatSection()) {
@@ -100,6 +128,11 @@ public class BaseActivity extends LanguageActivity implements SocketManager.Noti
     }
 
     protected void onFeatureActiveStatusLoaded(FeatureActiveStatus activeStatus) {
+        featureActiveStatus = activeStatus;
+        Timber.tag(TAG).d("Active feature status=>%s", new Gson().toJson(activeStatus));
+    }
+
+    protected void onFeatureActiveStatusLoadedFromSuspended(FeatureActiveStatus activeStatus) {
         featureActiveStatus = activeStatus;
         Timber.tag(TAG).d("Active feature status=>%s", new Gson().toJson(activeStatus));
     }

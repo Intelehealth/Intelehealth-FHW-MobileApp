@@ -2,30 +2,38 @@ package org.intelehealth.app.ui.patient.fragment
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.databinding.OnRebindCallback
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.github.ajalt.timberkt.Timber
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.Gson
+import kotlinx.coroutines.launch
 import org.intelehealth.app.BuildConfig
 import org.intelehealth.app.R
 import org.intelehealth.app.app.AppConstants
+import org.intelehealth.app.ayu.visit.vital.CoroutineProvider
 import org.intelehealth.app.databinding.Dialog2NumbersPickerBinding
 import org.intelehealth.app.databinding.FragmentPatientOtherInfoBinding
 import org.intelehealth.app.databinding.FragmentPatientPersonalInfoBinding
 import org.intelehealth.app.databinding.FragmentPatientPersonalInfoOldDesignBinding
 import org.intelehealth.app.models.dto.PatientDTO
+import org.intelehealth.app.ui.binding.bindProfileImage
 import org.intelehealth.app.ui.dialog.CalendarDialog
 import org.intelehealth.app.ui.filter.FirstLetterUpperCaseInputFilter
 import org.intelehealth.app.utilities.AgeUtils
 import org.intelehealth.app.utilities.ArrayAdapterUtils
+import org.intelehealth.app.utilities.CustomLog
 import org.intelehealth.app.utilities.DateAndTimeUtils
 import org.intelehealth.app.utilities.FlavorKeys
 import org.intelehealth.app.utilities.LanguageUtils
@@ -39,9 +47,11 @@ import org.intelehealth.app.utilities.extensions.hideErrorOnTextChang
 import org.intelehealth.app.utilities.extensions.validate
 import org.intelehealth.app.utilities.extensions.validateDigit
 import org.intelehealth.app.utilities.extensions.validateDropDowb
+import org.intelehealth.config.room.entity.PatientRegistrationFields
 import org.intelehealth.core.registry.PermissionRegistry
 import org.intelehealth.core.registry.PermissionRegistry.Companion.CAMERA
 import org.intelehealth.ihutils.ui.CameraActivity
+import org.intelehealth.ihutils.ui.CameraActivityForPatientImage
 import org.intelehealth.klivekit.utils.DateTimeUtils
 import org.joda.time.LocalDate
 import org.joda.time.Period
@@ -167,9 +177,9 @@ class PatientPersonalInfoFragment :
         Timber.d { "onPatientDataLoaded" }
         Timber.d { Gson().toJson(patient) }
         fetchPersonalInfoConfig()
-        if(BuildConfig.FLAVOR_client == FlavorKeys.UNFPA){
+        if (BuildConfig.FLAVOR_client == FlavorKeys.UNFPA) {
             patient.apply {
-                gender = gender?:"F"
+                gender = gender ?: "F"
             }
         }
         binding.patient = patient
@@ -177,7 +187,7 @@ class PatientPersonalInfoFragment :
     }
 
     private fun fetchPersonalInfoConfig() {
-        patientViewModel.fetchPersonalRegFields().observe(viewLifecycleOwner) {
+        /*patientViewModel.fetchPersonalRegFields().observe(viewLifecycleOwner) {
             binding.personalConfig = PatientRegFieldsUtils.buildPatientPersonalInfoConfig(it)
             setupGuardianType()
             setupEmContactType()
@@ -188,6 +198,20 @@ class PatientPersonalInfoFragment :
             setClickListener()
             setInputTextChangListener()
 //            binding.addOnRebindCallback(onRebindCallback)
+        }*/
+
+        lifecycleScope.launch {
+            patientViewModel.fetchPersonalRegFieldsSuspended().let {
+                binding.personalConfig = PatientRegFieldsUtils.buildPatientPersonalInfoConfig(it)
+                setupGuardianType()
+                setupEmContactType()
+                setupDOB()
+                setupAge()
+                applyFilter()
+                setGender()
+                setClickListener()
+                setInputTextChangListener()
+            }
         }
     }
 
@@ -220,6 +244,7 @@ class PatientPersonalInfoFragment :
             emContactNumber = binding.ccpEmContactPhone.fullNumberWithPlus
 
             patientViewModel.updatedPatient(this)
+            copyProfileImage()
             if (patientViewModel.isEditMode) {
                 saveAndNavigateToDetails()
             } else {
@@ -236,6 +261,44 @@ class PatientPersonalInfoFragment :
         }
     }
 
+
+    /**
+     * before saving profile data keeping the profile photo to unsaved directory
+     * to prevent existing image replacement
+     * after clicking on save button deleting the image from unSavedImages directory
+     * and adding to main Picture directory
+     */
+    private fun copyProfileImage() {
+        try {
+            val destination = File(AppConstants.IMAGE_PATH + patient.uuid + ".jpg")
+            val source = File(patient.patientPhoto)
+
+            if (source.exists() && source.path.contains(AppConstants.UNSAVED_IMAGE_DIRECTORY)) {
+                source.copyTo(destination, overwrite = true)
+                patient.patientPhoto = destination.path
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    /**
+     * after moving the image from unSavedImage folder to main folder
+     * we are deleting moved image
+     */
+    private fun deleteUnusedImages() {
+        try {
+            val source =
+                File(AppConstants.IMAGE_PATH + AppConstants.UNSAVED_IMAGE_DIRECTORY + File.separator + patient.uuid + ".jpg")
+
+            if (source.exists() && source.path.contains(AppConstants.UNSAVED_IMAGE_DIRECTORY)) {
+                source.delete()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     private fun saveAndNavigateToDetails() {
         patientViewModel.savePatient().observe(viewLifecycleOwner) {
             it ?: return@observe
@@ -247,13 +310,14 @@ class PatientPersonalInfoFragment :
         PatientPersonalInfoFragmentDirections.navigationPersonalToDetails(
             patient.uuid, "searchPatient", "false"
         ).apply {
+            deleteUnusedImages()
             findNavController().navigate(this)
             requireActivity().finish()
         }
     }
 
     private fun setGender() {
-        if(BuildConfig.FLAVOR_client == FlavorKeys.UNFPA){
+        if (BuildConfig.FLAVOR_client == FlavorKeys.UNFPA) {
             binding.btnMale.isCheckable = false
             binding.btnFemale.isCheckable = false
             binding.btnOther.isCheckable = false
@@ -264,7 +328,7 @@ class PatientPersonalInfoFragment :
         }
     }
 
-    private fun bindGenderValue(){
+    private fun bindGenderValue() {
         patient.gender = when (binding.toggleGender.checkedButtonId) {
             R.id.btnMale -> "M"
             R.id.btnFemale -> "F"
@@ -287,7 +351,7 @@ class PatientPersonalInfoFragment :
             filePath.mkdir()
         }
 
-        val cameraIntent = Intent(activity, CameraActivity::class.java)
+        val cameraIntent = Intent(activity, CameraActivityForPatientImage::class.java)
         cameraIntent.putExtra(CameraActivity.SET_IMAGE_NAME, patient.uuid)
         cameraIntent.putExtra(CameraActivity.SET_IMAGE_PATH, filePath.toString())
         cameraActivityResult.launch(cameraIntent)
@@ -299,8 +363,11 @@ class PatientPersonalInfoFragment :
         if (result.resultCode == Activity.RESULT_OK) {
             patient.patientPhoto = result.data!!.getStringExtra("RESULT")
             binding.patient = patient
-            if (!patient.patientPhoto.isNullOrEmpty()) binding.profileImageError.isVisible = false
-            Timber.d { "Profile path => ${patient.patientPhoto}" }
+            if (!patient.patientPhoto.isNullOrEmpty()) {
+                binding.profileImageError.isVisible = false
+                binding.patientImgview.invalidate()
+            }
+            Timber.d { "Profile path => ${patient.patientPhoto}  ${result.data!!.getStringExtra("RESULT")}" }
         }
     }
 
@@ -433,39 +500,39 @@ class PatientPersonalInfoFragment :
     private fun validateForm(block: () -> Unit) {
         val error = R.string.this_field_is_mandatory
         binding.personalConfig?.let {
-            val bProfile = if (it.profilePic!!.isEnabled && it.profilePic!!.isMandatory) {
+            val bProfile = if (it.profilePic?.isEnabled == true && it.profilePic?.isMandatory == true) {
                 !patient.patientPhoto.isNullOrEmpty()
             } else true
 
             binding.profileImageError.isVisible = bProfile.not()
 
-            val bFName = if (it.firstName!!.isEnabled && it.firstName!!.isMandatory) {
+            val bFName = if (it.firstName?.isEnabled == true && it.firstName?.isMandatory == true) {
                 binding.textInputLayFName.validate(binding.textInputETFName, error)
             } else true
 
-            val bMName = if (it.middleName!!.isEnabled && it.middleName!!.isMandatory) {
+            val bMName = if (it.middleName?.isEnabled == true && it.middleName?.isMandatory == true) {
                 binding.textInputLayMName.validate(binding.textInputETMName, error)
             } else true
 
-            val bLName = if (it.lastName!!.isEnabled && it.lastName!!.isMandatory) {
+            val bLName = if (it.lastName?.isEnabled == true && it.lastName?.isMandatory == true) {
                 binding.textInputLayLName.validate(binding.textInputETLName, error)
             } else true
 
-            val bGender = if (it.gender!!.isEnabled && it.gender!!.isMandatory) {
+            val bGender = if (it.gender?.isEnabled == true && it.gender?.isMandatory == true) {
                 !patient.gender.isNullOrEmpty()
             } else true
 
             binding.tvGenderError.isVisible = bGender.not()
 
-            val bDob = if (it.dob!!.isEnabled && it.dob!!.isMandatory) {
+            val bDob = if (it.dob?.isEnabled == true && it.dob?.isMandatory == true) {
                 binding.textInputLayDob.validate(binding.textInputETDob, error)
             } else true
 
-            val bAge = if (it.age!!.isEnabled && it.age!!.isMandatory) {
+            val bAge = if (it.age?.isEnabled == true && it.age?.isMandatory == true) {
                 binding.textInputLayAge.validate(binding.textInputETAge, error)
             } else true
 
-            val bPhone = if (it.phone!!.isEnabled && it.phone!!.isMandatory) {
+            val bPhone = if (it.phone?.isEnabled == true && it.phone?.isMandatory == true) {
                 binding.textInputLayPhoneNumber.validate(binding.textInputETPhoneNumber, error).and(
                     binding.textInputLayPhoneNumber.validateDigit(
                         binding.textInputETPhoneNumber,
@@ -476,14 +543,14 @@ class PatientPersonalInfoFragment :
 
             } else true
 
-            val bGuardianType = if (it.guardianType!!.isEnabled && it.guardianType!!.isMandatory) {
+            val bGuardianType = if (it.guardianType?.isEnabled == true && it.guardianType?.isMandatory == true) {
                 binding.textInputLayGuardianType.validateDropDowb(
                     binding.autoCompleteGuardianType,
                     error
                 )
             } else true
 
-            val bGName = if (it.guardianName!!.isEnabled && it.guardianName!!.isMandatory) {
+            val bGName = if (it.guardianName?.isEnabled == true && it.guardianName?.isMandatory == true) {
                 binding.textInputLayGuardianName.validate(
                     binding.textInputETGuardianName,
                     error
@@ -491,12 +558,12 @@ class PatientPersonalInfoFragment :
             } else true
 
             val bEmName =
-                if (it.emergencyContactName!!.isEnabled && it.emergencyContactName!!.isMandatory) {
+                if (it.emergencyContactName?.isEnabled == true && it.emergencyContactName?.isMandatory == true) {
                     binding.textInputLayECName.validate(binding.textInputETECName, error)
                 } else true
 
             val bEmPhone =
-                if (it.emergencyContactNumber!!.isEnabled && it.emergencyContactNumber!!.isMandatory) {
+                if (it.emergencyContactNumber?.isEnabled == true && it.emergencyContactNumber?.isMandatory == true) {
                     Timber.d { "Emergency validation" }
                     binding.textInputLayEMPhoneNumber.validate(
                         binding.textInputETEMPhoneNumber,
@@ -518,11 +585,35 @@ class PatientPersonalInfoFragment :
                         valid
                     } ?: false)
 
-
-                } else true
+                }
+                // comparing em-contact number with phone number only
+                // when field is not mandatory
+                else {
+                    binding.textInputETEMPhoneNumber.let { etEm ->
+                        // checking emergency contact number entered or not
+                        // if entered, then checking the 10 digits validation and
+                        // comparing with phone number
+                        if (etEm.text?.isNotEmpty() == true) {
+                            binding.textInputLayEMPhoneNumber.validateDigit(
+                                binding.textInputETEMPhoneNumber,
+                                R.string.enter_10_digits,
+                                10
+                            ).and(binding.textInputETPhoneNumber.text?.let { phone ->
+                                val valid =
+                                    phone.toString() != binding.textInputETEMPhoneNumber.text.toString()
+                                if (!valid) {
+                                    binding.textInputLayEMPhoneNumber.error = getString(
+                                        R.string.phone_number_and_emergency_number_can_not_be_the_same
+                                    )
+                                }
+                                valid
+                            } ?: false)
+                        } else true
+                    }
+                }
 
             val bEmContactType =
-                if (it.emergencyContactType!!.isEnabled && it.emergencyContactType!!.isMandatory) {
+                if (it.emergencyContactType?.isEnabled == true && it.emergencyContactType?.isMandatory == true) {
                     binding.textInputLayEmContactType.validateDropDowb(
                         binding.autoCompleteEmContactType,
                         error

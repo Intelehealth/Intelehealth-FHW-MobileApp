@@ -10,6 +10,8 @@ import org.intelehealth.config.room.dao.FeatureActiveStatusDao
 class FeatureActiveStatusRepository(private val featureActiveStatusDao: FeatureActiveStatusDao) {
     fun getFeaturesActiveStatus() = featureActiveStatusDao.getFeatureActiveStatusLiveRecord()
 
+    suspend fun getFeaturesActiveStatusSuspended() = featureActiveStatusDao.getFeatureActiveStatus()
+
     suspend fun getAllRecord() = featureActiveStatusDao.getAllRecord()
 
     suspend fun getRecord() = featureActiveStatusDao.getRecord()

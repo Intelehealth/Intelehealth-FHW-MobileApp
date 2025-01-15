@@ -10,6 +10,7 @@ import org.intelehealth.config.utility.FieldGroup
  **/
 open class RegFieldRepository(private val regFieldDao: PatientRegFieldDao) {
     fun getGroupFields(group: FieldGroup) = regFieldDao.getGroupLiveField(group.value)
+    suspend fun getGroupFieldsSuspended(group: FieldGroup) = regFieldDao.getGroupField(group.value)
 
     suspend fun getAllRecord() = regFieldDao.getAllRecord()
 

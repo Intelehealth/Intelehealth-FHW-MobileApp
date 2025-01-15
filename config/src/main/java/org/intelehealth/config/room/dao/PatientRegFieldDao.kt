@@ -18,6 +18,9 @@ interface PatientRegFieldDao : CoreDao<PatientRegistrationFields> {
     @Query("SELECT * FROM tbl_patient_registration_fields where groupId = :groupId")
     fun getGroupLiveField(groupId: String): LiveData<List<PatientRegistrationFields>>
 
+    @Query("SELECT * FROM tbl_patient_registration_fields where groupId = :groupId")
+    suspend fun getGroupField(groupId: String): List<PatientRegistrationFields>
+
     @Query("SELECT * FROM tbl_patient_registration_fields WHERE isMandatory = 1")
     fun getAllMandatoryLiveFields(): LiveData<List<PatientRegistrationFields>>
 

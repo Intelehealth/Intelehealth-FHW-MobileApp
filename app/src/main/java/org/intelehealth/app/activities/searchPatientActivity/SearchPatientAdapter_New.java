@@ -210,7 +210,15 @@ public class SearchPatientAdapter_New extends RecyclerView.Adapter<SearchPatient
                 RequestBuilder<Drawable> requestBuilder = Glide.with(itemView.getContext())
                         .asDrawable().sizeMultiplier(0.3f);
 
-                if (model.getPatientPhoto() != null) {
+                if (model.getPatientImageFromDownload() != null) {
+                    Glide.with(context)
+                            .load(model.getPatientImageFromDownload())
+                            .thumbnail(requestBuilder)
+                            .centerCrop()
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
+                            .into(profile_imgview);
+                } else if (model.getPatientPhoto() != null) {
 
                     Glide.with(context)
                             .load(model.getPatientPhoto())
@@ -219,17 +227,8 @@ public class SearchPatientAdapter_New extends RecyclerView.Adapter<SearchPatient
                             .diskCacheStrategy(DiskCacheStrategy.NONE)
                             .skipMemoryCache(true)
                             .into(profile_imgview);
-                }
-                else if(model.getPatientImageFromDownload() != null){
-                    Glide.with(context)
-                            .load(model.getPatientImageFromDownload())
-                            .thumbnail(requestBuilder)
-                            .centerCrop()
-                            .diskCacheStrategy(DiskCacheStrategy.NONE)
-                            .skipMemoryCache(true)
-                            .into(profile_imgview);
-                }else {
-                    profile_imgview.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.avatar1));
+                } else {
+                    profile_imgview.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.avatar1));
                 }
 
             }

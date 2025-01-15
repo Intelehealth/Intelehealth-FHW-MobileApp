@@ -86,10 +86,18 @@ class PatientAddressInfoFragment : BasePatientFragment(R.layout.fragment_patient
     }
 
     private fun fetchPersonalInfoConfig() {
-        patientViewModel.fetchAddressRegFields().observe(viewLifecycleOwner) {
+        /*patientViewModel.fetchAddressRegFields().observe(viewLifecycleOwner) {
             binding.addressInfoConfig = PatientRegFieldsUtils.buildPatientAddressInfoConfig(it)
             Timber.d { "Address Config => ${Gson().toJson(binding.addressInfoConfig)}" }
             binding.addOnRebindCallback(onRebindCallback)
+        }*/
+
+        lifecycleScope.launch {
+            patientViewModel.fetchAddressRegFieldsSuspended().let {
+                binding.addressInfoConfig = PatientRegFieldsUtils.buildPatientAddressInfoConfig(it)
+                Timber.d { "Address Config => ${Gson().toJson(binding.addressInfoConfig)}" }
+                binding.addOnRebindCallback(onRebindCallback)
+            }
         }
     }
 

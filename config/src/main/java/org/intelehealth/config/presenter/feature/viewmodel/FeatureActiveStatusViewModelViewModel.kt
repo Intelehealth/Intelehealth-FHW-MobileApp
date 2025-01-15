@@ -10,4 +10,6 @@ import org.intelehealth.core.shared.ui.viewmodel.BaseViewModel
  **/
 class FeatureActiveStatusViewModel(private val repository: FeatureActiveStatusRepository) : BaseViewModel() {
     fun fetchFeaturesActiveStatus() = repository.getFeaturesActiveStatus()
+
+    suspend fun fetchFeaturesActiveStatusSuspended() = repository.getFeaturesActiveStatusSuspended()
 }

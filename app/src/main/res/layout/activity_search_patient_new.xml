@@ -47,6 +47,7 @@
                     android:id="@+id/search_txt_enter"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:textCursorDrawable="@drawable/white_cursor"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="@dimen/fu_vs_margin_start"
                     android:layout_marginTop="@dimen/margin_10"

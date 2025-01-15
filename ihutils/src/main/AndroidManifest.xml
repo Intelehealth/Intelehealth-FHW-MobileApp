@@ -28,6 +28,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.DefaultUIUX.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
+
+        <activity
+            android:name=".ui.CameraActivityForPatientImage"
+            android:configChanges="uiMode"
+            android:label="@string/util_title_activity_camera"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.DefaultUIUX.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>
