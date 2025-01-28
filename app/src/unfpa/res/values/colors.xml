@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3571A4</color>
+    <color name="colorPrimaryDark">#201560</color>
+    <color name="colorAccent">#E38A15</color>
+    <color name="color_splash_bg">@color/colorPrimary</color>
+    <color name="color_tagline_text">@color/white</color>
+    <color name="colorPrimaryLightCard">#1a3571A4</color>
+    <color name="colorAccentLightCard">#1aE38A15</color>
+</resources>

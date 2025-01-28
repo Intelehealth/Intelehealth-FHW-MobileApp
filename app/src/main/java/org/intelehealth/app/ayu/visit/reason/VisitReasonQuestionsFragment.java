@@ -96,7 +96,7 @@ public class VisitReasonQuestionsFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-                    mActionListener.onFormSubmitted(VisitCreationActivity.STEP_2_VISIT_REASON_QUESTION_SUMMARY, mIsEditMode, null);
+                    mActionListener.onFormSubmitted(VisitCreationActivity.STEP_3_VISIT_REASON_QUESTION_SUMMARY, mIsEditMode, null);
 
                 }
             });
@@ -351,7 +351,7 @@ public class VisitReasonQuestionsFragment extends Fragment {
         @Override
         public void onAllAnswered(boolean isAllAnswered) {
             if (!mIsEditMode)
-                mActionListener.onFormSubmitted(VisitCreationActivity.STEP_2_VISIT_REASON_QUESTION_SUMMARY, mIsEditMode, null);
+                mActionListener.onFormSubmitted(VisitCreationActivity.STEP_3_VISIT_REASON_QUESTION_SUMMARY, mIsEditMode, null);
             else
                 Toast.makeText(getActivity(), getString(R.string.please_submit_to_proceed_next_step), Toast.LENGTH_SHORT).show();
         }
@@ -363,6 +363,11 @@ public class VisitReasonQuestionsFragment extends Fragment {
 
         @Override
         public void onImageRemoved(int nodeIndex, int imageIndex, String image) {
+
+        }
+
+        @Override
+        public void onTerminalNodeAnsweredForParentUpdate(String parentNodeId) {
 
         }
     }

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_5"
+        app:cardCornerRadius="@dimen/margin_16dp"
+        app:cardElevation="@dimen/hamburger_margin_start">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:context=".ui.rosterquestionnaire.ui.AddHealthServiceDialog">
+
+            <TextView
+                android:id="@+id/tvHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="3sp"
+                android:text="@string/health_service"
+                android:textAppearance="@style/blur_txtview"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_18sp" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvHealthServiceQuestions"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:descendantFocusability="afterDescendants"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/std_16dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    style="@style/AppTheme.OutlinedButton.White"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_16"
+
+                    android:text="@string/cancel"
+                    android:textColor="@color/primary_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnSave"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="@+id/rvHealthServiceQuestions" />
+
+                <Button
+                    android:id="@+id/btnSave"
+                    style="@style/AppTheme.OutlinedButton.Primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save"
+                    app:iconGravity="end"
+                    app:layout_constraintBottom_toBottomOf="@+id/btnCancel"
+                    app:layout_constraintEnd_toEndOf="@+id/rvHealthServiceQuestions"
+                    app:layout_constraintStart_toEndOf="@id/btnCancel"
+                    app:layout_constraintTop_toTopOf="@+id/btnCancel" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

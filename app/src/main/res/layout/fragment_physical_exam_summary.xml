@@ -121,7 +121,7 @@
                 android:gravity="center"
                 android:lineSpacingExtra="1sp"
                 android:paddingHorizontal="@dimen/padding_12"
-                android:text="@string/ui2_physical_exam_summay_title"
+                android:text="@string/ui2_relapse_summary_title"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/toolbar_text_size"
                 android:textStyle="bold" />

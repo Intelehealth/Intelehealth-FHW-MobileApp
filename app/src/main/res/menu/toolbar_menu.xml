@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_home_menu"
+        android:icon="@drawable/home_icon_menu"
+        android:title="home"
+        app:showAsAction="always" /> <!-- Always show as an icon -->
+
+
+</menu>

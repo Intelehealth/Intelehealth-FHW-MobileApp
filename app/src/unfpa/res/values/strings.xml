@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">UNFPA</string>
+    <string name="intro_title_1">Who are we?</string>
+    <string name="intro_tagline_1">Arogya Path is an innovative telemedicine platform designed to bridge healthcare access gap in remote regions by connecting frontline health worker and patient with a virtual doctor to provide high-quality health services</string>
+    <string name="intro_title_2">Take patient visits</string>
+    <string name="intro_tagline_2">The platform is powered by Ayu, a programmable digital assistant that supports frontline health workers with evidence-based protocols for primary healthcare in regional languages</string>
+    <string name="intro_title_3">Provide prescriptions</string>
+    <string name="intro_tagline_3">The cloud-based open-source platform designed for a low-resource environment combined with a customized implementation strategy creates a digital health solution for impactful health outcomes</string>
+
+    <string name="are_you_sure_you_want_to_send_visit">Are you sure you want to send the visit?</string>
+    <string name="send_visit">Send visit?</string>
+    <string name="visit_successfully_sent">Visit successfully saved!</string>
+    <string name="patient_visit_sent">Patient\'s visit has been successfully saved.</string>
+    <string name="visit_data_failed">Visit successfully saved!</string>
+    <string name="visit_uploaded_failed">Patient\'s visit has been successfully saved.</string>
+
+    <string name="type_or_select_reason">Enter Reasons</string>
+    <string name="select_one_or_multiple_reasons">Enter one or multiple reasons</string>
+
+    <!--    <string name="visit_left_action_btn_label">@string/preview</string>-->
+    <!--    <string name="visit_right_action_btn_label">@string/save_visit_button</string>-->
+    <!--    <string name="visit_save_and_upload_status">@string/visit_saving</string>-->
+</resources>

@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import org.intelehealth.app.utilities.CustomLog;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
@@ -15,6 +14,7 @@ import org.intelehealth.app.models.ObsImageModel.ObsPushDTO;
 import org.intelehealth.app.models.patientImageModelRequest.PatientProfile;
 import org.intelehealth.app.models.providerImageRequestModel.ProviderProfile;
 import org.intelehealth.app.utilities.Base64Utils;
+import org.intelehealth.app.utilities.CustomLog;
 import org.intelehealth.app.utilities.Logger;
 import org.intelehealth.app.utilities.UuidDictionary;
 import org.intelehealth.app.utilities.exception.DAOException;
@@ -227,6 +227,34 @@ public class ImagesDAO {
         }
 
         return patientProfiles;
+    }
+
+    public String getPatientProfileImage(String patientUUID) throws DAOException {
+        List<PatientProfile> patientProfiles = new ArrayList<>();
+        SQLiteDatabase localdb = IntelehealthApplication.inteleHealthDatabaseHelper.getWritableDatabase();
+        Base64Utils base64Utils = new Base64Utils();
+        String imagePath = "";
+        //localdb.beginTransaction();
+        try {
+            Cursor idCursor = localdb.rawQuery("SELECT image_path FROM tbl_image_records where patinetuuid = ? AND image_type = ? COLLATE NOCASE", new String[]{patientUUID, "PP"});
+            if (idCursor.getCount() != 0) {
+                while (idCursor.moveToNext()) {
+                    //PatientProfile patientProfile = new PatientProfile();
+                    //patientProfile.setPerson(idCursor.getString(idCursor.getColumnIndexOrThrow("patientuuid")));
+                    imagePath = idCursor.getString(idCursor.getColumnIndexOrThrow("image_path"));
+                    //patientProfile.setBase64EncodedImage(base64Utils.getBase64FromFileWithConversion());
+                    //patientProfiles.add(patientProfile);
+                }
+            }
+            idCursor.close();
+        } catch (SQLiteException e) {
+            throw new DAOException(e);
+        } finally {
+            //localdb.endTransaction();
+
+        }
+
+        return imagePath;
     }
 
     public List<ObsPushDTO> getObsUnsyncedImages() throws DAOException {

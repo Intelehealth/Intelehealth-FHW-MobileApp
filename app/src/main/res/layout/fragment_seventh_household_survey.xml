@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="patientSurveyAttributes"
+            type="org.intelehealth.app.ui.householdSurvey.models.HouseholdSurveyModel" />
+
+        <variable
+            name="isEditMode"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/frag2_btn_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/std_16dp">
+
+                <TextView
+                    android:id="@+id/distance_to_sub_centre_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/distance_to_sub_centre_in_walking_time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioGroup
+                    android:id="@+id/distance_to_sub_centre_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_sub_centre_text_view">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/sub_center_5_minutes"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/within_5_minutes" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/sub_center_5_15_minutes"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/five_fifteen_minutes" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/sub_center_15_30_minutes"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/fifteen_thirty_minutes"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/sub_center_more_than_30_minutes"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/more_than_thirty_minutes"
+                        app:useMaterialThemeColors="false" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/distance_to_nearest_primary_health_centres_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    android:text="@string/distance_to_nearest_primary_health_centres_in_kms"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_sub_centre_radio_group" />
+
+                <RadioGroup
+                    android:id="@+id/distance_to_nearest_primary_health_centres_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_nearest_primary_health_centres_text_view">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/phc_1_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/within_1_km"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/phc_1_3_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/one_to_three_kms" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/phc_3_5_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/three_to_five_kms"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/phc_5_10_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/five_to_ten_kms"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/phc_more_than_10_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/more_than_ten_kms"
+                        app:useMaterialThemeColors="false" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/distance_to_nearest_community_health_centres_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:text="@string/distance_to_nearest_community_health_centre"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_nearest_primary_health_centres_radio_group" />
+
+                <RadioGroup
+                    android:id="@+id/distance_to_nearest_community_health_centres_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_nearest_community_health_centres_text_view">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/chc_within_5_kms"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/within_5_kms"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/chc_5_10_kms"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/five_to_ten_kms"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/chc_10_20_kms"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/ten_to_twenty_kms"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/chc_more_than_20_kms"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/more_than_twenty_km"
+                        app:useMaterialThemeColors="false" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/distance_to_nearest_district_hospital_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    android:text="@string/distance_to_nearest_district_hospital"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_nearest_community_health_centres_radio_group" />
+
+                <RadioGroup
+                    android:id="@+id/distance_to_nearest_district_hospital_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_nearest_district_hospital_text_view">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/dh_within_10_kms"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:text="@string/within_ten_km" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/dh_10_20_kms"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/ten_to_twenty_kms" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/dh_20_40_kms"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/twenty_to_forty_km" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/dh_50_70_kms"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/fifty_to_seventy_km" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/dh_more_than_70_kms"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:text="@string/more_than_seventy_km" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/distance_to_nearest_pathological_lab_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:text="@string/distance_to_nearest_pathological_lab"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_nearest_district_hospital_radio_group" />
+
+                <RadioGroup
+                    android:id="@+id/distance_to_nearest_pathological_lab_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_nearest_pathological_lab_text_view">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/pl_within_10_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:text="@string/within_ten_km" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/pl_10_20_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:text="@string/ten_to_twenty_kms" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/pl_20_40_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/twenty_to_forty_km" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/pl_50_70_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/fifty_to_seventy_km" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/pl_more_than_70_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/more_than_seventy_km" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/distance_to_nearest_private_clinic_with_an_mbbs_doctor_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    app:useMaterialThemeColors="false"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    android:text="@string/distance_to_nearest_private_clinic_with_an_mbbs_doctor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_nearest_pathological_lab_radio_group" />
+
+                <RadioGroup
+                    android:id="@+id/distance_to_nearest_private_clinic_with_an_mbbs_doctor_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_nearest_private_clinic_with_an_mbbs_doctor_text_view">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/pc_within_5_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        app:useMaterialThemeColors="false"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/within_5_kms" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/pc_5_10_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/five_to_ten_kms" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/pc_10_20_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/ten_to_twenty_kms" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/pc_more_than_20_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/more_than_twenty_km" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/distance_to_nearest_private_clinic_with_alternate_medical_practitioners_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    android:text="@string/distance_to_nearest_private_clinic_with_alternate_medical_practitioners"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_nearest_private_clinic_with_an_mbbs_doctor_radio_group" />
+
+                <RadioGroup
+                    android:id="@+id/distance_to_nearest_private_clinic_with_alternate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_nearest_private_clinic_with_alternate_medical_practitioners_text_view">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/alternate_within_5_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/within_5_kms" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/alternate_5_10_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/five_to_ten_kms" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/alternate_10_20_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:text="@string/ten_to_twenty_kms" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/alternate_more_than_20_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/more_than_twenty_km" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/distance_to_nearest_tertiary_care_facility_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    android:text="@string/distance_to_nearest_tertiary_care_facility"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_nearest_private_clinic_with_alternate" />
+
+                <RadioGroup
+                    android:id="@+id/distance_to_nearest_tertiary_care_facility_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/distance_to_nearest_tertiary_care_facility_text_view">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/tertiary_within_5_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:useMaterialThemeColors="false"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/within_5_kms" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/tertiary_5_10_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:text="@string/five_to_ten_kms" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/tertiary_10_20_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/ten_to_twenty_kms" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/tertiary_20_30_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        android:text="@string/twenty_to_thirty_kms" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/tertiary_more_than_30_km"
+                        style="@style/CommonRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                        android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                        app:useMaterialThemeColors="false"
+                        android:text="@string/more_than_thirty_kms" />
+
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+        <Button
+            android:id="@+id/frag2_btn_back"
+            style="@style/AppTheme.OutlinedButton.White"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_16dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:text="@string/generic_back"
+            android:textColor="@color/primary_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/frag2_btn_next"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/frag2_btn_next"
+            style="@style/AppTheme.OutlinedButton.Primary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_16dp"
+            android:layout_marginEnd="@dimen/std_16dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:text="@string/submit"
+            app:icon="@drawable/ui2_ic_baseline_arrow_forward_24"
+            app:iconGravity="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/frag2_btn_back" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

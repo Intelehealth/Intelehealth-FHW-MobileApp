@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_5"
+    android:background="@color/transparent"
+    android:elevation="20dp"
+    app:cardCornerRadius="@dimen/margin_16dp"
+    app:cardElevation="@dimen/hamburger_margin_start">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/basic_item_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/lato_regular"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/choose_bluetooth_device"
+            android:textColor="@color/textColorBlack"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@string/paired_devices"
+                android:textSize="@dimen/text_size_normal" />
+
+            <Button
+                android:id="@+id/btn_hide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:text="Hide_↑↑↑"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/lv_dialog_choose_bluetooth_device_paired_devices"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bluetooth_dialog_height"
+            android:divider="@null"
+            android:fadeScrollbars="false"
+            android:scrollbarSize="4dp"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:paddingBottom="16dp"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/tv_dialog_choose_bluetooth_device_paired_devices_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_regular"
+            android:padding="16dp"
+            android:text="@string/tip_have_no_paired_device"
+            android:textColor="@color/hint_text_color"
+            android:textSize="@dimen/common_info_text_size"
+            android:visibility="gone" />
+
+        <View
+            style="@style/BaseLine"
+            android:visibility="gone" />
+
+        <View
+            style="@style/BaseLine"
+            android:layout_marginTop="2dp"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_dialog_choose_bluetooth_device_search_device"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_bg_rounded_stroke"
+                android:clickable="true"
+                android:padding="10dp"
+                android:text="@string/search_device"
+                android:textSize="@dimen/text_size_normal" />
+
+            <ProgressBar
+                android:id="@+id/pb_dialog_choose_bluetooth_device_progress_bar"
+                style="@android:style/Widget.ProgressBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="16dp"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+        <!--
+            <View style="@style/BaseLine" />
+        -->
+
+        <ListView
+            android:id="@+id/lv_dialog_choose_bluetooth_device_found_devices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_dialog_choose_bluetooth_device_found_devices_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/tip_have_no_found_bluetooth_device"
+            android:textColor="@color/hint_text_color"
+            android:textSize="@dimen/text_size_small"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

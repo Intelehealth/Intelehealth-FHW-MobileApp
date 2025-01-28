@@ -1,0 +1,8 @@
+<!-- res/color/disconnect_button_text_selector.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Disabled state -->
+    <item android:state_enabled="false" android:color="#732E1E91" />
+
+    <!-- Enabled state -->
+    <item android:state_enabled="true" android:color="@color/colorPrimary" />
+</selector>

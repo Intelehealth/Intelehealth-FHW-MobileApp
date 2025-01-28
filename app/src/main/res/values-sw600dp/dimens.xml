@@ -759,6 +759,6 @@
     <dimen name="tv_cal_view_date_day_margin_top">10dp</dimen>
     <dimen name="tv_cal_view_date_day_text_size">16sp</dimen>
     <dimen name="icons_appoint_height">60dp</dimen>
-
+    <dimen name="bluetooth_dialog_height">300dp</dimen>
 
 </resources>

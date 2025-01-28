@@ -575,10 +575,27 @@
         <item name="android:digits">@string/validation_latter_only</item>
         <item name="android:inputType">textCapWords</item>
     </style>
+    <style name="AppTheme.InputBox.Name1" parent="AppTheme.InputBox">
+        <item name="android:maxLength">25</item>
+        <item name="android:digits">@string/validation_latter_with_space_only</item>
+    </style>
+    <style name="AppTheme.InputBox.Number" parent="AppTheme.InputBox">
+        <item name="android:maxLength">25</item>
+
+    </style>
+
+    <style name="AppTheme.InputBox.Department" parent="AppTheme.InputBox">
+        <item name="android:digits">@string/validation_department</item>
+    </style>
 
     <style name="AppTheme.InputBox.Address" parent="AppTheme.InputBox">
         <!--        <item name="android:maxLength">25</item>-->
         <item name="android:digits">@string/validation_address</item>
+        <item name="android:inputType">textPostalAddress</item>
+    </style>
+    <style name="AppTheme.InputBox.Address1" parent="AppTheme.InputBox">
+        <!--        <item name="android:maxLength">25</item>-->
+        <item name="android:digits">@string/validation_address_with_space</item>
         <item name="android:inputType">textPostalAddress</item>
     </style>
 
@@ -624,5 +641,46 @@
         <item name="android:insetBottom">0dp</item>
         <item name="android:paddingLeft">12dp</item>
         <item name="android:paddingRight">12dp</item>
+    </style>
+    <!-- Thermal Printer -->
+    <style name="BaseLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/stroke_gray_color</item>
+    </style>
+
+    <style name="SmallIcon">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="CustomCheckboxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/selector_checkbox_button</item>
+        <item name="android:textColor">@color/textColorGray</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
+        <item name="android:paddingStart">10dp</item>
+
+    </style>
+    <style name="CustomButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:fontFamily">@font/lato_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/common_button_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+    <style name="CommonRadioButtonStyle" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/selector_radio_button</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
+        <item name="android:textColor">@color/textColorBlack</item>
+        <item name="android:textSize">@dimen/common_button_text_size</item>
+    </style>
+    <style name="HouseholdSurveyTexts">
+        <item name="android:textSize">@dimen/edittext_textsize_16sp</item>
+        <item name="android:textColor">@color/textview_color</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
     </style>
 </resources>

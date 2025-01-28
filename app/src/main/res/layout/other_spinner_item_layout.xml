@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llOtherItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/radio_group_margin_top"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvOther"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/other_relation"
+        android:textAppearance="@style/blur_txtview"
+        android:textSize="@null" />
+
+    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+        android:id="@+id/textInputLayOtherRelationLayout"
+        style="@style/AppTheme.OutlineInputBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInpuOtherRelation"
+            style="@style/AppTheme.InputBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_value" />
+    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+</LinearLayout>

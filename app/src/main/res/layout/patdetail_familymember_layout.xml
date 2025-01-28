@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="activeStatus"
+            type="Boolean" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/other_card"
+        android:visibility="@{activeStatus ? View.VISIBLE : View.GONE}"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginEnd="24dp"
+        app:cardCornerRadius="@dimen/margin_8"
+        app:cardElevation="@dimen/margin_5">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginTop="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:layout_marginBottom="@dimen/margin_16">
+
+
+            <!--Personal Header-->
+            <RelativeLayout
+                android:id="@+id/relative_fam_member_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/fam_member_icon"
+                    android:layout_width="@dimen/edittext_height_44dp"
+                    android:layout_height="@dimen/edittext_height_44dp"
+                    android:src="@drawable/group_svg_icon" />
+
+                <TextView
+                    android:id="@+id/label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_toEndOf="@+id/fam_member_icon"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/family_members"
+                    android:textAppearance="@style/patdetail_header1" />
+
+                <ImageButton
+                    android:id="@+id/imgBtn_add_fam_member"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:paddingStart="5dp"
+                    android:paddingVertical="5dp"
+                    android:background="@null"
+                    app:tint="@color/grayIcon"
+                    android:src="@drawable/white_add_svg_icon" />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/relative_fam_member_header"
+                android:layout_marginTop="@dimen/margin_12"
+                android:layout_marginBottom="@dimen/fu_card_margin_updown"
+                android:background="@color/notifi_divider_color" />
+
+            <TextView
+                android:id="@+id/tv_noFamilyMember"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/bullet_gray"
+                android:drawablePadding="@dimen/margin_5"
+                android:text="@string/no_family_member_registered"
+                android:textAppearance="@style/caption"
+                android:textColor="@color/hint_text_color"
+                android:textSize="14sp"
+                android:visibility="visible"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_familyMember"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider"
+                android:visibility="gone"
+                tools:listitem="@layout/list_item_family_member"/>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

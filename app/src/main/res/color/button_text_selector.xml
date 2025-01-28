@@ -1,0 +1,8 @@
+<!-- res/color/connect_button_text_selector.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Disabled state -->
+    <item android:state_enabled="false" android:color="#A6FFFFFF" />
+
+    <!-- Enabled state -->
+    <item android:state_enabled="true" android:color="@color/white" />
+</selector>

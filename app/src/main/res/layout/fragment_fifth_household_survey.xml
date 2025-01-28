@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="patientSurveyAttributes"
+            type="org.intelehealth.app.ui.householdSurvey.models.HouseholdSurveyModel" />
+
+        <variable
+            name="isEditMode"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/frag2_btn_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/std_16dp">
+
+                <TextView
+                    android:id="@+id/household_cooking_fuel_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/what_type_of_fuel_does_your_household_mainly_use_for_cooking"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/household_cooking_fuel_checkbox_linear_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/radio_group_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/household_cooking_fuel_text_view">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/electricity_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/electricity"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/lpg_natural_gas_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/lpg_natural_gas"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/biogas_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/biogas_checkbox"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/kerosene_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/kerosene"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/coal_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/coal_lignite"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/wood_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/wood"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/charcoal_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/charcoal"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/straw_shrubs_grass_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/straw_shrubs_grass"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/agricultural_crop_waste_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/agricultural_crop_waste"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/dung_cakes_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/dung_cakes"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/other_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/other_specify"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <LinearLayout
+                        android:id="@+id/llOtherSourcesOfFuelLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/lblOtherSourcesOfFuelLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@string/title_other_fuel_type"
+                            android:textAppearance="@style/blur_txtview"
+                            android:textSize="@null" />
+
+                        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                            android:id="@+id/textInputLayOtherSourcesOfFuelLayout"
+                            style="@style/AppTheme.OutlineInputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintEnabled="false"
+                            tools:hint="@string/hint_other_fuel_type">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/textInputOtherSourcesOfFuelLayout"
+                                style="@style/AppTheme.InputBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/hint_other_fuel_type" />
+                        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                    </LinearLayout>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    android:id="@+id/main_source_of_lighting_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:text="@string/what_is_the_main_source_of_lighting_in_this_household"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/household_cooking_fuel_checkbox_linear_layout" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/main_source_of_lighting_checkbox_linear_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/radio_group_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/main_source_of_lighting_text_view">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/lantern_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/lantern"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/kerosene_lamp_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/kerosene_lamp"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/candle_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/candle"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/electric_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/electric"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/lpg_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/lpg"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/solar_energy_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/solar_energy"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/none_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/none"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/other_source_of_lighting_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/other_specify"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <LinearLayout
+                        android:id="@+id/llOtherSourcesOfLightingLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/lblOtherSourcesOfLightingLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@string/title_other_lighting_source"
+                            android:textAppearance="@style/blur_txtview"
+                            android:textSize="@null" />
+
+                        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                            android:id="@+id/textInputLayOtherSourcesOfLightingLayout"
+                            style="@style/AppTheme.OutlineInputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintEnabled="false"
+                            tools:hint="@string/hint_other_lighting_source">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/textInputOtherSourcesOfLightingLayout"
+                                style="@style/AppTheme.InputBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/hint_other_lighting_source" />
+                        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                    </LinearLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    android:id="@+id/main_source_of_drinking_water_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:text="@string/what_is_the_main_source_of_drinking_water_for_members_of_your_household"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/main_source_of_lighting_checkbox_linear_layout" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/main_source_of_drinking_water_checkbox_linear_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/radio_group_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/main_source_of_drinking_water_text_view">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/piped_into_dwelling_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/piped_into_dwelling"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/piped_into_yard_plot_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/piped_into_yard_plot"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/public_tap_standpipe_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/public_tap_standpipe"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/tube_well_borehole_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/tube_well_borehole"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/protected_well_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/protected_well_checkbox"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/unprotected_well_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/unprotected_well"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/protected_spring_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/protected_spring"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/unprotected_spring_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/unprotected_spring"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/rainwater_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/rainwater"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/tanker_truck_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/tanker_truck"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cart_with_small_tank_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/cart_with_small_tank"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/surface_water_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/surface_water"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/common_hand_pump_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/common_hand_pump"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/hand_pump_at_home_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/hand_pump_at_home"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/other_source_of_water_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/other_specify"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <LinearLayout
+                        android:id="@+id/llOtherSourcesOfDrinkingWaterLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/lblOtherSourcesOfDrinkingWaterLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@string/title_other_lighting_source"
+                            android:textAppearance="@style/blur_txtview"
+                            android:textSize="@null" />
+
+                        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                            android:id="@+id/textInputLayOtherSourcesOfDrinkingWaterLayout"
+                            style="@style/AppTheme.OutlineInputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintEnabled="false"
+                            tools:hint="@string/hint_other_lighting_source">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/textInputOtherSourcesDrinkingWater"
+                                style="@style/AppTheme.InputBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/hint_other_lighting_source" />
+                        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                    </LinearLayout>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    android:id="@+id/household_make_safe_water_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:text="@string/what_do_you_usually_do_to_the_water_to_make_it_safer_to_drink"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/main_source_of_drinking_water_checkbox_linear_layout" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llSaferWaterPurificationCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/radio_group_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/household_make_safe_water_text_view">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/boil_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/boil"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/use_alum_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/use_alum"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/add_bleach_chlorine_tablets_drops_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/add_bleach_chlorine_tablets_drops"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/strain_through_a_cloth_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/strain_through_a_cloth"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/use_water_filter_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/use_water_filter_ceramic_sand_composite_etc"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/use_electronic_purifier_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/use_electronic_purifier"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/let_it_stand_and_settle_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/let_it_stand_and_settle"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/not_treated_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/not_treated"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/other_source_of_water_no_measures_taken_for_purification_drinking_as_it_is"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/no_measures_taken_for_purification_drinking_as_it_is"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/other_ways_of_purifying_water_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/other_specify"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <LinearLayout
+                        android:id="@+id/llother_ways_of_purifying_water_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/lblother_ways_of_purifying_water_edit_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@string/title_other_water_purification"
+                            android:textAppearance="@style/blur_txtview"
+                            android:textSize="@null" />
+
+                        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                            android:id="@+id/textInputLayother_ways_of_purifying_water_edit_text"
+                            style="@style/AppTheme.OutlineInputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintEnabled="false"
+                            tools:hint="@string/hint_other_water_purification">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputOtherPurificationMethod"
+                                style="@style/AppTheme.InputBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/hint_other_water_purification" />
+                        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                    </LinearLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    android:id="@+id/family_toilet_facility_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:text="@string/what_kind_of_toilet_facility_do_members_of_your_household_usually_use"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llSaferWaterPurificationCheckBox" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/family_toilet_facility_checkbox_linear_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/radio_group_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/family_toilet_facility_text_view">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/flush_to_piped_sewer_system_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/flush_to_piped_sewer_system"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/flush_to_septic_tank_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/flush_to_septic_tank"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/flush_to_pit_latrine_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/flush_to_pit_latrine"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/flush_to_somewhere_else_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/flush_to_somewhere_else"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/flush_dont_know_where_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/flush_dont_know_where"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/ventilated_improved_pit_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ventilated_improved_pit_biogas_latrine"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/pit_latrine_with_slab_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pit_latrine_with_slab"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/pit_latrine_without_slab_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pit_latrine_without_slab_open_pit"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/twin_pit_composting_toilet_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/twin_pit_composting_toilet"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/dry_toilet_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dry_toilet"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/communal_toilet_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/communal_toilet"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/no_facility_uses_open_field_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no_facility_uses_open_space_or_field"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                >
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+        <Button
+            android:id="@+id/frag2_btn_back"
+            style="@style/AppTheme.OutlinedButton.White"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_16dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:text="@string/generic_back"
+            android:textColor="@color/primary_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/frag2_btn_next"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/frag2_btn_next"
+            style="@style/AppTheme.OutlinedButton.Primary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_16dp"
+            android:layout_marginEnd="@dimen/std_16dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:text="@string/next"
+            app:icon="@drawable/ui2_ic_baseline_arrow_forward_24"
+            app:iconGravity="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/frag2_btn_back" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

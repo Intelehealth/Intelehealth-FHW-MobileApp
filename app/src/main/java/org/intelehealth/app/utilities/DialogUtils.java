@@ -1,5 +1,6 @@
 package org.intelehealth.app.utilities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
@@ -9,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
@@ -297,5 +299,32 @@ public class DialogUtils {
                 activityContext.getResources().getString(R.string.cancel),
                 customDialogListener
         );
+    }
+    public static void showPrintingDialog(Context context) {
+        AlertDialog dialog = new MaterialAlertDialogBuilder(context)
+                .setMessage(R.string.printing)
+                .setPositiveButton(R.string.ok, (dialog1, which) -> {
+                    if (context instanceof Activity) {
+                        ((Activity) context).finish();
+                    }
+                })
+                .setCancelable(false)
+                .create(); // Create the dialog but don't show it yet
+
+        dialog.setOnShowListener(d -> {
+            AlertDialog alertDialog = (AlertDialog) d;
+            // Setting the color of the positive button
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(
+                    context.getResources().getColor(R.color.colorPrimary, context.getTheme())
+            );
+            // Customizing the dialog theme
+            IntelehealthApplication.setAlertDialogCustomTheme((Activity) context, alertDialog);
+        });
+
+        dialog.show(); // Now show the dialog
+    }
+
+    public static void showToast(Context context, int messageResId) {
+        Toast.makeText(context, context.getString(messageResId), Toast.LENGTH_SHORT).show();
     }
 }

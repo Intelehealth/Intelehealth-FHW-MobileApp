@@ -10,6 +10,18 @@
         <variable
             name="otherActiveStatus"
             type="Boolean" />
+
+        <variable
+            name="familyMemberActiveStatus"
+            type="Boolean" />
+
+        <variable
+            name="householdSurveyActiveStatus"
+            type="Boolean" />
+
+        <variable
+            name="rosterQuestionnaireActiveStatus"
+            type="Boolean" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -104,8 +116,9 @@
             android:layout_below="@+id/toolbar"
             android:layout_marginBottom="@dimen/margin_16">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
+                android:orientation="vertical"
                 android:layout_height="wrap_content">
 
 
@@ -188,10 +201,22 @@
                     layout="@layout/patdetail_other_droplist_layout"
                     app:activeStatus="@{otherActiveStatus}" />
 
+                <include
+                    android:id="@+id/roster_details"
+                    layout="@layout/layout_roster_details"
+                    app:activeStatus="@{rosterQuestionnaireActiveStatus}"/>
+
+                <!--Header 4-->
+                <include
+                    android:id="@+id/family_member_card"
+                    layout="@layout/patdetail_familymember_layout"
+                    app:activeStatus="@{familyMemberActiveStatus}" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/other_card"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:layout_below="@+id/family_member_card"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="@dimen/margin_10"
                     android:orientation="vertical">
@@ -221,11 +246,10 @@
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:layout_width="44dp"
-                                    android:layout_height="44dp"
-                                    android:background="@drawable/rounded_blue_bg_shape"
-                                    android:padding="12dip"
-                                    android:src="@drawable/icons8_activity_history_24" />
+                                    android:layout_width="@dimen/edittext_height_44dp"
+                                    android:layout_height="@dimen/edittext_height_44dp"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ui2_ic_patient_history" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -279,12 +303,10 @@
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:layout_width="44dp"
-                                    android:layout_height="44dp"
-                                    android:background="@drawable/rounded_blue_bg_shape"
-                                    android:padding="12dip"
-                                    android:src="@drawable/icons8_activity_history_24" />
-
+                                    android:layout_width="@dimen/edittext_height_44dp"
+                                    android:layout_height="@dimen/edittext_height_44dp"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ui2_ic_patient_history" />
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -312,11 +334,36 @@
 
                     </androidx.cardview.widget.CardView>
 
+                    <!--
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_marginTop="@dimen/margin_20dp"
+                                            app:activeStatus="@{householdSurveyActiveStatus}"
+                                            android:layout_height="wrap_content">
+
+                                            <Button
+                                                android:id="@+id/tv_household_survey"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="@dimen/margin_24"
+                                                android:layout_marginEnd="@dimen/margin_24"
+                                                android:layout_marginBottom="@dimen/margin_24"
+                                                android:background="@drawable/ui2_common_primary_bg"
+                                                android:backgroundTint="@color/orange3"
+                                                android:paddingStart="@dimen/margin_30"
+                                                android:paddingEnd="@dimen/margin_14"
+                                                android:text="Household Survey"
+                                                android:textColor="@color/white"
+                                                android:textSize="@dimen/txtsize_patdetail_16sp"
+                                              />
+                                        </LinearLayout>
+                    -->
+
 
                 </LinearLayout>
 
 
-            </RelativeLayout>
+            </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
 
@@ -326,9 +373,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:visibility="visible">
-
+            <include
+                android:id="@+id/household_survey"
+                layout="@layout/layout_household_survey"
+                app:activeStatus="@{householdSurveyActiveStatus}" />
             <Button
                 android:id="@+id/startVisitBtn"
+                android:layout_below="@+id/household_survey"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"

@@ -3,11 +3,11 @@
     android:height="@dimen/fu_icon_width"
     android:viewportWidth="20"
     android:viewportHeight="20">
-  <path
-      android:pathData="M5,7.5L10,12.5L15,7.5"
-      android:strokeLineJoin="round"
-      android:strokeWidth="1.33"
-      android:fillColor="#00000000"
-      android:strokeColor="#7F7B92"
-      android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M5,7.5L10,12.5L15,7.5"
+        android:strokeWidth="1.33"
+        android:strokeColor="#7F7B92"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
 </vector>

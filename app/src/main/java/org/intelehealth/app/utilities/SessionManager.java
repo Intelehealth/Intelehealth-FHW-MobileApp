@@ -3,6 +3,10 @@ package org.intelehealth.app.utilities;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import com.google.gson.Gson;
+
+import org.intelehealth.app.ayu.visit.vital.VitalPreference;
 import org.intelehealth.app.utilities.CustomLog;
 
 import org.intelehealth.app.BuildConfig;
@@ -10,6 +14,7 @@ import org.intelehealth.app.BuildConfig;
 import java.util.Set;
 
 public class SessionManager {
+    private static final String VITAL_KEY ="vita_pref" ;
     // Shared preferences file name
     public static SessionManager instance;
     private static final String PREF_NAME = "Intelehealth";
@@ -74,6 +79,9 @@ public class SessionManager {
     public static final String TERMS_OF_USE = "TERMS_OF_USE";
     public static final String PERSONAL_DATA_PROCESSING_POLICY = "PERSONAL_DATA_PROCESSING_POLICY";
     private static final String CUSTOM_LOG_VERSION = "custom_log_version";
+    private static final String DEFAULT_PULL_START_TIME = "2006-08-22 22:21:48";
+//    private static final int DAYS_DELTA_FOR_SMOOTH_SYNC = -300;
+//    private static final String DEFAULT_PULL_START_TIME = DateAndTimeUtils.convertDateObjectToString(DateUtils.addDays(new Date(), DAYS_DELTA_FOR_SMOOTH_SYNC), "yyyy-MM-dd HH:mm:ss");  ;
 
 
     // LogCat tag
@@ -146,7 +154,7 @@ public class SessionManager {
     }
 
     public String getPullExcutedTime() {
-        return pref.getString(PULL_EXECUTED_TIME, "2006-08-22 22:21:48 ");
+        return pref.getString(PULL_EXECUTED_TIME, DEFAULT_PULL_START_TIME);
     }
 
     public void setPullExcutedTime(String pullExcutedTime) {
@@ -369,7 +377,7 @@ public class SessionManager {
     }
 
     public String isPulled() {
-        return pref.getString(PULLED, "2006-08-22 22:21:48");
+        return pref.getString(PULLED, DEFAULT_PULL_START_TIME);
     }  //getting the sync value  and time and saving in the sharedpref
 
     public void setPulled(String pulled) {
@@ -555,6 +563,25 @@ public class SessionManager {
     public void removeVisitEditCache(String key) {
         editor.remove(key);
         editor.commit();
+    }
+
+
+    public void saveVitalPreference(VitalPreference vitalPreference) {
+        String json = new Gson().toJson(vitalPreference);
+        editor.putString(VITAL_KEY, json).apply();
+    }
+
+    public VitalPreference getVitalPreference() {
+        String json = pref.getString(VITAL_KEY, null);
+        if (json != null) {
+            return new Gson().fromJson(json, VitalPreference.class);
+        } else {
+            return null;
+        }
+    }
+
+    public void clearVitalPreference() {
+        editor.remove(VITAL_KEY).apply();
     }
 
     /**

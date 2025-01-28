@@ -17,7 +17,9 @@ import android.os.Handler;
 import android.os.LocaleList;
 import android.text.Html;
 import android.util.DisplayMetrics;
+
 import org.intelehealth.app.utilities.CustomLog;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -33,6 +35,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.codeglo.coyamore.data.PreferenceHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
 
@@ -137,7 +140,7 @@ public class ScheduleAppointmentActivity_New extends BaseActivity implements Net
 
         //for reschedule appointment as per old flow
         actionTag = getIntent().getStringExtra("actionTag").toLowerCase();
-        requestCode = getIntent().getIntExtra("requestCode",0);
+        requestCode = getIntent().getIntExtra("requestCode", 0);
         if (actionTag != null && !actionTag.isEmpty() && actionTag.equals("rescheduleappointment")) {
 
             tvPrevSelectedAppDetails.setVisibility(View.VISIBLE);
@@ -187,8 +190,8 @@ public class ScheduleAppointmentActivity_New extends BaseActivity implements Net
                     broadcasterReceiverStatusMap.add(intent.getIntExtra("JOB", -1));
                     //sometimes the broadcaster receiver returning same status multipple times
                     //that's why added those values on SET then calculating
-                    for(int status : broadcasterReceiverStatusMap){
-                        mStatusCount+=status;
+                    for (int status : broadcasterReceiverStatusMap) {
+                        mStatusCount += status;
                     }
                     //mStatusCount = mStatusCount + intent.getIntExtra("JOB", -1);
                     if (mStatusCount == AppConstants.SYNC_PULL_PUSH_APPOINTMENT_PULL_DATA_DONE) {
@@ -344,9 +347,10 @@ public class ScheduleAppointmentActivity_New extends BaseActivity implements Net
         findViewById(R.id.tv_time_slot_title).setVisibility(View.GONE);
         ((TextView) findViewById(R.id.empty_tv)).setText(getString(R.string.loading_slots));
         //api for get appointment slots for selected date and doctor speciality
-
+        PreferenceHelper helper = new PreferenceHelper(this);
+        String token = "Bearer " + helper.getString(org.intelehealth.klivekit.data.PreferenceHelper.AUTH_TOKEN);
         String baseurl = BuildConfig.SERVER_URL + ":3004";
-        ApiClientAppointment.getInstance(baseurl).getApi().getSlots(mSelectedStartDate, mSelectedEndDate, speciality).enqueue(new Callback<SlotInfoResponse>() {
+        ApiClientAppointment.getInstance(baseurl).getApi().getSlots(token, mSelectedStartDate, mSelectedEndDate, speciality).enqueue(new Callback<SlotInfoResponse>() {
             @Override
             public void onResponse(Call<SlotInfoResponse> call, retrofit2.Response<SlotInfoResponse> response) {
                 SlotInfoResponse slotInfoResponse = response.body();
@@ -773,10 +777,10 @@ public class ScheduleAppointmentActivity_New extends BaseActivity implements Net
     @Override
     public void updateUIForInternetAvailability(boolean isInternetAvailable) {
         if (isInternetAvailable) {
-            ivIsInternet.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ui2_ic_internet_available));
+            ivIsInternet.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ui2_ic_internet_available));
 
         } else {
-            ivIsInternet.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ui2_ic_no_internet));
+            ivIsInternet.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ui2_ic_no_internet));
 
         }
     }

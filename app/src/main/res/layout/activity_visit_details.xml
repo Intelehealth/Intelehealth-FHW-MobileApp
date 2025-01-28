@@ -886,12 +886,10 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="48dip"
-                            android:layout_height="48dip"
+                            android:layout_width="@dimen/edittext_height_44dp"
+                            android:layout_height="@dimen/edittext_height_44dp"
                             android:layout_centerVertical="true"
-                            android:background="@drawable/ic_baseline_lens_24_light_violet"
-                            android:padding="12dip"
-                            android:src="@drawable/icons8_activity_history_24" />
+                            android:src="@drawable/ui2_ic_patient_history" />
 
                         <TextView
                             android:layout_width="wrap_content"

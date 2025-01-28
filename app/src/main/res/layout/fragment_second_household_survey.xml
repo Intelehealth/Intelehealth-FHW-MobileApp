@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="patientSurveyAttributes"
+            type="org.intelehealth.app.ui.householdSurvey.models.HouseholdSurveyModel" />
+
+        <variable
+            name="isEditMode"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/frag2_btn_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/std_16dp">
+
+                <LinearLayout
+                    android:id="@+id/llHeadOfHousehold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblHeadOfHousehold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/name_of_head_of_household"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayHeadOfHousehold"
+                        style="@style/AppTheme.OutlineInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        tools:hint="@string/identification_screen_prompt_city">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputHeadOfHousehold"
+                            style="@style/AppTheme.InputBox"
+                            android:layout_width="match_parent"
+                            android:text="@{patientSurveyAttributes.headOfHouseholdName}"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_name_of_member_common" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llReligion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llHeadOfHousehold"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblReligion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/religion"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayReligion"
+                        style="@style/AppTheme.OutlineInputBox.DropDown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_4"
+                        app:hintEnabled="false">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteReligion"
+                            style="@style/AppTheme.InputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_drop_down_religion"
+                            android:inputType="none" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llOtherReligionLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/radio_group_margin_top"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/lblOtherReligionLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@string/religion_others"
+                            android:textAppearance="@style/blur_txtview"
+                            android:textSize="@null" />
+
+                        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                            android:id="@+id/textInputLayOtherReligionLayout"
+                            style="@style/AppTheme.OutlineInputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintEnabled="false"
+                            tools:hint="@string/religion_others">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/textInpuOtherReligion"
+                                style="@style/AppTheme.InputBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/enter_value" />
+                        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCaste"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llReligion"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblCaste"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/nas_caste"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayCaste"
+                        style="@style/AppTheme.OutlineInputBox.DropDown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_4"
+                        app:hintEnabled="false">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteCaste"
+                            style="@style/AppTheme.InputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_drop_down_caste"
+                            android:inputType="none" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llNumberOfSmartPhones"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llCaste"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblNumberOfSmartPhones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/number_of_smartphones_in_the_household"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayNumberOfSmartPhones"
+                        style="@style/AppTheme.OutlineInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        tools:hint="@string/number_of_smartphones_in_the_household">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputNumberOfSmartPhones"
+                            style="@style/AppTheme.InputBox.Phone"
+                            android:layout_width="match_parent"
+                            android:text="@{patientSurveyAttributes.numberOfSmartPhones}"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_number_of_smartphones" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llNumberOfFeaturePhones"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llNumberOfSmartPhones"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblNumberOfFeaturePhones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/number_of_feature_phones_in_the_household"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayNumberOfFeaturePhones"
+                        style="@style/AppTheme.OutlineInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        tools:hint="@string/number_of_feature_phones_in_the_household">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputNumberOfFeaturePhones"
+                            style="@style/AppTheme.InputBox.Phone"
+                            android:layout_width="match_parent"
+                            android:text="@{patientSurveyAttributes.numberOfFeaturePhones}"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_number_of_feature_phones" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llNumberOfEarningMembers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llNumberOfFeaturePhones"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblNumberOfEarningMembers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/no_of_earning_members_are_there_in_the_household"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayNumberOfEarningMembers"
+                        style="@style/AppTheme.OutlineInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        tools:hint="@string/number_of_feature_phones_in_the_household">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputNumberOfEarningMembers"
+                            style="@style/AppTheme.InputBox.Phone"
+                            android:layout_width="match_parent"
+                            android:text="@{patientSurveyAttributes.numberOfEarningMembers}"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_number_of_earning_members" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llPrimarySourceOfIncome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llNumberOfEarningMembers"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/labelPrimarySourceOfIncome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/what_is_the_primary_source_of_income_in_the_household"
+                        android:textAppearance="@style/blur_txtview"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/llNumberOfEarningMembers" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/sale_of_cereal_production_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/radio_group_margin_top"
+                        android:text="@string/sale_of_cereal_production"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/sale_of_animal_products_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sale_of_animals_or_animal_products"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/agricultural_wage_labor_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/agricultural_wage_labor_employed_for_farm_work"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/salaried_worker_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/salaried_worker_fixed_monthly_salary"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/self_employed_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/self_employed_non_agricultural_petty_business"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/daily_labor_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/daily_labor_unskilled_work_agricultural_non_agricultural"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/nrega_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nrega"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/seasonal_labor_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/seasonal_labor"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/pension_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pension"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/remittance_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/remittances_checkbox"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/other_income_checkbox"
+                        style="@style/CustomCheckboxStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/other_please_specify"
+                        android:textColor="@color/textview_color"
+                        app:useMaterialThemeColors="false" />
+
+                    <LinearLayout
+                        android:id="@+id/llOtherSourcesOfIncomeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/radio_group_margin_top"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/lblOtherSourcesOfIncomeLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@string/other_sources_of_income"
+                            android:textAppearance="@style/blur_txtview"
+                            android:textSize="@null" />
+
+                        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                            android:id="@+id/textInputLayOtherSourcesOfIncomeLayout"
+                            style="@style/AppTheme.OutlineInputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintEnabled="false"
+                            tools:hint="@string/other_sources_of_income">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/textInputOtherSourcesOfIncome"
+                                style="@style/AppTheme.InputBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/enter_value" />
+                        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+        <Button
+            android:id="@+id/frag2_btn_back"
+            style="@style/AppTheme.OutlinedButton.White"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_16dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:text="@string/generic_back"
+            android:textColor="@color/primary_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/frag2_btn_next"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/frag2_btn_next"
+            style="@style/AppTheme.OutlinedButton.Primary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_16dp"
+            android:layout_marginEnd="@dimen/std_16dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:text="@string/next"
+            app:icon="@drawable/ui2_ic_baseline_arrow_forward_24"
+            app:iconGravity="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/frag2_btn_back" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

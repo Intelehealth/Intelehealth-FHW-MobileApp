@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import org.intelehealth.app.ui.patient.fragment.PatientPersonalInfoFragment
 import java.util.LinkedList
 
 /**

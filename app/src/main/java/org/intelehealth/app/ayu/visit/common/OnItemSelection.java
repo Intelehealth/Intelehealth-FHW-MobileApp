@@ -12,6 +12,7 @@ public interface OnItemSelection {
     void onCameraRequest();
 
     void onImageRemoved(int nodeIndex,int imageIndex, String image);
+    void onTerminalNodeAnsweredForParentUpdate(String parentNodeId);
 
 
 }

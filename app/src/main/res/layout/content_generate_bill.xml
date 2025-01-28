@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="testsChargesModel"
+            type="org.intelehealth.app.ui.billgeneration.models.BillTestsChargeModel" />
+        <variable
+            name="isBillGenerated"
+            type="Boolean" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".activities.bill.BillGenerationActivity"
+        tools:showIn="@layout/activity_bill_generation">
+        <!--Split the screen into two columns of cards-->
+
+        <LinearLayout
+            android:id="@+id/summary_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/padding_visit_summary_screen"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <!--        bluetooth option - start-->
+            <Button
+                android:id="@+id/tv_device_selected"
+                style="@style/CustomButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ui2_common_grey_bg_rounded"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="8dp"
+                android:tag="-1"
+                android:text="@string/please_connect"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/common_label_text_size" />
+
+            <ProgressBar
+                android:id="@+id/pb_connect"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btn_disConnect"
+                    style="@style/CustomButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/disconnect_button_background_selector"
+                    android:enabled="false"
+                    android:text="@string/disconnect"
+                    android:textColor="@color/disconnect_button_text_selector"
+                    android:textSize="@dimen/common_label_text_size" />
+
+                <Button
+                    android:id="@+id/btn_connect"
+                    style="@style/CustomButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_background_selector"
+                    android:enabled="false"
+                    android:text="@string/connect"
+                    android:textColor="@color/button_text_selector"
+                    android:textSize="@dimen/common_label_text_size" />
+
+            </LinearLayout>
+            <!--        end-->
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/finalBillCV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/dash_border"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="10dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/dash_border" />
+
+                <LinearLayout
+                    android:id="@+id/padd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:paddingBottom="70dp">
+
+                    <!--                    <TextView-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginVertical="10dp"-->
+                    <!--                        android:layout_gravity="center"-->
+                    <!--                        android:textSize="22sp"-->
+                    <!--                        android:text="Intelehealth"/>-->
+
+                    <TextView
+                        style="@style/DefaultTextviewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/intelehealth"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        style="@style/DefaultTextviewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/intelehealth_address"
+                        android:textAlignment="center"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="5dp">
+
+                                <TextView
+                                    style="@style/DefaultTextviewStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/receipt"
+                                    android:textSize="18sp" />
+
+                                <TextView
+                                    android:id="@+id/paymentStatus"
+                                    style="@style/DefaultTextviewStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:layout_marginHorizontal="8dp"
+                                    android:background="@drawable/button_bg_rounded_stroke"
+                                    android:gravity="center"
+                                    android:padding="4dp"
+                                    android:text="@string/paid"
+                                    android:textSize="12sp"
+                                    android:visibility="gone"
+                                    tools:visibility="visible" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/patientDetailsTV"
+                                style="@style/DefaultTextviewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:text="@string/intelehealth_address"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="0.7"
+                            android:src="@drawable/intelehealth_stamp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/consultation_chargesCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:visibility="@{testsChargesModel.consultationChargesVisible ? View.VISIBLE : View.GONE}"
+                        android:layout_marginBottom="5dp"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:weightSum="1"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/consultation_TV"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingStart="5dp"
+                            android:text="@string/consultation_charges"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/consultation_chargesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingEnd="5dp"
+                            android:hint="15.00"
+                            android:text="@{testsChargesModel.consultationChargeAmount}"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/follow_up_chargesCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="@{testsChargesModel.followUpChargesVisible ? View.VISIBLE : View.GONE}"
+                        android:weightSum="1"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/follow_up_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingStart="5dp"
+                            android:text="@string/follow_up_charges"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/follow_up_chargesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingEnd="5dp"
+                            android:hint="10.00"
+                            android:text="@{testsChargesModel.followUpChargeAmount}"
+                            android:textSize="14sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/glucose_nf_chargesCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:weightSum="1"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/glucose_nf_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingStart="5dp"
+                            android:text="@string/blood_glucose_non_fasting"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/glucose_nf_chargesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingEnd="5dp"
+                            android:hint="15.00"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/glucose_f_chargesCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="@{testsChargesModel.glucoseFastingChargesVisible ? View.VISIBLE : View.GONE}"
+                        android:weightSum="1"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/glucose_f_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingStart="5dp"
+                            android:text="@string/blood_glucose_fasting"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/glucose_f_chargesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingEnd="5dp"
+                            android:hint="10.00"
+                            android:text="@{testsChargesModel.glucoseFastingChargeAmount}"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/glucose_ppn_chargesCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="@{testsChargesModel.glucosePostPrandialChargesVisible ? View.VISIBLE : View.GONE}"
+                        android:weightSum="1"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/glucose_ppn_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingStart="5dp"
+                            android:text="@string/blood_glucose_post_prandial"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/glucose_ppn_chargesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingEnd="5dp"
+                            android:hint="15.00"
+                            android:text="@{testsChargesModel.glucosePostPrandialChargeAmount}"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/glucose_ran_chargesCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="@{testsChargesModel.glucoseRandomVisible ? View.VISIBLE : View.GONE}"
+                        android:weightSum="1"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/glucose_ran_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingStart="5dp"
+                            android:text="@string/blood_glucose_random"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/glucose_ran_chargesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:hint="10.00"
+                            android:text="@{testsChargesModel.glucoseRandomAmount}"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingEnd="5dp"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/uric_acid_chargesCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="@{testsChargesModel.uricAcidChargesVisible ? View.VISIBLE : View.GONE}"
+                        android:weightSum="1"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/uric_acid_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingStart="5dp"
+                            android:text="@string/uric_acid"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/uric_acid_chargesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:hint="15.00"
+                            android:text="@{testsChargesModel.uricAcidChargeAmount}"
+                            android:paddingEnd="5dp"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/cholestrol_chargesCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="@{testsChargesModel.cholestrolChargesVisible ? View.VISIBLE : View.GONE}"
+                        android:weightSum="1"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/cholestrol_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingStart="5dp"
+                            android:text="@string/total_cholestrol"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/cholestrol_chargesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingEnd="5dp"
+                            android:hint="10.00"
+                            android:text="@{testsChargesModel.cholestrolChargeAmount}"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/haemeo_chargesCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="@{testsChargesModel.hemoglobinChargesVisible ? View.VISIBLE : View.GONE}"
+                        android:weightSum="1"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/haemeo_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingStart="5dp"
+
+                            android:text="@string/haemoglobin"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/haemeo_chargesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="15.00"
+                            android:text="@{testsChargesModel.hemoglobinChargeAmount}"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingEnd="5dp"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/bp_chargesCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="@{testsChargesModel.bpChargesVisible ? View.VISIBLE : View.GONE}"
+                        android:weightSum="1"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/bp_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingStart="5dp"
+
+                            android:text="@string/visit_summary_bp"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/bp_chargesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingEnd="5dp"
+                            android:hint="10.00"
+                            android:text="@{testsChargesModel.bpChargeAmount}"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/dash_line" />
+
+                    <LinearLayout
+                        android:id="@+id/total_chargesCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:id="@+id/total_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingStart="5dp"
+                            android:text="@string/total_amount"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/total_chargesTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/lato_bold"
+                            android:paddingEnd="5dp"
+                            android:text="@{testsChargesModel.totalChargeAmount}"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/llBillNotPayingReason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{!isBillGenerated ? View.VISIBLE : View.GONE}"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/paying_billTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/patient_paying"
+                    android:textColor="@color/textColorGray"
+                    android:textSize="@dimen/common_label_text_size" />
+
+                <RadioGroup
+                    android:id="@+id/radioGrp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp">
+
+                    <RadioButton
+                        android:id="@+id/yes_pay_bill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="30dp"
+                        android:button="@drawable/selector_radio_button"
+                        android:fontFamily="@font/lato_regular"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/yes"
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/common_button_text_size" />
+
+                    <RadioButton
+                        android:id="@+id/no_pay_bill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/selector_radio_button"
+                        android:fontFamily="@font/lato_regular"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/no"
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/common_button_text_size" />
+
+                </RadioGroup>
+                <TextView
+                    android:id="@+id/tv_title_reason"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:layout_marginHorizontal="12dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:lineSpacingExtra="1sp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/reason"
+                    android:textColor="@color/textColorGray"
+                    android:textSize="@dimen/common_label_text_size"
+                    android:visibility="gone" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/reasonTIL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:visibility="gone"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="1000"
+                    app:counterTextAppearance="@dimen/common_sub_info_text_size"
+                    app:counterTextColor="@color/edittext_hint_color"
+                    app:hintEnabled="false"
+                    tools:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/reasonET"
+                        style="@style/edittext_textcolor"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edittext_height_44dp"
+                        android:layout_marginTop="@dimen/hamburger_margin_start"
+                        android:background="@drawable/input_edittext_border"
+                        android:hint="@string/reason"
+                        android:inputType="textMultiLine"
+                        android:maxLength="1000"
+                        android:maxLines="5"
+                        android:padding="@dimen/padding_10"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textSize="14sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_reason_error_not_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:lineSpacingExtra="0sp"
+                    android:text="@string/this_field_is_mandatory"
+                    android:textAppearance="@style/registr_error_msg"
+                    android:textColor="@color/red"
+                    android:textSize="@null"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_confirm_bill"
+                style="@style/CustomButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ui2_common_primary_bg"
+                android:paddingVertical="10dp"
+                android:text="@string/confirm_button"
+                android:visibility="@{!isBillGenerated ? View.VISIBLE : View.GONE}"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/button_print"
+                style="@style/CustomButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ui2_common_primary_bg"
+                android:text="@string/print_button"
+                android:textColor="@android:color/white"
+                android:visibility="@{isBillGenerated ? View.VISIBLE : View.GONE}"
+                />
+
+            <Button
+                android:id="@+id/button_download"
+                style="@style/CustomButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ui2_common_primary_bg"
+                android:text="@string/visit_summary_button_download"
+                android:textColor="@android:color/white"
+                android:visibility="@{isBillGenerated ? View.VISIBLE : View.GONE}"
+                />
+
+            <Button
+                android:id="@+id/button_share"
+                style="@style/CustomButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ui2_common_primary_bg"
+                android:text="@string/share"
+                android:textColor="@android:color/white"
+                android:visibility="@{isBillGenerated ? View.VISIBLE : View.GONE}"
+                />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

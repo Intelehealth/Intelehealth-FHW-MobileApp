@@ -137,8 +137,16 @@ public class InteleHealthDatabaseHelper extends SQLiteOpenHelper {
             "em_contact_name TEXT," +
             "em_contact_num TEXT," +
             "modified_date TEXT," +
+            "tms_case_number TEXT," +
+            "request_id TEXT," +
+            "relative_phone_number TEXT," +
+            "discipline TEXT," +
+            "department TEXT," +
             "voided TEXT DEFAULT '0'," +
-            "sync TEXT DEFAULT 'false' " +
+            "sync TEXT DEFAULT 'false', " +
+            "address3 TEXT," +
+            "address6 TEXT," +
+            "countyDistrict TEXT" +
             ")";
 
     public static final String CREATE_ATTRIB_MAIN = "CREATE TABLE IF NOT EXISTS tbl_patient_attribute (" +
@@ -148,7 +156,8 @@ public class InteleHealthDatabaseHelper extends SQLiteOpenHelper {
             "patientuuid TEXT," +
             "modified_date TEXT," +
             "voided TEXT DEFAULT '0'," +
-            "sync TEXT DEFAULT 'false' " +
+            "sync TEXT DEFAULT 'false'," +
+            "UNIQUE(patientuuid, person_attribute_type_uuid)"+ // added unique constraint to prevent duplicate insert of same attribute
             ")";
 
     public static final String CREATE_VISIT_MAIN = "CREATE TABLE IF NOT EXISTS tbl_visit (" +
@@ -177,8 +186,8 @@ public class InteleHealthDatabaseHelper extends SQLiteOpenHelper {
             "modified_date TEXT," +
             "created_date TEXT DEFAULT CURRENT_TIMESTAMP ," +
             "sync TEXT DEFAULT 'false', " +
-            "comments TEXT " +
-            ")";
+            "comments TEXT, " +
+            "conceptsetuuid TEXT)";
 
     SessionManager sessionManager = null;
 
@@ -299,7 +308,9 @@ public class InteleHealthDatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT OR REPLACE INTO tbl_uuid_dictionary (uuid,name) VALUES('a86ac96e-2e07-47a7-8e72-8216a1a75bfd','VISIT_TELEMEDICINE')");
             db.execSQL("INSERT OR REPLACE INTO tbl_uuid_dictionary (uuid,name) VALUES('78284507-fb71-4354-9b34-046ab205e18f','RATING')");
             db.execSQL("INSERT OR REPLACE INTO tbl_uuid_dictionary (uuid,name) VALUES('36d207d6-bee7-4b3e-9196-7d053c6eddce','COMMENTS')");
-
+            db.execSQL("INSERT OR REPLACE INTO tbl_uuid_dictionary (uuid,name) VALUES('b1a8fab4-d79f-44e6-8a90-2ac5e7ecd4d3','DIAGNOSTICS')");
+            db.execSQL("INSERT OR REPLACE INTO tbl_uuid_dictionary (uuid,name) VALUES('be8e386b-ca22-447d-82a1-b80366e5f848','ATTRIBUTE_HOUSEHOLD_VALUE')");
+            db.execSQL("INSERT OR REPLACE INTO tbl_uuid_dictionary (uuid,name) VALUES('20bc1535-fe95-46fb-9f45-37fb374ca851','ATTRIBUTE_BLOCK_SURVEY')");
 
         }
     }

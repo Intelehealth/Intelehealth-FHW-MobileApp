@@ -6,7 +6,6 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
-import org.intelehealth.app.utilities.CustomLog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +27,7 @@ import org.intelehealth.app.ayu.visit.common.VisitUtils;
 import org.intelehealth.app.ayu.visit.model.ComplainBasicInfo;
 import org.intelehealth.app.knowledgeEngine.Node;
 import org.intelehealth.app.shared.FirstLetterUpperCaseInputFilter;
+import org.intelehealth.app.utilities.CustomLog;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -123,7 +122,7 @@ public class AssociateSymptomsQueryAdapter extends RecyclerView.Adapter<Recycler
 
                 String type = genericViewHolder.node.getInputType();
                 CustomLog.v(TAG, "onBindViewHolder Type - " + type);
-                CustomLog.v(TAG, "onBindViewHolder Node - " + new Gson().toJson(genericViewHolder.node));
+                //CustomLog.v(TAG, "onBindViewHolder Node - " + new Gson().toJson(genericViewHolder.node));
                 if (type == null || type.isEmpty() && (genericViewHolder.node.getOptionsList() != null && !genericViewHolder.node.getOptionsList().isEmpty())) {
                     type = "options";
                 }
@@ -216,6 +215,11 @@ public class AssociateSymptomsQueryAdapter extends RecyclerView.Adapter<Recycler
 
                             @Override
                             public void onImageRemoved(int nodeIndex, int imageIndex, String imagee) {
+
+                            }
+
+                            @Override
+                            public void onTerminalNodeAnsweredForParentUpdate(String parentNodeId) {
 
                             }
                         });

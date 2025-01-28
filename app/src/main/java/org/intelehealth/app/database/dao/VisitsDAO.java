@@ -4,30 +4,26 @@ import static org.intelehealth.app.utilities.UuidDictionary.ENCOUNTER_ADULTINITI
 import static org.intelehealth.app.utilities.UuidDictionary.ENCOUNTER_VISIT_COMPLETE;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import org.intelehealth.app.utilities.CustomLog;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
-import org.intelehealth.app.activities.visit.VisitDetailsActivity;
 import org.intelehealth.app.app.AppConstants;
 import org.intelehealth.app.app.IntelehealthApplication;
 import org.intelehealth.app.models.PrescriptionModel;
 import org.intelehealth.app.models.dto.VisitAttributeDTO;
 import org.intelehealth.app.models.dto.VisitAttribute_Speciality;
 import org.intelehealth.app.models.dto.VisitDTO;
+import org.intelehealth.app.utilities.CustomLog;
 import org.intelehealth.app.utilities.DateAndTimeUtils;
 import org.intelehealth.app.utilities.Logger;
 import org.intelehealth.app.utilities.exception.DAOException;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import timber.log.Timber;
 
 public class VisitsDAO {
 
@@ -1094,14 +1090,14 @@ public class VisitsDAO {
                     if (isForReceivedPrescription) {
                         if (!isCompletedExitedSurvey && isPrescriptionReceived) {
                             count += 1;
-                            Timber.tag("getVisitCountsByStatus").v("Received - " + cursor.getString(cursor.getColumnIndexOrThrow("first_name"))
-                                    + " " + cursor.getString(cursor.getColumnIndexOrThrow("last_name")) + " Gender - " + cursor.getString(cursor.getColumnIndexOrThrow("gender")));
+//                            Timber.tag("getVisitCountsByStatus").v("Received - " + cursor.getString(cursor.getColumnIndexOrThrow("first_name"))
+//                                    + " " + cursor.getString(cursor.getColumnIndexOrThrow("last_name")) + " Gender - " + cursor.getString(cursor.getColumnIndexOrThrow("gender")));
                         }
                     } else {
                         if (!isCompletedExitedSurvey && !isPrescriptionReceived) {
                             count += 1;
-                            Timber.tag("getVisitCountsByStatus").v("Pending - " + cursor.getString(cursor.getColumnIndexOrThrow("first_name"))
-                                    + " " + cursor.getString(cursor.getColumnIndexOrThrow("last_name")) + " Gender - " + cursor.getString(cursor.getColumnIndexOrThrow("gender")));
+//                            Timber.tag("getVisitCountsByStatus").v("Pending - " + cursor.getString(cursor.getColumnIndexOrThrow("first_name"))
+//                                    + " " + cursor.getString(cursor.getColumnIndexOrThrow("last_name")) + " Gender - " + cursor.getString(cursor.getColumnIndexOrThrow("gender")));
 
                         }
                     }

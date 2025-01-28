@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2E1E91</color>
-    <color name="colorPrimaryDark">#201560</color>
-    <color name="colorAccent">#0FD197</color>
-    <color name="color_splash_bg">@color/colorPrimary</color>
-    <color name="color_tagline_text">@color/white</color>
-    <color name="colorPrimaryLightCard">#1a2E1E91</color>
-    <color name="colorAccentLightCard">#1a0FD197</color>
-    <color name="colorGreenLightCard">#F1FBF7</color>
-
-<!--    <color name="colorPrimary">#00CA04</color>-->
+<!--    <color name="colorPrimary">#2E1E91</color>-->
 <!--    <color name="colorPrimaryDark">#201560</color>-->
-<!--    <color name="colorAccent">#F57F17</color>-->
+<!--    <color name="colorAccent">#0FD197</color>-->
 <!--    <color name="color_splash_bg">@color/colorPrimary</color>-->
 <!--    <color name="color_tagline_text">@color/white</color>-->
-<!--    <color name="colorPrimaryLightCard">#1a00CA04</color>-->
-<!--    <color name="colorAccentLightCard">#1aF57F17</color>-->
-<!--    <color name="notification_background">#D3D3D3</color>-->
+<!--    <color name="colorPrimaryLightCard">#1a2E1E91</color>-->
+<!--    <color name="colorAccentLightCard">#1a0FD197</color>-->
+<!--    <color name="colorGreenLightCard">#F1FBF7</color>-->
+
+    <color name="colorPrimary">#00CA04</color>
+    <color name="colorPrimaryDark">#201560</color>
+    <color name="colorAccent">#F57F17</color>
+    <color name="color_splash_bg">@color/colorPrimary</color>
+    <color name="color_tagline_text">@color/white</color>
+    <color name="colorPrimaryLightCard">#1a00CA04</color>
+    <color name="colorAccentLightCard">#1aF57F17</color>
+    <color name="notification_background">#D3D3D3</color>
+    <color name="grayIcon">#7F7B92</color>
+
 </resources>

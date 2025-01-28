@@ -86,12 +86,10 @@ public class NodeAdapterUtils {
             case "or":
                 result = 'ଅ';
                 break;
-            case "hi":
+            case "hi", "mr":
                 result = 'अ';
                 break;
             case "te":
-                break;
-            case "mr":
                 break;
             case "as":
                 break;
@@ -121,13 +119,13 @@ public class NodeAdapterUtils {
             case "or":
                 result = 'ୱ';
                 break;
-            case "hi":
+            case "hi", "mr":
                 result = 'ह';
                 break;
             case "te":
                 break;
-            case "mr":
-                break;
+            //case "mr":
+             //   break;
             case "as":
                 break;
             case "ml":

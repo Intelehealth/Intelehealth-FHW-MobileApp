@@ -38,7 +38,9 @@ public interface Api {
 
     // https://uniceftraining.intelehealth.org:3004/api/appointment/getAppointmentSlots?fromDate=16/12/2021&toDate=31/12/2021&speciality=Neurologist
     @GET("api/appointment/getAppointmentSlots?")
-    Call<SlotInfoResponse> getSlots(@Query("fromDate") String mSelectedStartDate, @Query("toDate") String mSelectedEndDate,
+    Call<SlotInfoResponse> getSlots(
+            @Header("Authorization") String token,
+            @Query("fromDate") String mSelectedStartDate, @Query("toDate") String mSelectedEndDate,
                                     @Query("speciality") String speciality);
 
     @GET("api/appointment/getSlots?")

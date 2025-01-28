@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="relationshipHoH_Self">
+        <item>पती/पत्नी</item>
+        <item>मुलगा/मुलगी</item>
+        <item>मुलगा/सून</item>
+        <item>नातवंड</item>
+        <item>वडील/आई</item>
+        <item>वडील/सासू-सासरे</item>
+        <item>भाऊ/बहिण</item>
+        <item>भाऊ/बहिण-सासरे</item>
+        <item>भाची/भाचा</item>
+        <item>आजोबा/आजोबा-सासरे</item>
+        <item>इतर नातेवाईक</item>
+        <item>दत्तक/पालक/स्टेपचाइल्ड</item>
+        <item>घरगुती सेवक</item>
+        <item>इतर संबंधित नाही</item>
+        <item>इतर (स्पष्ट करा)</item>
+        <item>सांगित नाही</item>
+    </string-array>
+    <string-array name="maritual">
+        <item>सध्या विवाहित</item>
+        <item>विधवा/ विधुर</item>
+        <item>घटस्फोटित</item>
+        <item>विभक्त</item>
+        <item>सोडून दिलेले</item>
+        <item>कधीही लग्न केलेले नाही</item>
+    </string-array>
+    <string-array name="phoneownership">
+        <item>काहीही नाही</item>
+        <item>मिळून वापरला जातो</item>
+        <item>स्मार्टफोनचा मालक आहे</item>
+        <item>साधा फोन</item>
+    </string-array>
+    <string-array name="education_nas">
+        <item>वाचता किंवा लिहिता येत नाही</item>
+        <item>वाचता आणि लिहिता येतो</item>
+        <item>प्राथमिक शिक्षण (इयत्ता ५ वी पर्यंत)</item>
+        <item>मिडल स्कूल (6वी-8वी)</item>
+        <item>माध्यमिक शाळा (इयत्ता 10वी बोर्ड) उत्तीर्ण</item>
+        <item>वरिष्ठ माध्यमिक शाळा (12वी बोर्ड) उत्तीर्ण</item>
+        <item>पदवीधर</item>
+        <item>पदव्युत्तर</item>
+    </string-array>
+    <string-array name="occupation_identification">
+        <item>पगारदार सरकारी नोकरी</item>
+        <item>पगारदार खाजगी नोकरी</item>
+        <item>लहान व्यवसाय / दुकान मालक</item>
+        <item>तंत्रज्ञान / कारागीर / इतर कुशल काम (चालक, मेसन इ.)</item>
+        <item>कृषी शेतकरी</item>
+        <item>भाडेकरी शेतकरी / कृषी दैनिक वेतन कार्यकर्ता</item>
+        <item>दैनिक वेतन कर्मचारी (अकुशल काम)</item>
+        <item>घरगुती काम</item>
+        <item>विद्यार्थी</item>
+        <item>बेरोजगार</item>
+        <item>सेवानिवृत्त (पेंशनसह)</item>
+        <item>सेवानिवृत्त (पेंशनशिवाय)</item>
+        <item>इतर (स्पष्ट)</item>
+    </string-array>
+    <string-array name="relationshipHoH">
+        <item>स्वत:</item>
+        <item>पती/पत्नी</item>
+        <item>मुलगा/मुलगी</item>
+        <item>मुलगा/सून</item>
+        <item>नातवंड</item>
+        <item>वडील/आई</item>
+        <item>वडील/सासू-सासरे</item>
+        <item>भाऊ/बहिण</item>
+        <item>भाऊ/बहिण-सासरे</item>
+        <item>भाची/भाचा</item>
+        <item>आजोबा/आजोबा-सासरे</item>
+        <item>इतर नातेवाईक</item>
+        <item>दत्तक/पालक/स्टेपचाइल्ड</item>
+        <item>घरगुती सेवक</item>
+        <item>इतर संबंधित नाही</item>
+        <item>इतर (स्पष्ट करा)</item>
+        <item>सांगित नाही</item>
+    </string-array>
+    <string-array name="bp">
+        <item>कधीही तपासले नाही</item>
+        <item>गेल्या एका आठवड्यात</item>
+        <item>गेल्या महिन्याच्या आत</item>
+        <item>एक महिना ते 3 महिन्यांपूर्वी</item>
+        <item>3 महिने-6 महिन्यांपूर्वी</item>
+        <item>6 महिन्यांपेक्षा जास्त</item>
+    </string-array>
+    <string-array name="sugar">
+        <item>कधीही तपासले नाही</item>
+        <item>गेल्या एका आठवड्यात</item>
+        <item>गेल्या महिन्याच्या आत</item>
+        <item>एक महिना ते 3 महिन्यांपूर्वी</item>
+        <item>3 महिने-6 महिन्यांपूर्वी</item>
+        <item>6 महिन्यांपेक्षा जास्त</item>
+    </string-array>
+    <string-array name="hb">
+        <item>कधीही तपासले नाही</item>
+        <item>गेल्या एका आठवड्यात</item>
+        <item>गेल्या महिन्याच्या आत</item>
+        <item>एक महिना ते 3 महिन्यांपूर्वी</item>
+        <item>3 महिने-6 महिन्यांपूर्वी</item>
+        <item>6 महिन्यांपेक्षा जास्त</item>
+    </string-array>
+
+    <string-array name="bmi">
+        <item>कधीही तपासले नाही</item>
+        <item>गेल्या एका आठवड्यात</item>
+        <item>गेल्या महिन्याच्या आत</item>
+        <item>एक महिना ते 3 महिन्यांपूर्वी</item>
+        <item>3 महिने-6 महिन्यांपूर्वी</item>
+        <item>6 महिन्यांपेक्षा जास्त</item>
+    </string-array>
+
+    <string-array name="score_experience_en">
+        <item>असंतुष्ट</item>
+        <item>सरासरीच्या खाली</item>
+        <item>सरासरी</item>
+        <item>चांगले</item>
+        <item>खूप छान</item>
+    </string-array>
+
+    <string-array name="mode_transport_en">
+        <item>चालणे</item>
+        <item>बस</item>
+        <item>खाजगी टॅक्सी</item>
+        <item>शटल टॅक्सी</item>
+        <item>ऑटो</item>
+        <item>स्वतःचे वाहन</item>
+        <item>मित्रांचे/शेजाऱ्यांचे वाहन</item>
+        <item>अॅम्ब्युलन्स</item>
+        <item>इतर (स्पष्ट करा)</item>
+    </string-array>
+
+
+    <string-array name="referred_to_en">
+        <item>संदर्भित नाही</item>
+        <item>खाजगी क्लिनिक</item>
+        <item>प्राथमिक आरोग्य केंद्र</item>
+        <item>सामुदायिक आरोग्य केंद्र</item>
+        <item>जिल्हा रुग्णालय</item>
+        <item>खाजगी रुग्णालय</item>
+        <item>आयुष केंद्र</item>
+        <item>इतर (कृपया स्पष्ट करा)</item>
+    </string-array>
+
+    <string-array name="primary_health_provider_en">
+
+        <item>सरकारी डॉक्टर</item>
+        <item>खाजगी डॉक्टर</item>
+        <item>स्टाफ नर्स</item>
+        <item>ANM</item>
+        <item>आशा</item>
+        <item>AWW</item>
+        <item>RMP</item>
+        <item>आयुष डॉक्टर</item>
+        <item>होमिओपॅथ डॉक्टर</item>
+        <item>पारंपारिक उपचार करणारा/क्वॅक</item>
+        <item>या समस्येसाठी कोणत्याही आरोग्य प्रदात्याचा सल्ला घेतला नाही</item>
+        <item>इतर (स्पष्ट करा)</item>
+    </string-array>
+    <string-array name="health_issue_reported_en">
+        <item>ताप</item>
+        <item>खोकला/सर्दी</item>
+        <item>अतिसार</item>
+        <item>इजा</item>
+        <item>त्वचेच्या समस्या</item>
+        <item>डोळा /दृष्टी समस्या</item>
+        <item>सांधे/हाडांचे दुखणे</item>
+        <item>इतर (स्पष्ट करा)</item>
+    </string-array>
+
+    <string-array name="high_risk_pregnancy_en">
+        <item>होय</item>
+        <item>नाही</item>
+    </string-array>
+
+    <string-array name="pregnancy_planned_en">
+        <item>होय</item>
+        <item>नाही</item>
+    </string-array>
+
+
+    <string-array name="place_delivery_en">
+        <item>घर</item>
+        <item>उपकेंद्र</item>
+        <item>सीएचसी/ ब्लॉक लेव्हलवर सिव्हिल हॉस्पिटल</item>
+        <item>जिल्हा स्तरावर जिल्हा रुग्णालय/ नागरी रुग्णालय</item>
+        <item>खाजगी क्लिनिक</item>
+        <item>खाजगी रुग्णालय</item>
+    </string-array>
+
+    <string-array name="outcome_pregnancy_en">
+        <item>जिवंत जन्मलेला</item>
+        <item>बाळ मृतावस्थेत जन्मले</item>
+        <item>ऐच्छिक गर्भपात/ गर्भधारणेची वैद्यकीय समाप्ती (MTP)</item>
+        <item>गर्भपात</item>
+        <item>सध्या गरोदर आहे</item>
+    </string-array>
+
+    <string-array name="child_alive">
+
+        <item>होय</item>
+        <item>नाही</item>
+    </string-array>
+
+    <string-array name="child_pre_term">
+
+        <item>@string/yes</item>
+        <item>@string/no</item>
+    </string-array>
+    <string-array name="block" >
+
+        <item>पेठ तालुका</item>
+        <item>सुरगाणा तालुका</item>
+        <item>इतर तालुका</item>
+    </string-array>
+    <string-array name="single_multiple_births">
+        <item>एकच मुल</item>
+        <item>एकाहून अधिक जन्म (जुळे, तिळे, इ.)</item>
+    </string-array>
+
+    <string-array name="sex_of_baby">
+        <item>मुलगा</item>
+        <item>मुलगी</item>
+    </string-array>
+
+    <string-array name="complications">
+        <item>होय</item>
+        <item>नाही</item>
+    </string-array>
+</resources>

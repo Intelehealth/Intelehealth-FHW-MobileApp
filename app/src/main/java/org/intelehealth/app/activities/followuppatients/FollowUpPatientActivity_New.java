@@ -17,6 +17,8 @@ import android.os.LocaleList;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+
+import org.intelehealth.app.BuildConfig;
 import org.intelehealth.app.utilities.CustomLog;
 import android.util.TypedValue;
 import android.view.KeyEvent;
@@ -116,6 +118,7 @@ public class FollowUpPatientActivity_New extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.follow_up_visits);
+        sortStatus = BuildConfig.FLAVOR_client == "nas" ? false : true;
 
         handleBackPress();
 

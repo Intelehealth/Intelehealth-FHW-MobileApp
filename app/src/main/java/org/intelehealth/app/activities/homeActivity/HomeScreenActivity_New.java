@@ -43,6 +43,9 @@ import android.provider.Settings;
 import android.text.Html;
 import android.util.DisplayMetrics;
 
+import org.intelehealth.app.ui.draftsurvey.DraftSurveyActivity;
+import org.intelehealth.app.utilities.AddPatientUtils;
+
 import org.intelehealth.app.utilities.CustomLog;
 
 import android.view.LayoutInflater;
@@ -78,7 +81,6 @@ import androidx.work.WorkManager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.github.ajalt.timberkt.Timber;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationBarView;
@@ -94,7 +96,6 @@ import org.intelehealth.app.activities.help.activities.HelpFragment_New;
 import org.intelehealth.app.activities.informativeVideos.fragments.InformativeVideosFragment_New;
 import org.intelehealth.app.activities.loginActivity.LoginActivityNew;
 import org.intelehealth.app.activities.notification.view.NotificationActivity;
-import org.intelehealth.app.activities.onboarding.PrivacyPolicyActivity_New;
 import org.intelehealth.app.activities.settingsActivity.Language_ProtocolsActivity;
 import org.intelehealth.app.app.AppConstants;
 import org.intelehealth.app.app.IntelehealthApplication;
@@ -107,11 +108,9 @@ import org.intelehealth.app.models.CheckAppUpdateRes;
 import org.intelehealth.app.models.dto.ProviderAttributeDTO;
 import org.intelehealth.app.models.dto.ProviderDTO;
 import org.intelehealth.app.profile.MyProfileActivity;
-import org.intelehealth.app.services.MyIntentService;
 import org.intelehealth.app.services.firebase_services.DeviceInfoUtils;
 import org.intelehealth.app.shared.BaseActivity;
 import org.intelehealth.app.syncModule.SyncUtils;
-import org.intelehealth.app.utilities.CustomLog;
 import org.intelehealth.app.utilities.DateAndTimeUtils;
 import org.intelehealth.app.utilities.DialogUtils;
 import org.intelehealth.app.utilities.DownloadFilesUtils;
@@ -912,6 +911,7 @@ public class HomeScreenActivity_New extends BaseActivity implements NetworkUtils
     protected void onDestroy() {
         super.onDestroy();
         notificationReceiver.unregisterModuleBReceiver(this);
+        if (scheduleExactAlarmPermissionLauncher != null)
         scheduleExactAlarmPermissionLauncher.unregister();
 
 //        Log.v(TAG, "Is BG Service On - " + CallListenerBackgroundService.isInstanceCreated());
@@ -987,6 +987,7 @@ public class HomeScreenActivity_New extends BaseActivity implements NetworkUtils
         super.onFeatureActiveStatusLoaded(activeStatus);
         if (mNavigationView != null) {
             mNavigationView.getMenu().findItem(R.id.menu_view_call_log).setVisible(activeStatus.getVideoSection());
+            mNavigationView.getMenu().findItem(R.id.menu_draft_survey).setVisible(activeStatus.getActiveStatusPatientDraftSurvey());
         }
     }
 
@@ -1017,6 +1018,9 @@ public class HomeScreenActivity_New extends BaseActivity implements NetworkUtils
             startActivity(intent);
         } else if (itemId == R.id.menu_about_us) {
             Intent i = new Intent(HomeScreenActivity_New.this, AboutUsActivity.class);
+            startActivity(i);
+        } else if (itemId == R.id.menu_draft_survey) {
+            Intent i = new Intent(HomeScreenActivity_New.this, DraftSurveyActivity.class);
             startActivity(i);
         } else if (itemId == R.id.menu_logout) {
             wantToLogoutFromApp(this, getResources().getString(R.string.menu_option_logout), getResources().getString(R.string.sure_to_logout), getResources().getString(R.string.yes), getResources().getString(R.string.no));
@@ -1317,10 +1321,7 @@ public class HomeScreenActivity_New extends BaseActivity implements NetworkUtils
                     loadFragment(fragment, TAG_HELP);
                     return true;
                 case R.id.bottom_nav_add_patient:
-                    Intent intent = new Intent(HomeScreenActivity_New.this, PrivacyPolicyActivity_New.class);
-                    intent.putExtra("intentType", "navigateFurther");
-                    intent.putExtra("add_patient", "add_patient");
-                    startActivity(intent);
+                    AddPatientUtils.navigate(HomeScreenActivity_New.this);
                     return false;
             }
 
@@ -1345,8 +1346,14 @@ public class HomeScreenActivity_New extends BaseActivity implements NetworkUtils
                     userFullName = providerDTO.getFamilyName();
 
                 }
+
+                String idTitleStr = getString(R.string.chw_id);
+                if(providerDTO.getRole().toLowerCase().contains(AppConstants.MCC_USER_TYPE)){
+                    idTitleStr = getString(R.string.mcc_id);
+                }
+
                 tvUsername.setText(userFullName);
-                tvUserId.setText(getString(R.string.chw_id).concat(" ").concat(sessionManager.getChwname()));
+                tvUserId.setText(idTitleStr.concat(" ").concat(sessionManager.getChwname()));
 
                 if (providerDTO.getImagePath() != null && !providerDTO.getImagePath().isEmpty()) {
                     RequestBuilder<Drawable> requestBuilder = Glide.with(this)

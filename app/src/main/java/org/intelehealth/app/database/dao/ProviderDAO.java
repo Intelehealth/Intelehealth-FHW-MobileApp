@@ -184,6 +184,7 @@ public class ProviderDAO {
                     providerDTO.setImagePath(cursor.getString(cursor.getColumnIndexOrThrow("imagePath")));
                     providerDTO.setMiddle_name(cursor.getString(cursor.getColumnIndexOrThrow("middle_name")));
                     providerDTO.setCountryCode(cursor.getString(cursor.getColumnIndexOrThrow("countryCode")));
+                    providerDTO.setRole(cursor.getString(cursor.getColumnIndexOrThrow("role")));
 
 
                 }

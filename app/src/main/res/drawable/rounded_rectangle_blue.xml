@@ -4,7 +4,7 @@
 
     <!-- View background color -->
     <solid
-        android:color="#2E1E91" >
+        android:color="@color/colorPrimary" >
     </solid>
 
     <!--  <stroke android:width="2dp" android:color="#ff00ffff"/> -->

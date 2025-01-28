@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="org.intelehealth.app.ui.rosterquestionnaire.viewmodel.RosterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@+id/frag2_btn_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvPregnancyCount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/how_many_times_have_you_been_pregnant"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                    android:id="@+id/tilPregnancyCount"
+                    style="@style/AppTheme.OutlineInputBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="@+id/tvPregnancyCount"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/tvPregnancyCount"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPregnancyCount">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tilEtPregnancyCount"
+                        style="@style/AppTheme.InputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/enter"
+                        android:inputType="number" />
+                </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvPregnancyOutcome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_16dp"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/have_you_had_any_pregnancy_outcomes_in_the_past_2_years"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    app:layout_constraintEnd_toEndOf="@+id/tvPregnancyCount"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/tvPregnancyCount"
+                    app:layout_constraintTop_toBottomOf="@+id/tilPregnancyCount" />
+
+                <RadioGroup
+                    android:id="@+id/rgPregnancyOutcome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@id/tvPregnancyCount"
+                    app:layout_constraintStart_toStartOf="@id/tvPregnancyCount"
+                    app:layout_constraintTop_toBottomOf="@id/tvPregnancyOutcome">
+
+                    <RadioButton
+                        android:id="@+id/rbYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/margin_16"
+                        android:paddingRight="@dimen/padding_5"
+                        android:text="@string/yes"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+
+                    <RadioButton
+                        android:id="@+id/rbNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/no"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </RadioGroup>
+
+
+                <TextView
+                    android:id="@+id/tvPregnancyOutcomeCount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/no_of_pregnancy_outcomes_in_the_past_2_years"
+                    android:textAppearance="@style/blur_txtview"
+                    android:textSize="@null"
+                    app:layout_constraintEnd_toEndOf="@+id/tvPregnancyCount"
+                    app:layout_constraintStart_toStartOf="@id/tvPregnancyCount"
+                    app:layout_constraintTop_toBottomOf="@+id/rgPregnancyOutcome" />
+
+                <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                    android:id="@+id/tilPregnancyOutcomeCount"
+                    style="@style/AppTheme.OutlineInputBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="@+id/tvPregnancyCount"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/tvPregnancyCount"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPregnancyOutcomeCount">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tilEtPregnancyOutcomeCount"
+                        style="@style/AppTheme.InputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/enter"
+                        android:inputType="number" />
+                </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/groupPregnancyOutcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="tilPregnancyOutcomeCount,tvPregnancyOutcomeCount,cvAddPregnancyOutCome" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvAddPregnancyOutCome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:background="@drawable/ui2_card_bg_gray_border"
+                    app:cardCornerRadius="@dimen/common_card_corner_radius"
+                    app:cardElevation="@dimen/card_appointment_card_elevation"
+                    app:cardMaxElevation="8dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tilPregnancyOutcomeCount">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/backgroundWhite"
+                        android:padding="@dimen/card_options_padding">
+
+
+                        <TextView
+                            android:id="@+id/tvAddPregnancyOutcomeHeader"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:text="@string/pregnancy_outcome"
+                            android:textSize="@dimen/common_sub_headings_home"
+                            android:textStyle="bold"
+
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/tvAddPregnancyOutcome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:background="@drawable/ic_rectangle"
+                            android:paddingHorizontal="@dimen/padding_10"
+                            android:paddingVertical="@dimen/padding_5"
+                            android:text="@string/add"
+                            android:textColor="?attr/colorPrimary"
+                            android:textSize="12sp"
+                            app:drawableStartCompat="@drawable/ic_add"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvAddPregnancyOutcomeHeader"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="1.0" />
+
+                        <View
+                            android:id="@+id/horizontal_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/margin_16"
+                            android:background="@color/notifi_divider_color"
+                            android:visibility="@{viewModel.outComeLiveList.size() > 0 ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintTop_toBottomOf="@+id/tvAddPregnancyOutcomeHeader" />
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvPregnancyOutcome"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_16"
+                            app:layout_constraintEnd_toEndOf="@+id/horizontal_view"
+                            app:layout_constraintStart_toStartOf="@+id/horizontal_view"
+                            app:layout_constraintTop_toBottomOf="@+id/horizontal_view" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

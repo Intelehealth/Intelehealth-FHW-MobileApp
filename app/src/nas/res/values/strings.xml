@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Arogya Sampada</string>
+    <string name="intro_title_1">Who are we?</string>
+    <string name="intro_tagline_1">Arogya Sampada is an innovative telemedicine platform designed to bridge healthcare access gap in remote regions by connecting frontline health worker and patient with a virtual doctor to provide high-quality health services</string>
+    <string name="intro_title_2">Take patient visits</string>
+    <string name="intro_tagline_2">The platform is powered by Ayu, a programmable digital assistant that supports frontline health workers with evidence-based protocols for primary healthcare in regional languages</string>
+    <string name="intro_title_3">Provide prescriptions</string>
+    <string name="intro_tagline_3">The cloud-based open-source platform designed for a low-resource environment combined with a customized implementation strategy creates a digital health solution for impactful health outcomes</string>
+
+</resources>

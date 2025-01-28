@@ -9,13 +9,13 @@
       android:strokeLineJoin="round"
       android:strokeWidth="1.33"
       android:fillColor="#00000000"
-      android:strokeColor="#1B163A"
+      android:strokeColor="@color/colorPrimary"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M10.394,13.499H13.667C14.403,13.499 15,12.902 15,12.165V10.499C15,4.165 11.924,2.665 10.5,2.665C10.5,2.665 9.833,1.832 8.167,1.832C4.908,1.832 2,4.165 2,10.499V12.165C2,12.902 2.597,13.499 3.333,13.499H6.616"
       android:strokeLineJoin="round"
       android:strokeWidth="1.33"
       android:fillColor="#00000000"
-      android:strokeColor="#1B163A"
+      android:strokeColor="@color/colorPrimary"
       android:strokeLineCap="round"/>
 </vector>

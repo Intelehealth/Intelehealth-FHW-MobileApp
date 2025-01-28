@@ -133,6 +133,7 @@ public class FamilyHistoryActivity extends AppCompatActivity implements Question
             intentTag = intent.getStringExtra("tag");
             float_ageYear_Month = intent.getFloatExtra("float_ageYear_Month", 0);
 
+
             if(edit_FamHist == null)
                 new_result = getFamilyHistoryVisitData();
         }

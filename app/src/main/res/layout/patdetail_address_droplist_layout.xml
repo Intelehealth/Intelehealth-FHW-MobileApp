@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="activeStatus"
             type="Boolean" />
     </data>
+
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -13,9 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/personal_card"
         android:layout_marginStart="@dimen/toolbar_margin_left"
-        android:visibility="@{activeStatus ? View.VISIBLE : View.GONE}"
         android:layout_marginTop="@dimen/margin_20dp"
         android:layout_marginEnd="@dimen/toolbar_margin_left"
+        android:visibility="@{activeStatus ? View.VISIBLE : View.GONE}"
         app:cardCornerRadius="@dimen/hamburger_margin_start"
         app:cardElevation="@dimen/margin_5">
 
@@ -53,7 +57,8 @@
                     android:textColor="@color/textview_color"
                     android:textSize="@dimen/txtsize_patdetail_16sp" />
 
-                <ImageView android:id="@+id/iv_address_drop"
+                <ImageView
+                    android:id="@+id/iv_address_drop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -87,29 +92,29 @@
                     android:textSize="@dimen/txtsize_patdetail_16sp" />
 
                 <LinearLayout
+                    android:id="@+id/address_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edit_change_patdetail"
                     android:layout_alignParentEnd="true"
-                    android:paddingHorizontal="4dp"
-                    android:id="@+id/address_edit">
+                    android:background="@drawable/edit_change_patdetail"
+                    android:paddingHorizontal="4dp">
 
                     <ImageView
                         android:layout_width="14dp"
                         android:layout_height="14dp"
                         android:layout_margin="5dp"
-                        app:tint="?attr/colorPrimary"
-                        android:src="@drawable/edit"/>
+                        android:src="@drawable/edit"
+                        app:tint="?attr/colorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/change"
-                        android:textSize="12sp"
-                        android:textAlignment="center"
                         android:layout_gravity="center"
                         android:fontFamily="@font/lato_bold"
-                        android:textColor="?attr/colorPrimary"/>
+                        android:text="@string/change"
+                        android:textAlignment="center"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
             </RelativeLayout>
@@ -130,9 +135,9 @@
                         android:id="@+id/postal_code_tr"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_weight="2"
                         android:visibility="gone"
-                        tools:visibility="visible"
-                        android:layout_weight="2">
+                        tools:visibility="visible">
 
                         <TextView
                             android:layout_width="0dp"
@@ -141,8 +146,8 @@
                             android:layout_marginEnd="@dimen/margin_5"
                             android:layout_weight="1"
                             android:drawableStart="@drawable/bullet_gray"
-                            android:text="@string/identification_screen_prompt_postal_code"
                             android:drawablePadding="5dp"
+                            android:text="@string/identification_screen_prompt_postal_code"
                             android:textAppearance="@style/caption"
                             android:textColor="@color/hint_text_color"
                             android:textSize="@dimen/find_patient_hint_size" />
@@ -163,10 +168,10 @@
                         android:id="@+id/country_tr"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:visibility="gone"
-                        tools:visibility="visible"
                         android:layout_marginTop="@dimen/margin_4"
-                        android:layout_weight="2">
+                        android:layout_weight="2"
+                        android:visibility="gone"
+                        tools:visibility="visible">
 
                         <TextView
                             android:layout_width="0dp"
@@ -175,8 +180,8 @@
                             android:layout_marginEnd="@dimen/margin_5"
                             android:layout_weight="1"
                             android:drawableStart="@drawable/bullet_gray"
-                            android:text="@string/country"
                             android:drawablePadding="5dp"
+                            android:text="@string/country"
                             android:textAppearance="@style/caption"
                             android:textColor="@color/hint_text_color"
                             android:textSize="@dimen/find_patient_hint_size" />
@@ -192,15 +197,15 @@
                             android:textSize="@dimen/find_patient_hint_size" />
                     </TableRow>
 
-                    <!--Date of birth-->
+                    <!--State-->
                     <TableRow
                         android:id="@+id/state_tr"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:visibility="gone"
-                        tools:visibility="visible"
                         android:layout_marginTop="@dimen/margin_4"
-                        android:layout_weight="2">
+                        android:layout_weight="2"
+                        android:visibility="gone"
+                        tools:visibility="visible">
 
                         <TextView
                             android:layout_width="0dp"
@@ -209,8 +214,8 @@
                             android:layout_marginEnd="@dimen/margin_5"
                             android:layout_weight="1"
                             android:drawableStart="@drawable/bullet_gray"
-                            android:text="@string/state"
                             android:drawablePadding="5dp"
+                            android:text="@string/state"
                             android:textAppearance="@style/caption"
                             android:textColor="@color/hint_text_color"
                             android:textSize="@dimen/find_patient_hint_size" />
@@ -226,9 +231,9 @@
                             android:textSize="@dimen/find_patient_hint_size" />
                     </TableRow>
 
-                    <!--Age-->
+                    <!--Province-->
                     <TableRow
-                        android:id="@+id/district_tr"
+                        android:id="@+id/province_tr"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:visibility="gone"
@@ -243,8 +248,109 @@
                             android:layout_marginEnd="@dimen/margin_5"
                             android:layout_weight="1"
                             android:drawableStart="@drawable/bullet_gray"
-                            android:text="@string/district"
+                            android:text="@string/province"
                             android:drawablePadding="5dp"
+                            android:textAppearance="@style/caption"
+                            android:textColor="@color/hint_text_color"
+                            android:textSize="@dimen/find_patient_hint_size" />
+
+                        <TextView
+                            android:id="@+id/province"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Kyrgyzstan"
+                            android:textAppearance="@style/caption"
+                            android:textColor="@color/textview_color"
+                            android:textSize="@dimen/find_patient_hint_size" />
+                    </TableRow>
+
+                    <!--City-->
+                    <TableRow
+                        android:id="@+id/city_tr"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:layout_marginTop="@dimen/margin_4"
+                        android:layout_weight="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginEnd="@dimen/margin_5"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/bullet_gray"
+                            android:text="@string/city"
+                            android:drawablePadding="5dp"
+                            android:textAppearance="@style/caption"
+                            android:textColor="@color/hint_text_color"
+                            android:textSize="@dimen/find_patient_hint_size" />
+
+                        <TextView
+                            android:id="@+id/city"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Test"
+                            android:textAppearance="@style/caption"
+                            android:textColor="@color/textview_color"
+                            android:textSize="@dimen/find_patient_hint_size" />
+                    </TableRow>
+
+                    <!--Registration address of health facility-->
+                    <TableRow
+                        android:id="@+id/registrationAddressOfHf_tr"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:layout_marginTop="@dimen/margin_4"
+                        android:layout_weight="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginEnd="@dimen/margin_5"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/bullet_gray"
+                            android:text="@string/registration_address_of_health_facility"
+                            android:drawablePadding="5dp"
+                            android:textAppearance="@style/caption"
+                            android:textColor="@color/hint_text_color"
+                            android:textSize="@dimen/find_patient_hint_size" />
+
+                        <TextView
+                            android:id="@+id/registrationAddressOfHf"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Nashik"
+                            android:textAppearance="@style/caption"
+                            android:textColor="@color/textview_color"
+                            android:textSize="@dimen/find_patient_hint_size" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/district_tr"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_4"
+                        android:layout_weight="2"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginEnd="@dimen/margin_5"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/bullet_gray"
+                            android:drawablePadding="5dp"
+                            android:text="@string/district"
                             android:textAppearance="@style/caption"
                             android:textColor="@color/hint_text_color"
                             android:textSize="@dimen/find_patient_hint_size" />
@@ -265,10 +371,10 @@
                         android:id="@+id/village_city_tr"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:visibility="gone"
-                        tools:visibility="visible"
                         android:layout_marginTop="@dimen/margin_4"
-                        android:layout_weight="2">
+                        android:layout_weight="2"
+                        android:visibility="gone"
+                        tools:visibility="visible">
 
                         <TextView
                             android:layout_width="0dp"
@@ -277,8 +383,8 @@
                             android:layout_marginEnd="@dimen/margin_5"
                             android:layout_weight="1"
                             android:drawableStart="@drawable/bullet_gray"
-                            android:text="@string/village_town_city"
                             android:drawablePadding="5dp"
+                            android:text="@string/village_town_city"
                             android:textAppearance="@style/caption"
                             android:textColor="@color/hint_text_color"
                             android:textSize="@dimen/find_patient_hint_size" />
@@ -294,15 +400,14 @@
                             android:textSize="@dimen/find_patient_hint_size" />
                     </TableRow>
 
-                    <!-- Address 1-->
                     <TableRow
-                        android:id="@+id/address1_tr"
+                        android:id="@+id/household_no_tr"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:visibility="gone"
-                        tools:visibility="visible"
                         android:layout_marginTop="@dimen/margin_4"
-                        android:layout_weight="2">
+                        android:layout_weight="2"
+                        android:visibility="gone"
+                        tools:visibility="visible">
 
                         <TextView
                             android:layout_width="0dp"
@@ -311,8 +416,42 @@
                             android:layout_marginEnd="@dimen/margin_5"
                             android:layout_weight="1"
                             android:drawableStart="@drawable/bullet_gray"
-                            android:text="@string/_corresponding_address_1"
                             android:drawablePadding="5dp"
+                            android:text="@string/household_no"
+                            android:textAppearance="@style/caption"
+                            android:textColor="@color/hint_text_color"
+                            android:textSize="@dimen/find_patient_hint_size" />
+
+                        <TextView
+                            android:id="@+id/household_number"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="100"
+                            android:textAppearance="@style/caption"
+                            android:textColor="@color/textview_color"
+                            android:textSize="@dimen/find_patient_hint_size" />
+                    </TableRow>
+
+                    <!-- Address 1-->
+                    <TableRow
+                        android:id="@+id/address1_tr"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_4"
+                        android:layout_weight="2"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginEnd="@dimen/margin_5"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/bullet_gray"
+                            android:drawablePadding="5dp"
+                            android:text="@string/_corresponding_address_1"
                             android:textAppearance="@style/caption"
                             android:textColor="@color/hint_text_color"
                             android:textSize="@dimen/find_patient_hint_size" />
@@ -332,10 +471,10 @@
                         android:id="@+id/tr_address_2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:visibility="gone"
-                        tools:visibility="visible"
                         android:layout_marginTop="@dimen/margin_4"
-                        android:layout_weight="2">
+                        android:layout_weight="2"
+                        android:visibility="gone"
+                        tools:visibility="visible">
 
                         <TextView
                             android:layout_width="0dp"
@@ -344,8 +483,8 @@
                             android:layout_marginEnd="@dimen/margin_5"
                             android:layout_weight="1"
                             android:drawableStart="@drawable/bullet_gray"
-                            android:text="@string/_corresponding_address_2"
                             android:drawablePadding="5dp"
+                            android:text="@string/_corresponding_address_2"
                             android:textAppearance="@style/caption"
                             android:textColor="@color/hint_text_color"
                             android:textSize="@dimen/find_patient_hint_size" />

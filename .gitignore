@@ -23,3 +23,6 @@ salt.env
 /app/release/
 /app/src/main/assets
 /webrtc/src/main/assets/config.properties
+/app/src/unfpa/assets/
+/app/src/kcdo/assets/
+/app/src/ida/assets/

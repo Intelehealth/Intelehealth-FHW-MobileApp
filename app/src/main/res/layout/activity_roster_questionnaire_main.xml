@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="isEditMode"
+            type="Boolean" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayoutPatient"
+            style="@style/Theme.MaterialComponents.Light.DarkActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            app:elevation="0dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/AppTheme.AppBarOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@null"
+                app:title="@{isEditMode ? @string/update_roster : @string/roster}" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <include
+                android:id="@+id/rosterTab"
+                layout="@layout/view_roster_questionnaire_tabs" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/navHostRosterQuestionnaire"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:defaultNavHost="true"
+                android:padding="@dimen/margin_16"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/std_16dp">
+
+                <Button
+                    android:id="@+id/btnBack"
+                    style="@style/AppTheme.OutlinedButton.White"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/generic_back"
+                    android:textColor="@color/primary_text"
+                    android:visibility="@{isEditMode ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnNext"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Button
+                    android:id="@+id/btnNext"
+                    style="@style/AppTheme.OutlinedButton.Primary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{isEditMode ? @string/update : @string/next}"
+                    app:icon="@drawable/ui2_ic_baseline_arrow_forward_24"
+                    app:iconGravity="end"
+                    android:layout_marginStart="@dimen/std_16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btnBack" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

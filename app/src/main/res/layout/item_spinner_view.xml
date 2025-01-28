@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/llSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/margin_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvSpinnerHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3sp"
+            android:text="@string/txt_what_is_your_relationship_with_head_of_household"
+            android:textAppearance="@style/blur_txtview"
+            android:textSize="@null" />
+
+        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+            android:id="@+id/textInputLayRelation"
+            style="@style/AppTheme.OutlineInputBox.DropDown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            app:hintEnabled="false">
+
+            <AutoCompleteTextView
+                android:id="@+id/spinner"
+                style="@style/AppTheme.InputBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_drop_down_select"
+                android:inputType="none" />
+        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+
+        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+            android:id="@+id/tilOtherText"
+            style="@style/AppTheme.OutlineInputBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etOther"
+                style="@style/AppTheme.InputBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_value" />
+        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+
+    </LinearLayout>
+</layout>

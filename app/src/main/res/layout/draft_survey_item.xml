@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="org.intelehealth.app.models.dto.PatientDTO" />
+
+        <variable
+            name="patientDto"
+            type="PatientDTO" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/draft_card_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_5"
+        android:layout_marginTop="@dimen/margin_5"
+        android:layout_marginBottom="@dimen/margin_24"
+        app:cardCornerRadius="@dimen/margin_10"
+        app:cardElevation="@dimen/margin_5">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fu_margin_start"
+                android:layout_marginTop="@dimen/fu_margin_start"
+
+                android:layout_marginBottom="@dimen/fu_margin_start"
+                android:layout_toStartOf="@+id/linear_icon">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fu_profile_imgv"
+                    android:layout_width="@dimen/notifi_header_icon"
+                    android:layout_height="@dimen/notifi_header_icon"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="@dimen/margin_2dp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="@dimen/cardcornerradius_imagev">
+
+                    <ImageView
+                        android:id="@+id/draft_profile_image"
+                        profileUrl="@{patientDto.patientPhoto}"
+                        android:layout_width="@dimen/notifi_header_icon"
+                        android:src="@drawable/avatar1"
+                        android:layout_height="@dimen/notifi_header_icon" />
+                </androidx.cardview.widget.CardView>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/fu_margin_start"
+                    android:layout_toEndOf="@+id/fu_profile_imgv">
+
+                    <!-- Label -->
+                    <RelativeLayout
+                        android:id="@+id/lll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!-- fu_patname_txtview -->
+                        <TextView
+                            android:id="@+id/draft_patient_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="3sp"
+                            android:maxLines="1"
+                            android:text="@{patientDto.firstname + ` ` + patientDto.lastname}"
+                            android:textAppearance="@style/label"
+                            android:textColor="@null"
+                            android:textSize="@dimen/fu_name_txt_size" />
+
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:id="@+id/draft_openmrs_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lll"
+                        android:layout_marginTop="@dimen/cal_margnin_start"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@{patientDto.openmrsId}"
+                        android:textAppearance="@style/caption"
+                        android:textColor="@null"
+                        android:textSize="@dimen/fu_male_textsize" />
+
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <!--Icons-->
+            <LinearLayout
+                android:id="@+id/linear_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/fu_margin_start"
+                android:layout_marginEnd="@dimen/fu_margin_start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/draft_gender_and_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="@dimen/cal_margnin_start"
+                    android:lineSpacingExtra="3sp"
+                    android:paddingRight="5dp"
+                    android:text="@string/search_gender"
+                    android:textAppearance="@style/label_misc_txt_14sp"
+                    android:textColor="@null"
+                    android:textSize="@dimen/fu_name_txt_size" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

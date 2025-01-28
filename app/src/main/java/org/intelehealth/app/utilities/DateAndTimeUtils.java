@@ -2,6 +2,7 @@ package org.intelehealth.app.utilities;
 
 import android.content.Context;
 import android.text.format.DateUtils;
+
 import org.intelehealth.app.utilities.CustomLog;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,7 @@ import java.util.regex.Pattern;
 
 public class DateAndTimeUtils {
     private static final String TAG = "DateAndTimeUtils";
-     public static final String D_FORMAT_dd_M_yyyy = "dd/M/yyyy";
+    public static final String D_FORMAT_dd_M_yyyy = "dd/M/yyyy";
 
     public static float getFloat_Age_Year_Month(String date_of_birth) {
         float year_month = 0;
@@ -118,8 +119,8 @@ public class DateAndTimeUtils {
     }
 
     public static String getAge_FollowUp(String s, Context context) {
-        CustomLog.d(TAG, "getAge_FollowUp: s: " + s);
-        CustomLog.d("TAG", "getAge_FollowUp: s : " + s);
+//        CustomLog.d(TAG, "getAge_FollowUp: s: " + s);
+//        CustomLog.d("TAG", "getAge_FollowUp: s : " + s);
         if (s == null) return "";
         DateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         DateFormat targetFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -149,7 +150,7 @@ public class DateAndTimeUtils {
         if (period.getValue(0) > 0) {  // o index -> years
             tyears = String.valueOf(period.getValue(0));
             age = tyears;
-            CustomLog.d("TAG", "getAge_FollowUp: s : " + age);
+            //CustomLog.d("TAG", "getAge_FollowUp: s : " + age);
         } else {
             age = "0";
         }
@@ -390,7 +391,7 @@ public class DateAndTimeUtils {
     }
 
     public static String formatDateFromOnetoAnother(String date, String sourceFormat, String anotherFormat) {
-        if(date.isEmpty()) return "";
+        if (date == null || date.isEmpty()) return "";
         String result = "";
         SimpleDateFormat sdf;
         SimpleDateFormat sdf1;
@@ -883,7 +884,7 @@ public class DateAndTimeUtils {
 
         Date date = null;
         try {
-            date = inputFormat.parse(dateToConvert+" "+time);
+            date = inputFormat.parse(dateToConvert + " " + time);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -1130,7 +1131,7 @@ public class DateAndTimeUtils {
         }
     }
 
-    public static long getTimeStampFromString(String dateString, String format){
+    public static long getTimeStampFromString(String dateString, String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
 
         try {
@@ -1160,5 +1161,39 @@ public class DateAndTimeUtils {
         SimpleDateFormat simpleFormat = new SimpleDateFormat(format, Locale.ENGLISH);
         Date date = new Date(currentTimeMillis);
         return simpleFormat.format(date);
+    }
+
+    public static String currentDateTimeFormat() {
+        Locale.setDefault(Locale.ENGLISH);
+        DateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+// you can get seconds by adding  "...:ss" to it
+        Date todayDate = new Date();
+        return date.format(todayDate);
+    }
+
+    public static boolean isDateGreaterThan15Years(String selectedDate) {
+        // Define the date format
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
+        try {
+            // Parse the selected date
+            Date parsedDate = dateFormat.parse(selectedDate);
+
+            // Get the current date
+            Calendar currentDate = Calendar.getInstance();
+
+            // Set the selected date in a Calendar instance
+            Calendar selectedCalendar = Calendar.getInstance();
+            selectedCalendar.setTime(parsedDate);
+
+            // Add 15 years to the selected date
+            selectedCalendar.add(Calendar.YEAR, 15);
+
+            // Check if the modified selected date is before or after the current date
+            return selectedCalendar.before(currentDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false; // Return false if there's an error parsing the date
+        }
     }
 }

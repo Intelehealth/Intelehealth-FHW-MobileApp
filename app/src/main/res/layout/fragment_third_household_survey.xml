@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="patientSurveyAttributes"
+            type="org.intelehealth.app.ui.householdSurvey.models.HouseholdSurveyModel" />
+
+        <variable
+            name="isEditMode"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/frag2_btn_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/std_16dp">
+
+                <!--for electricity-->
+                <LinearLayout
+                    android:id="@+id/llHouseholdStructureType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/householdElectricityTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/does_the_house_have_electricity"
+                        android:textAppearance="@style/blur_txtview"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/llHouseholdNumber" />
+
+                    <RadioGroup
+                        android:id="@+id/rgHouseholdElectricity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/labelStructureType">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbElectricityYes"
+                            style="@style/CommonRadioButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/radio_buttons_between_margin"
+                            android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                            android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                            android:text="@string/yes"
+                            app:useMaterialThemeColors="false" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbElectricityNo"
+                            style="@style/CommonRadioButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                            android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                            android:text="@string/no"
+                            app:useMaterialThemeColors="false" />
+
+                    </RadioGroup>
+
+                    <LinearLayout
+                        android:id="@+id/llHouseholdElectricityYesOption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                        android:orientation="vertical"
+                        tools:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/lblLoadSheddingHours"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@string/number_of_hours_of_load_shedding_per_day"
+                            android:textAppearance="@style/blur_txtview"
+                            android:textSize="@null" />
+
+                        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                            android:id="@+id/loadSheddingHoursLayout"
+                            style="@style/AppTheme.OutlineInputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintEnabled="false"
+                            tools:hint="@string/number_of_hours_of_load_shedding_per_day">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/loadSheddingHoursTextView"
+                                style="@style/AppTheme.InputBox"
+                                android:layout_width="match_parent"
+                                android:inputType="numberDecimal"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/hint_enter_hours" />
+                        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+
+
+                        <TextView
+                            android:id="@+id/lblLoadSheddingDaysPerWeek"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@string/number_of_days_with_load_shedding_per_week"
+                            android:textAppearance="@style/blur_txtview"
+                            android:textSize="@null" />
+
+                        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                            android:id="@+id/loadSheddingDaysPerWeekLayout"
+                            style="@style/AppTheme.OutlineInputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintEnabled="false"
+                            tools:hint="@string/number_of_days_with_load_shedding_per_week">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/loadSheddingDaysPerWeekTextView"
+                                style="@style/AppTheme.InputBox"
+                                android:layout_width="match_parent"
+                                android:inputType="numberDecimal"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/hint_days_per_week" />
+                        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llPrimarySourceOfWater"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llHouseholdStructureType"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/running_water_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/is_there_running_water_available_in_the_house"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null" />
+
+                    <RadioGroup
+                        android:id="@+id/running_water_radio_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/running_water_text_view">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/running_water_yes_checkbox"
+                            style="@style/CommonRadioButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/radio_buttons_between_margin"
+                            android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                            android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                            android:text="@string/yes"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:useMaterialThemeColors="false" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/running_water_no_checkbox"
+                            style="@style/CommonRadioButtonStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                            android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                            android:text="@string/no"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:useMaterialThemeColors="false" />
+
+                    </RadioGroup>
+
+                    <LinearLayout
+                        android:id="@+id/llPrimarySourceOfWaterNoOption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/llHouseholdStructureType">
+
+                        <TextView
+                            android:id="@+id/primary_source_of_water_text_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/what_is_the_primary_source_of_water_for_the_household"
+                            android:textAppearance="@style/blur_txtview"
+                            android:textSize="@null"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/running_water_radio_group" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/primary_source_of_water_checkbox_linear_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/radio_group_margin_top"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/primary_source_of_water_text_view"
+                            tools:visibility="visible">
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/village_tank_checkbox"
+                                style="@style/CustomCheckboxStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/village_tank"
+                                android:textColor="@color/textview_color"
+                                app:useMaterialThemeColors="false" />
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/open_well_checkbox"
+                                style="@style/CustomCheckboxStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/open_well"
+                                android:textColor="@color/textview_color"
+                                app:useMaterialThemeColors="false" />
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/hand_pump_checkbox"
+                                style="@style/CustomCheckboxStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/hand_pump_checkbox"
+                                android:textColor="@color/textview_color"
+                                app:useMaterialThemeColors="false" />
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/bore_well_checkbox"
+                                style="@style/CustomCheckboxStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bore_well"
+                                android:textColor="@color/textview_color"
+                                app:useMaterialThemeColors="false" />
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/river_checkbox"
+                                style="@style/CustomCheckboxStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/river"
+                                android:textColor="@color/textview_color"
+                                app:useMaterialThemeColors="false" />
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/pond_checkbox"
+                                style="@style/CustomCheckboxStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/pond"
+                                android:textColor="@color/textview_color"
+                                app:useMaterialThemeColors="false" />
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/other_checkbox_water_source"
+                                style="@style/CustomCheckboxStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/other"
+                                android:textColor="@color/textview_color"
+                                app:useMaterialThemeColors="false" />
+
+                            <LinearLayout
+                                android:id="@+id/llOtherSourcesOfWaterEdiText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                                android:orientation="vertical"
+                                android:visibility="gone"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/lblOtherSourcesOfWater"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:lineSpacingExtra="3sp"
+                                    android:text="@string/other_water_sources"
+                                    android:textAppearance="@style/blur_txtview"
+                                    android:textSize="@null" />
+
+                                <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                                    android:id="@+id/textInputLayOtherSourcesOfWater"
+                                    style="@style/AppTheme.OutlineInputBox"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:hintEnabled="false"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/primary_source_of_water_checkbox_linear_layout">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/textInputOtherSourcesOfWater"
+                                        style="@style/AppTheme.InputBox"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/lato_regular"
+                                        android:hint="@string/enter_other_water_sources"
+                                        android:maxLines="1"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                            </LinearLayout>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <TextView
+                            android:id="@+id/lblWaterSourceDistance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@string/how_far_is_the_water_source_from_the_house"
+                            android:textAppearance="@style/blur_txtview"
+                            android:textSize="@null" />
+
+                        <RadioGroup
+                            android:id="@+id/rgWaterSourceDistance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/labelStructureType">
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/rbDistanceMeter"
+                                style="@style/CommonRadioButtonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_buttons_between_margin"
+                                android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                                android:checked="false"
+                                android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                                android:text="@string/meter"
+                                app:useMaterialThemeColors="false" />
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/rbDistanceKMeter"
+                                style="@style/CommonRadioButtonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                                android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                                android:text="@string/km"
+                                android:checked="false"
+                                app:useMaterialThemeColors="false" />
+
+                        </RadioGroup>
+                        <LinearLayout
+                            android:id="@+id/llWaterSourceDistance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/primary_source_of_water_checkbox_linear_layout"
+                            android:visibility="gone">
+                        <TextView
+                            android:id="@+id/lblDistanceNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@string/no_of_m_km"
+                            android:textAppearance="@style/blur_txtview"
+                            android:textSize="@null"
+                           />
+
+                        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                            android:id="@+id/textInputLayWaterSourceDistance"
+                            style="@style/AppTheme.OutlineInputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintEnabled="false"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lblDistanceNumber"
+                            tools:visibility="visible">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/textInputWaterSourceDistance"
+                                style="@style/AppTheme.InputBox"
+                                android:layout_width="match_parent"
+                                android:inputType="numberDecimal"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/lato_regular"
+                                android:hint="@string/enter_value"
+                                android:maxLines="1"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llPrimarySourceOfWaterYesOption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llPrimarySourceOfWater">
+
+                    <TextView
+                        android:id="@+id/lblWaterSupplyAvailability"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/available_of_water_supply_hours_per_day"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayWaterSupplyAvailability"
+                        style="@style/AppTheme.OutlineInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        tools:hint="@string/available_of_water_supply_hours_per_day">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputWaterSupplyAvailabilityHrsPerDay"
+                            style="@style/AppTheme.InputBox"
+                            android:layout_width="match_parent"
+                            android:inputType="numberDecimal"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/enter_value" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+
+                    <TextView
+                        android:id="@+id/lblWaterSupplyAvailabilityDaysPerWeek"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/available_of_water_supply_days_per_week"
+                        android:textAppearance="@style/blur_txtview"
+                        android:textSize="@null" />
+
+                    <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                        android:id="@+id/textInputLayWaterSupplyAvailabilityDaysPerWeek"
+                        style="@style/AppTheme.OutlineInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        tools:hint="@string/available_of_water_supply_days_per_week">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputWaterSupplyAvailabilityDaysPerWeek"
+                            style="@style/AppTheme.InputBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:hint="@string/enter_value" />
+                    </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llBankAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/form_fields_common_margin_top"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llPrimarySourceOfWaterYesOption"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/lblBankAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/does_the_house_have_a_bank_account"
+                        android:textAppearance="@style/blur_txtview"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/llHouseholdNumber" />
+
+                    <RadioGroup
+                        android:id="@+id/rgBankAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/radio_group_margin_top"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/labelStructureType">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbBankAccountYes"
+                            style="@style/CommonRadioButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/radio_buttons_between_margin"
+                            android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                            android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                            android:text="@string/yes"
+                            app:useMaterialThemeColors="false" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbBankAccountNo"
+                            style="@style/CommonRadioButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/radio_buttons_padding_start_end"
+                            android:paddingEnd="@dimen/radio_buttons_padding_start_end"
+                            android:text="@string/no"
+                            app:useMaterialThemeColors="false" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/frag2_btn_back"
+            style="@style/AppTheme.OutlinedButton.White"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_16dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:text="@string/generic_back"
+            android:textColor="@color/primary_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/frag2_btn_next"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/frag2_btn_next"
+            style="@style/AppTheme.OutlinedButton.Primary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_16dp"
+            android:layout_marginEnd="@dimen/std_16dp"
+            android:layout_marginBottom="@dimen/std_16dp"
+            android:text="@string/next"
+            app:icon="@drawable/ui2_ic_baseline_arrow_forward_24"
+            app:iconGravity="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/frag2_btn_back" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

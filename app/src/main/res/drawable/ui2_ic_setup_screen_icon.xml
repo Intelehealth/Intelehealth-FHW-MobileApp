@@ -8,7 +8,7 @@
         android:fillColor="@color/colorAccentWhiteOverlay"
         android:pathData="M40,40m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0" />
     <path
-        android:fillColor="#EFE8FF"
+        android:fillColor="@color/colorAccentLightCard"
         android:pathData="M48.571,20H31.429C29.535,20 28,21.791 28,24V26V33.5L33.5,38.5L28,45V51.5V56C28,58.209 29.535,60 31.429,60H48.571C50.465,60 52,58.209 52,56V24C52,21.791 50.465,20 48.571,20Z" />
     <path
         android:fillColor="#00000000"

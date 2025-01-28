@@ -20,6 +20,11 @@ fun TextInputLayout.showError(@StringRes resId: Int) {
     error = context.getString(resId)
 }
 
+fun TextInputLayout.showError(message: String) {
+    Timber.d { "showError" }
+    error = message
+}
+
 fun TextInputLayout.hideError() {
     Timber.d { "hideError" }
     isErrorEnabled = false
@@ -51,6 +56,13 @@ fun TextInputLayout.validate(input: TextInputEditText, @StringRes resId: Int): B
     } else true
 }
 
+fun TextInputLayout.validate(input: TextInputEditText, errorMessage: String): Boolean {
+    return if (input.text.isNullOrEmpty()) {
+        showError(errorMessage)
+        false
+    } else true
+}
+
 fun TextInputLayout.validateDropDowb(input: AutoCompleteTextView, @StringRes resId: Int): Boolean {
     return if (input.text.isNullOrEmpty()) {
         showError(resId)
@@ -58,10 +70,19 @@ fun TextInputLayout.validateDropDowb(input: AutoCompleteTextView, @StringRes res
     } else true
 }
 
+fun TextInputLayout.showDropDownError(input: String?, errorMessage: String): Boolean {
+
+    return if (input.isNullOrEmpty()) {
+        showError(errorMessage)
+        false
+    } else true
+
+}
+
 fun TextInputLayout.validateDigit(
     input: TextInputEditText,
     @StringRes resId: Int,
-    minDigit: Int
+    minDigit: Int,
 ): Boolean {
     return if (input.text.isNullOrEmpty() || input.text?.length!! < minDigit) {
         showError(resId)

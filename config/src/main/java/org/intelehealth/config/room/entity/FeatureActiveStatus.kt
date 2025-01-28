@@ -28,7 +28,19 @@ data class FeatureActiveStatus(
     @SerializedName("facility_to_visit_section")
     val visitSummeryFacilityToVisit: Boolean,
     @SerializedName("hw_followup_section")
-    val visitSummeryHwFollowUp: Boolean
+    val visitSummeryHwFollowUp: Boolean,
+
+    @SerializedName("diagnosis_at_secondary_level")
+    val diagnosisAtSecondaryLevel: Boolean = false,
+
+    @SerializedName("type_of_consultation")
+    val typeOfConsultation: Boolean = false,
+    @SerializedName("generate_bill_button")
+    val generateBillButton: Boolean,
+    @SerializedName("restrict_end_visit_till_prescription_download")
+    val restrictEndVisit: Boolean,
+    @SerializedName("print_using_thermal_printer")
+    val printUsingThermalPrinter: Boolean
 ) {
     var videoSection: Boolean = true
     var chatSection: Boolean = true
@@ -42,6 +54,21 @@ data class FeatureActiveStatus(
     @SerializedName("patient_reg_other")
     var activeStatusPatientOther: Boolean = true
 
+    @SerializedName("patient_family_member_registration")
+    var activeStatusPatientFamilyMemberRegistration: Boolean = true
+
     @SerializedName("abha_section")
     var activeStatusAbha: Boolean = true
+
+    @SerializedName("patient_household_survey")
+    var activeStatusPatientHouseholdSurvey: Boolean = true
+
+    @SerializedName("roster_questionnaire_section")
+    var activeStatusRosterQuestionnaireSection: Boolean = true
+
+    @SerializedName("patient_diagnostics_section")
+    var activeStatusDiagnosticsSection: Boolean = true
+
+    @SerializedName("patient_draft_survey")
+    var activeStatusPatientDraftSurvey: Boolean = true
 }

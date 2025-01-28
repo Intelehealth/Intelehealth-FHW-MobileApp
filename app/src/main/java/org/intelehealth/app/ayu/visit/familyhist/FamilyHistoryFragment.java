@@ -110,7 +110,7 @@ public class FamilyHistoryFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
 
-                        mActionListener.onFormSubmitted(VisitCreationActivity.STEP_5_HISTORY_SUMMARY, mIsEditMode, null);
+                        mActionListener.onFormSubmitted(VisitCreationActivity.STEP_6_HISTORY_SUMMARY, mIsEditMode, null);
 
                     }
                 });
@@ -165,7 +165,7 @@ public class FamilyHistoryFragment extends Fragment {
                         mActionListener.onProgress((int) 100 / mCurrentRootOptionList.size());
                     } else {
                         if (!mIsEditMode)
-                            mActionListener.onFormSubmitted(VisitCreationActivity.STEP_5_HISTORY_SUMMARY, mIsEditMode, null);
+                            mActionListener.onFormSubmitted(VisitCreationActivity.STEP_6_HISTORY_SUMMARY, mIsEditMode, null);
                         else
                             Toast.makeText(requireActivity(), getString(R.string.please_submit_to_proceed_next_step), Toast.LENGTH_SHORT).show();
                     }
@@ -180,7 +180,7 @@ public class FamilyHistoryFragment extends Fragment {
                 @Override
                 public void onAllAnswered(boolean isAllAnswered) {
                     if (!mIsEditMode)
-                        mActionListener.onFormSubmitted(VisitCreationActivity.STEP_5_HISTORY_SUMMARY, mIsEditMode, null);
+                        mActionListener.onFormSubmitted(VisitCreationActivity.STEP_6_HISTORY_SUMMARY, mIsEditMode, null);
                     else
                         Toast.makeText(requireActivity(), getString(R.string.please_submit_to_proceed_next_step), Toast.LENGTH_SHORT).show();
                 }
@@ -192,6 +192,11 @@ public class FamilyHistoryFragment extends Fragment {
 
                 @Override
                 public void onImageRemoved(int nodeIndex, int imageIndex, String image) {
+
+                }
+
+                @Override
+                public void onTerminalNodeAnsweredForParentUpdate(String parentNodeId) {
 
                 }
             });

@@ -14,11 +14,9 @@ public class Ob {
     @SerializedName("value")
     @Expose
     private String value;
-
     @SerializedName("comments")
     @Expose
     private String comments;
-
     public String getUuid() {
         return uuid;
     }

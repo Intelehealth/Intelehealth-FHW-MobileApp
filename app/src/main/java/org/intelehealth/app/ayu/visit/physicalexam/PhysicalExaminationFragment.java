@@ -3,7 +3,6 @@ package org.intelehealth.app.ayu.visit.physicalexam;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import org.intelehealth.app.utilities.CustomLog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,7 @@ import org.intelehealth.app.ayu.visit.model.CommonVisitData;
 import org.intelehealth.app.ayu.visit.model.ComplainBasicInfo;
 import org.intelehealth.app.knowledgeEngine.Node;
 import org.intelehealth.app.knowledgeEngine.PhysicalExam;
+import org.intelehealth.app.utilities.CustomLog;
 import org.intelehealth.app.utilities.DialogUtils;
 
 import java.util.HashMap;
@@ -96,7 +96,7 @@ public class PhysicalExaminationFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
 
-                        mActionListener.onFormSubmitted(VisitCreationActivity.STEP_3_PHYSICAL_SUMMARY_EXAMINATION, mIsEditMode, null);
+                        mActionListener.onFormSubmitted(VisitCreationActivity.STEP_4_PHYSICAL_SUMMARY_EXAMINATION, mIsEditMode, null);
 
                     }
                 });
@@ -164,7 +164,7 @@ public class PhysicalExaminationFragment extends Fragment {
                         // }
                     } else {
                         if (!mIsEditMode)
-                            mActionListener.onFormSubmitted(VisitCreationActivity.STEP_3_PHYSICAL_SUMMARY_EXAMINATION, mIsEditMode, null);
+                            mActionListener.onFormSubmitted(VisitCreationActivity.STEP_4_PHYSICAL_SUMMARY_EXAMINATION, mIsEditMode, null);
                         else
                             Toast.makeText(requireActivity(), getString(R.string.please_submit_to_proceed_next_step), Toast.LENGTH_SHORT).show();
                     }
@@ -180,7 +180,7 @@ public class PhysicalExaminationFragment extends Fragment {
                 @Override
                 public void onAllAnswered(boolean isAllAnswered) {
                     if (!mIsEditMode)
-                        mActionListener.onFormSubmitted(VisitCreationActivity.STEP_3_PHYSICAL_SUMMARY_EXAMINATION, mIsEditMode, null);
+                        mActionListener.onFormSubmitted(VisitCreationActivity.STEP_4_PHYSICAL_SUMMARY_EXAMINATION, mIsEditMode, null);
                     else
                         Toast.makeText(requireActivity(), getString(R.string.please_submit_to_proceed_next_step), Toast.LENGTH_SHORT).show();
                 }
@@ -194,12 +194,15 @@ public class PhysicalExaminationFragment extends Fragment {
                 public void onImageRemoved(int nodeIndex, int imageIndex, String image) {
                     mActionListener.onImageRemoved(nodeIndex, imageIndex, image);
                 }
+
+                @Override
+                public void onTerminalNodeAnsweredForParentUpdate(String parentNodeId) {
+
+                }
             });
 
             recyclerView.setAdapter(mQuestionsListingAdapter);
-            mQuestionsListingAdapter.addItem(physicalExam.getExamNode(mCurrentComplainNodeOptionsIndex).
-
-                    getOption(0), physicalExam.getEngineVersion());
+            mQuestionsListingAdapter.addItem(physicalExam.getExamNode(mCurrentComplainNodeOptionsIndex).getOption(0), physicalExam.getEngineVersion());
             showSanityDialog();
             if (mIsEditMode) {
                 while (true) {

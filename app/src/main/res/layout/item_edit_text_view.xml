@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/margin_16"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvEditTextHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3sp"
+            android:text="@string/txt_what_is_your_relationship_with_head_of_household"
+            android:textAppearance="@style/blur_txtview"
+            android:textSize="@null" />
+
+        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+            android:id="@+id/tilAnswer"
+            style="@style/AppTheme.OutlineInputBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tilEtAnswer"
+                style="@style/AppTheme.InputBox.Name1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="@string/enter" />
+        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+
+    </LinearLayout>
+</layout>

@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/home_toolbar_layout_margin_start"
-    android:layout_marginBottom="@dimen/home_toolbar_layout_margin_bottom"
     android:layout_marginTop="@dimen/home_toolbar_layout_margin_top"
-    android:layout_marginEnd="@dimen/home_toolbar_layout_margin_end">
+    android:layout_marginEnd="@dimen/home_toolbar_layout_margin_end"
+    android:layout_marginBottom="@dimen/home_toolbar_layout_margin_bottom">
 
     <ImageView
         android:id="@+id/iv_hamburger"
@@ -15,9 +15,9 @@
         android:layout_height="@dimen/hamburger_height"
         android:layout_marginStart="@dimen/common_all_card_start_margin"
         android:layout_marginTop="@dimen/hamburger_margin_top"
+        android:background="?attr/selectableItemBackground"
         android:foregroundGravity="center_horizontal"
         android:visibility="visible"
-        android:background="?attr/selectableItemBackground"
         app:srcCompat="@drawable/ui2_ic_arrow_back_new" />
 
     <TextView
@@ -39,10 +39,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_user_location_home"
-        android:paddingStart="@dimen/home_location_drawable_padding"
         android:layout_marginStart="@dimen/hamburger_margin_top"
         android:layout_marginTop="@dimen/find_patient_margin_top"
         android:layout_toEndOf="@+id/iv_hamburger"
+        android:paddingStart="@dimen/home_location_drawable_padding"
         android:text="@string/last_sync_toolbar"
         android:textColor="@color/textColorGray"
         android:textSize="@dimen/common_label_text_size" />
@@ -59,14 +59,15 @@
             android:layout_width="@dimen/image_home_toolbar_icon_width"
             android:layout_height="@dimen/image_home_toolbar_icon_height"
             android:layout_marginEnd="@dimen/image_home_toolbar_icon_marginend"
-            android:src="@drawable/ic_sync_now"
-            app:tint="@color/colorAccent"
             android:foregroundGravity="center_horizontal"
-            android:tooltipText="Tooltip" />
+            android:src="@drawable/ic_sync_now"
+            android:tooltipText="Tooltip"
+            app:tint="@color/colorAccent" />
 
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/imageview_notifications_home"
                 android:layout_width="@dimen/image_home_toolbar_icon_width"
@@ -74,15 +75,15 @@
                 android:layout_marginEnd="@dimen/image_home_toolbar_icon_marginend"
                 android:foregroundGravity="center_horizontal"
                 android:src="@drawable/ui2_ic_notifications_home" />
+
             <ImageView
                 android:id="@+id/ivNotificationIcon"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_gravity="end"
                 android:layout_marginEnd="12dp"
-                android:visibility="gone"
                 android:src="@drawable/ic_notification_heighlighter"
-                />
+                android:visibility="visible" />
 
         </FrameLayout>
 

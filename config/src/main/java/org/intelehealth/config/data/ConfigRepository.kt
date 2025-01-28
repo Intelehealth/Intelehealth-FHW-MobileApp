@@ -59,6 +59,7 @@ class ConfigRepository(
             groupingPatientRegFields(config.patientRegFields.address, FieldGroup.ADDRESS)
             groupingPatientRegFields(config.patientRegFields.other, FieldGroup.OTHER)
             configDb.patientVitalDao().save(config.patientVitals)
+            configDb.patientDiagnosticsDao().save(config.diagnostics)
             config.patientVisitSummery.apply {
                 chatSection = if (config.webrtcSection) config.webrtcStatus.chat else false
                 videoSection = if (config.webrtcSection) config.webrtcStatus.video else false
@@ -66,6 +67,11 @@ class ConfigRepository(
                 activeStatusPatientAddress = config.activeStatusPatientAddress
                 activeStatusPatientOther = config.activeStatusPatientOther
                 activeStatusAbha = config.activeStatusAbha
+                activeStatusPatientFamilyMemberRegistration = config.activeStatusFamilyRegistration
+                activeStatusPatientHouseholdSurvey = config.activeStatusHouseholdSurvey
+                activeStatusRosterQuestionnaireSection = config.rosterQuestionnaireSection
+                activeStatusDiagnosticsSection = config.patientDiagnosticsSection
+                activeStatusPatientDraftSurvey = config.patientDraftSurvey
             }.also { configDb.featureActiveStatusDao().add(it) }
             onCompleted.invoke()
         }

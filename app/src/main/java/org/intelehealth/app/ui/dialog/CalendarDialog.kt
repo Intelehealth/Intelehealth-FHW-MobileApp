@@ -9,6 +9,7 @@ import android.widget.DatePicker
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
 import org.intelehealth.app.R
 import org.intelehealth.klivekit.utils.DateTimeUtils
 import java.util.Calendar
@@ -109,5 +110,14 @@ class CalendarDialog private constructor() : AppCompatDialogFragment(), OnDateSe
 
     companion object {
         const val TAG = "CalendarDialog"
+
+          fun showDatePickerDialog(listener: OnDatePickListener ,childFragmentManager : FragmentManager) {
+            Builder()
+                .maxDate(Calendar.getInstance().timeInMillis)
+                .selectedDate(Calendar.getInstance().timeInMillis)
+                .format(DateTimeUtils.MMM_DD_YYYY_FORMAT)
+                .listener(listener)
+                .build().show(childFragmentManager, TAG)
+        }
     }
 }

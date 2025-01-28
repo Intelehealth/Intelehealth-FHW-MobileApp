@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/llDob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/margin_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clGender">
+
+        <TextView
+            android:id="@+id/tvDatePickerQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3sp"
+            android:text="@string/enter_date"
+            android:textAppearance="@style/blur_txtview"
+            android:textSize="@null" />
+
+        <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+            android:id="@+id/textInputLayDob"
+            style="@style/AppTheme.OutlineInputBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            app:hintEnabled="false"
+            app:startIconDrawable="@drawable/followup_item_calendar"
+            app:startIconTint="@color/colorAccent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputETDob"
+                style="@style/AppTheme.InputBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:hint="@string/enter_date_of_birth"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="none" />
+        </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+    </LinearLayout>
+</layout>

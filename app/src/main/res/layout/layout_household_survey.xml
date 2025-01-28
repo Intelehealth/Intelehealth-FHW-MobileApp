@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="activeStatus"
+            type="Boolean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:visibility="@{activeStatus ? View.VISIBLE : View.GONE}"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/tv_household_survey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_24"
+            android:layout_marginEnd="@dimen/margin_24"
+            android:layout_marginBottom="@dimen/margin_24"
+            android:background="@drawable/ui2_common_primary_bg"
+            android:backgroundTint="@color/orange3"
+            android:paddingStart="@dimen/margin_30"
+            android:paddingEnd="@dimen/margin_14"
+            android:text="Household Survey"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txtsize_patdetail_16sp" />
+    </LinearLayout>
+</layout>

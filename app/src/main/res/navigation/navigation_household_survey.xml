@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_household_survey">
+
+    <!-- Fragment One -->
+    <fragment
+        android:id="@+id/fragmentFirst"
+        android:name="org.intelehealth.app.ui.householdSurvey.fragments.FirstFragment"
+        tools:layout="@layout/fragment_one_household_survey">
+        <action
+            android:id="@+id/action_one_to_two"
+            app:destination="@id/fragmentSecond" />
+    </fragment>
+
+    <!-- Fragment Two -->
+    <fragment
+        android:id="@+id/fragmentSecond"
+        android:name="org.intelehealth.app.ui.householdSurvey.fragments.SecondFragment"
+        tools:layout="@layout/fragment_second_household_survey">
+        <action
+            android:id="@+id/action_two_to_three"
+            app:destination="@id/fragmentThird" />
+        <action
+            android:id="@+id/action_two_to_one"
+            app:destination="@id/fragmentFirst" />
+    </fragment>
+
+    <!-- Fragment Three -->
+    <fragment
+        android:id="@+id/fragmentThird"
+        android:name="org.intelehealth.app.ui.householdSurvey.fragments.ThirdFragment"
+        tools:layout="@layout/fragment_third_household_survey">
+        <action
+            android:id="@+id/action_three_to_four"
+            app:destination="@id/fragmentFourth" />
+        <action
+            android:id="@+id/action_three_to_two"
+            app:destination="@id/fragmentSecond" />
+    </fragment>
+
+    <!-- Fragment Four -->
+    <fragment
+        android:id="@+id/fragmentFourth"
+        android:name="org.intelehealth.app.ui.householdSurvey.fragments.FourthFragment"
+        tools:layout="@layout/fragment_fourth_household_survey">
+        <action
+            android:id="@+id/action_four_to_five"
+            app:destination="@id/fragmentFifth" />
+        <action
+            android:id="@+id/action_four_to_three"
+            app:destination="@id/fragmentThird" />
+    </fragment>
+
+    <!-- Fragment Five -->
+    <fragment
+        android:id="@+id/fragmentFifth"
+        android:name="org.intelehealth.app.ui.householdSurvey.fragments.FifthFragment"
+        tools:layout="@layout/fragment_fifth_household_survey">
+        <action
+            android:id="@+id/action_five_to_six"
+            app:destination="@id/fragmentSixth" />
+        <action
+            android:id="@+id/action_five_to_four"
+            app:destination="@id/fragmentFourth" />
+    </fragment>
+
+    <!-- Fragment Six -->
+    <fragment
+        android:id="@+id/fragmentSixth"
+        android:name="org.intelehealth.app.ui.householdSurvey.fragments.SixthFragment"
+        tools:layout="@layout/fragment_sixth_household_survey">
+        <action
+            android:id="@+id/action_six_to_seven"
+            app:destination="@id/fragmentSeventh" />
+        <action
+            android:id="@+id/action_six_to_five"
+            app:destination="@id/fragmentFifth" />
+    </fragment>
+
+    <!-- Fragment Seven -->
+    <fragment
+        android:id="@+id/fragmentSeventh"
+        android:name="org.intelehealth.app.ui.householdSurvey.fragments.SeventhFragment"
+        tools:layout="@layout/fragment_seventh_household_survey">
+        <action
+            android:id="@+id/action_seven_to_six"
+            app:destination="@id/fragmentSixth" />
+    </fragment>
+
+</navigation>

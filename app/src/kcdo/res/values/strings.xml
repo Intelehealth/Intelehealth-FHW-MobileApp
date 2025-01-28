@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Tele-Oncology</string>
+    <string name="intro_title_1">Who are we?</string>
+    <string name="intro_tagline_1">Tele-Oncology is an innovative telemedicine platform designed to bridge healthcare access gap in remote regions by connecting frontline health worker and patient with a virtual doctor to provide high-quality health services</string>
+    <string name="intro_title_2">Take patient visits</string>
+    <string name="intro_tagline_2">The platform is powered by Ayu, a programmable digital assistant that supports frontline health workers with evidence-based protocols for primary healthcare in regional languages</string>
+    <string name="intro_title_3">Provide prescriptions</string>
+    <string name="intro_tagline_3">The cloud-based open-source platform designed for a low-resource environment combined with a customized implementation strategy creates a digital health solution for impactful health outcomes</string>
+
+    <string name="are_you_sure_you_want_to_send_visit">Are you sure you want to save the visit?</string>
+    <string name="send_visit">Save visit?</string>
+    <string name="visit_successfully_sent">Visit successfully saved!</string>
+    <string name="patient_visit_sent">Patient\'s visit has been successfully saved.</string>
+    <string name="visit_data_failed">Visit successfully saved!</string>
+    <string name="visit_uploaded_failed">Patient\'s visit has been successfully saved.</string>
+
+
+<!--    <string name="tmh_case_number">TMH Case Number</string>-->
+<!--    <string name="enter_tmh_case_number">Enter TMH Case Number</string>-->
+<!--    <string name="request_id">Request ID</string>-->
+<!--    <string name="discipline">Discipline (Specialty)</string>-->
+
+<!--    <string name="enter_request_id">Enter Request ID</string>-->
+<!--    <string name="enter_discipline">Enter Discipline</string>-->
+<!--    <string name="department">Department</string>-->
+<!--    <string name="enter_department">Enter Department</string>-->
+<!--    <string name="relative_phone_number">Relative Phone Number</string>-->
+
+<!--    <string name="visit_left_action_btn_label">@string/preview</string>-->
+<!--    <string name="visit_right_action_btn_label">@string/save_visit_button</string>-->
+<!--    <string name="visit_save_and_upload_status">@string/visit_saving</string>-->
+    <string name="physical_exam_screen_title">@string/relapse</string>
+    <string name="physical_exam_screen_header">@string/relapse_info</string>
+    <string name="ui2_physical_exam_summay_title">@string/ui2_relapse_summary_title</string>
+</resources>

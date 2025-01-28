@@ -5,11 +5,11 @@
     android:viewportHeight="64">
   <path
       android:pathData="M32,0L32,0A32,32 0,0 1,64 32L64,32A32,32 0,0 1,32 64L32,64A32,32 0,0 1,0 32L0,32A32,32 0,0 1,32 0z"
-      android:fillColor="#FFF0E8"/>
+      android:fillColor="@color/colorAccentLightCard"/>
   <path
       android:pathData="M32,26.457V33.457"
       android:strokeWidth="2"
-      android:fillColor="#00000000"
+      android:fillColor="@color/colorAccent"
       android:strokeColor="#FF9E67"
       android:strokeLineCap="round"/>
   <path

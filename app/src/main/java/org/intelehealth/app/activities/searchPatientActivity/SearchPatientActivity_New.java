@@ -1,9 +1,10 @@
 package org.intelehealth.app.activities.searchPatientActivity;
 
 import static org.intelehealth.app.database.dao.EncounterDAO.getStartVisitNoteEncounterByVisitUUID;
-import static org.intelehealth.app.database.dao.PatientsDAO.getQueryPatients;
+import static org.intelehealth.app.database.dao.PatientsDAO.getQueryPatientsObs;
 import static org.intelehealth.app.database.dao.PatientsDAO.isVisitPresentForPatient_fetchVisitValues;
 import static org.intelehealth.app.utilities.StringUtils.inputFilter_SearchBar;
+import static org.intelehealth.app.utilities.StringUtils.setGenderAgeLocal;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,11 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+
+import org.intelehealth.app.BuildConfig;
+import org.intelehealth.app.activities.homeActivity.HomeScreenActivity_New;
+import org.intelehealth.app.activities.onboarding.PersonalConsentActivity;
+import org.intelehealth.app.utilities.AddPatientUtils;
 import org.intelehealth.app.utilities.CustomLog;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
@@ -34,7 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,20 +56,33 @@ import org.intelehealth.app.activities.searchPatientActivity.adapter.SearchChips
 import org.intelehealth.app.app.AppConstants;
 import org.intelehealth.app.app.IntelehealthApplication;
 import org.intelehealth.app.database.dao.EncounterDAO;
+import org.intelehealth.app.database.dao.ImagesDAO;
 import org.intelehealth.app.database.dao.PatientsDAO;
-import org.intelehealth.app.models.PrescriptionModel;
 import org.intelehealth.app.models.dto.PatientDTO;
 import org.intelehealth.app.models.dto.VisitDTO;
 import org.intelehealth.app.shared.BaseActivity;
+import org.intelehealth.app.utilities.CustomLog;
 import org.intelehealth.app.utilities.DateAndTimeUtils;
+import org.intelehealth.app.utilities.DialogUtils;
+import org.intelehealth.app.utilities.DownloadFilesUtils;
 import org.intelehealth.app.utilities.Logger;
 import org.intelehealth.app.utilities.SessionManager;
+import org.intelehealth.app.utilities.UrlModifiers;
 import org.intelehealth.app.utilities.exception.DAOException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Function;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
 
 /**
  * Created by: Prajwal Waingankar On: 29/Aug/2022
@@ -89,11 +108,14 @@ public class SearchPatientActivity_New extends BaseActivity {
 
     private RecyclerView mSearchHistoryRecyclerView;
 
-    private final int limit = 50;
+    private final int limit = 20;
     private int start = 0, end = start + limit;
     private boolean isFullyLoaded = false;
     List<PatientDTO> patientDTOList;
     List<PatientDTO> recent = new ArrayList<>();
+    AlertDialog commonLoadingDialog;
+
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,10 +153,7 @@ public class SearchPatientActivity_New extends BaseActivity {
         addPatientTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SearchPatientActivity_New.this, PrivacyPolicyActivity_New.class);
-                intent.putExtra("intentType", "navigateFurther");
-                intent.putExtra("add_patient", "add_patient");
-                startActivity(intent);
+                AddPatientUtils.navigate(SearchPatientActivity_New.this);
                 finish();
             }
         });
@@ -184,7 +203,7 @@ public class SearchPatientActivity_New extends BaseActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                             query = "";
+                            query = "";
                             doQuery(query);
                         }
                     }, 100);
@@ -220,7 +239,7 @@ public class SearchPatientActivity_New extends BaseActivity {
             else
                 allPatientsTV.setText(getResources().getString(R.string.results_for) + " \"" + text + "\"");
 
-            mSearchEditText.setTextColor(ContextCompat.getColor(this,R.color.white));
+            mSearchEditText.setTextColor(ContextCompat.getColor(this, R.color.white));
             managePreviousSearchStorage(text);
             query = text;
             doQuery(text);
@@ -237,14 +256,12 @@ public class SearchPatientActivity_New extends BaseActivity {
         if (retrievedPreviousData != null && !retrievedPreviousData.isEmpty()) {
             if (retrievedPreviousData.contains(",")) {
                 retrievedPreviousSearchList = new ArrayList<String>(Arrays.asList(retrievedPreviousData.split(",")));
-            } else
-                retrievedPreviousSearchList.add(retrievedPreviousData);
+            } else retrievedPreviousSearchList.add(retrievedPreviousData);
 
             if (retrievedPreviousSearchList.size() == 5) {
                 retrievedPreviousSearchList.remove(0);
             }
-            if (!retrievedPreviousSearchList.contains(text))
-                retrievedPreviousSearchList.add(text);
+            if (!retrievedPreviousSearchList.contains(text)) retrievedPreviousSearchList.add(text);
             StringBuffer sb = new StringBuffer();
             for (String s : retrievedPreviousSearchList) {
                 sb.append(s);
@@ -261,20 +278,38 @@ public class SearchPatientActivity_New extends BaseActivity {
     private void queryAllPatients() {
         patientDTOList = PatientsDAO.getAllPatientsFromDB(limit, start);   // fetch first 15 records and dont skip any records ie. start = 0 for 2nd itertion skip first 15records.
         CustomLog.d(TAG, "queryAllPatients: " + patientDTOList.size());
+        commonLoadingDialog = new DialogUtils().showCommonLoadingDialog(this, getString(R.string.loading), "");
+        commonLoadingDialog.setCancelable(false);
 
-        if (patientDTOList.size() > 0) { // ie. the entered text is present in db
-            patientDTOList = fetchDataforTags(patientDTOList);
-            CustomLog.v(TAG, "size: " + patientDTOList.size());
-            searchData_Available();
-            try {
-                adapter = new SearchPatientAdapter_New(this, patientDTOList);
-                search_recycelview.setAdapter(adapter);
-                start = end;
-                end += limit;
-            } catch (Exception e) {
-                FirebaseCrashlytics.getInstance().recordException(e);
-                Logger.logE("doquery", "doquery", e);
-            }
+        if (!patientDTOList.isEmpty()) { // ie. the entered text is present in db
+
+            /**
+             * handling patient get operation in bg thread
+             */
+            compositeDisposable.add(fetchDataForTagObs(patientDTOList)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(patientDTOS -> {
+                        if (patientDTOS.isEmpty()) {
+                            searchData_Unavailable();
+                            commonLoadingDialog.dismiss();
+                            return;
+                        }
+                        searchData_Available();
+                        try {
+                            adapter = new SearchPatientAdapter_New(SearchPatientActivity_New.this, patientDTOS);
+                            search_recycelview.setAdapter(adapter);
+                            start = end;
+                            end += limit;
+                        } catch (Exception e) {
+                            FirebaseCrashlytics.getInstance().recordException(e);
+                            Logger.logE("doquery", "doquery", e);
+                        }
+                        commonLoadingDialog.dismiss();
+                    }, err -> {
+                        commonLoadingDialog.dismiss();
+                    })
+            );
         } else {
             searchData_Unavailable();
         }
@@ -316,8 +351,7 @@ public class SearchPatientActivity_New extends BaseActivity {
             allPatientsTV.setVisibility(View.VISIBLE);
             if (previousSearchText.contains(",")) {
                 raWPreviousSearchList = new ArrayList<String>(Arrays.asList(previousSearchText.split(",")));
-            } else
-                raWPreviousSearchList.add(previousSearchText);
+            } else raWPreviousSearchList.add(previousSearchText);
 
             String value = "";
             for (int i = raWPreviousSearchList.size() - 1; i >= 0; i--) {
@@ -365,25 +399,46 @@ public class SearchPatientActivity_New extends BaseActivity {
             return;
         }
 
-        recent = getQueryPatients(query);  // fetches all the list of patients.
+        /**
+         * handling searching operation in background thread
+         */
+        commonLoadingDialog = new DialogUtils().showCommonLoadingDialog(this, getString(R.string.loading), "");
+        commonLoadingDialog.setCancelable(false);
 
-        if (recent.size() > 0) { // ie. the entered text is present in db
-            recent = fetchDataforTags(recent);
-            CustomLog.v(TAG, "size: " + recent.size());
+        compositeDisposable.add(getQueryPatientsObs(query) // fetches all the list of patients.
+                .concatMap(new Function<List<PatientDTO>, ObservableSource<List<PatientDTO>>>() {
+                    @Override
+                    public ObservableSource<List<PatientDTO>> apply(List<PatientDTO> patientDTOS) throws Exception {
+                        return fetchDataForTagObs(patientDTOS);
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(patientDTOS -> {
+                    if (patientDTOS.isEmpty()) {
+                        searchData_Unavailable();
+                        commonLoadingDialog.dismiss();
+                        return;
+                    }
+                    CustomLog.v(TAG, "size: " + patientDTOS.size());
 
-            searchData_Available();
-            try {
-                adapter = new SearchPatientAdapter_New(this, recent);
-                fullyLoaded = true;
-                search_recycelview.setAdapter(adapter);
+                    searchData_Available();
 
-            } catch (Exception e) {
-                FirebaseCrashlytics.getInstance().recordException(e);
-                CustomLog.e("doquery", "doquery", e);
-            }
-        } else {
-            searchData_Unavailable();
-        }
+                    recent = patientDTOS;
+
+                    try {
+                        adapter = new SearchPatientAdapter_New(SearchPatientActivity_New.this, patientDTOS);
+                        fullyLoaded = true;
+                        search_recycelview.setAdapter(adapter);
+
+                    } catch (Exception e) {
+                        FirebaseCrashlytics.getInstance().recordException(e);
+                        CustomLog.e("doquery", "doquery", e);
+                    }
+                    commonLoadingDialog.dismiss();
+                }, err -> {
+                    commonLoadingDialog.dismiss();
+                }));
     }
 
     private List<PatientDTO> fetchDataforTags(List<PatientDTO> patientDTOList) {
@@ -415,9 +470,7 @@ public class SearchPatientActivity_New extends BaseActivity {
                 }
 
                 //  2. startdate added.
-                String visit_start_date = DateAndTimeUtils.date_formatter(visitDTO.getStartdate(),
-                        "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
-                        "dd MMM 'at' HH:mm a");    // Eg. 26 Sep 2022 at 03:15 PM
+                String visit_start_date = DateAndTimeUtils.date_formatter(visitDTO.getStartdate(), "yyyy-MM-dd'T'HH:mm:ss.SSSZ", "dd MMM 'at' HH:mm a");    // Eg. 26 Sep 2022 at 03:15 PM
                 CustomLog.v("SearchPatient", "date: " + visit_start_date);
 
                 patientDTOList.get(i).setVisit_startdate(visit_start_date);
@@ -445,11 +498,136 @@ public class SearchPatientActivity_New extends BaseActivity {
         return patientDTOList;
     }
 
+    private Observable<List<PatientDTO>> fetchDataForTagObs(List<PatientDTO> patientDTOList) {
+        ImagesDAO imagesDAO = new ImagesDAO();
+        return Observable.fromCallable(() -> {
+            for (int i = 0; i < patientDTOList.size(); i++) {
+                VisitDTO visitDTO = isVisitPresentForPatient_fetchVisitValues(patientDTOList.get(i).getUuid());
+
+                /**
+                 * 2. now check if only visit is present than only proceed to get value for priority tag, presc tag, startdate tag.
+                 */
+                if (visitDTO.getUuid() != null && visitDTO.getStartdate() != null) {
+                    //  1. Priority Tag.
+                    EncounterDAO encounterDAO = new EncounterDAO();
+                    String emergencyUuid = "";
+                    try {
+                        emergencyUuid = encounterDAO.getEmergencyEncounters(visitDTO.getUuid(), encounterDAO.getEncounterTypeUuid("EMERGENCY"));
+                    } catch (DAOException e) {
+                        FirebaseCrashlytics.getInstance().recordException(e);
+                        emergencyUuid = "";
+                    }
+                    if (!emergencyUuid.isEmpty() || !emergencyUuid.equalsIgnoreCase("")) { // ie. visit is emergency visit.
+                        patientDTOList.get(i).setEmergency(true);
+                    } else { //ie. visit not emergency.
+                        patientDTOList.get(i).setEmergency(false);
+                    }
+
+                    //  2. startdate added.
+                    String visit_start_date = DateAndTimeUtils.date_formatter(visitDTO.getStartdate(), "yyyy-MM-dd'T'HH:mm:ss.SSSZ", "dd MMM 'at' HH:mm a");    // Eg. 26 Sep 2022 at 03:15 PM
+                    CustomLog.v("SearchPatient", "date: " + visit_start_date);
+
+                    patientDTOList.get(i).setVisit_startdate(visit_start_date);
+
+                    //  3. prescription received/pending tag logic.
+                    String encounteruuid = getStartVisitNoteEncounterByVisitUUID(visitDTO.getUuid());
+                    if (!encounteruuid.isEmpty() && !encounteruuid.equalsIgnoreCase("")) {
+                        patientDTOList.get(i).setPrescription_exists(true);
+                    } else {
+                        patientDTOList.get(i).setPrescription_exists(false);
+                    }
+
+                    // checking if visit is uploaded or not - start
+                    patientDTOList.get(i).setVisitDTO(visitDTO);
+                    // checking if visit is uploaded or not - end
+
+                    patientDTOList.get(i).setGenderAgeString(setGenderAgeLocal(SearchPatientActivity_New.this, patientDTOList.get(i).getDateofbirth(), patientDTOList.get(i).getGender()));
+
+                    //removed patient image loading from here
+                    //and moved to sync dao
+                    /*String profileImage = "";
+                    try {
+                        profileImage = imagesDAO.getPatientProfileChangeTime(patientDTOList.get(i).getUuid());
+                    } catch (DAOException e) {
+                        FirebaseCrashlytics.getInstance().recordException(e);
+                    } finally {
+                        patientDTOList.get(i).setPatientImageFromImageDao(profileImage);
+                    }
+
+                    if (patientDTOList.get(i).getPatientPhoto() == null || patientDTOList.get(i).getPatientPhoto().equalsIgnoreCase("")) {
+                        if (NetworkConnection.isOnline(this)) {
+                            profilePicDownloaded(patientDTOList.get(i));
+                        }
+                    }
+                    //3.
+                    if (profileImage == null || !profileImage.equalsIgnoreCase("")) {
+                        if (NetworkConnection.isOnline(this)) {
+                            profilePicDownloaded(patientDTOList.get(i));
+                        }
+                    }*/
+                } else {
+                    /**
+                     * no visit for this patient.
+                     * dont add startvisitdate value into this model keep it null and later check for null check and add logic
+                     */
+                }
+            }
+
+            return patientDTOList;
+        });
+    }
+
+    public void profilePicDownloaded(PatientDTO model) {
+        UrlModifiers urlModifiers = new UrlModifiers();
+        String url = urlModifiers.patientProfileImageUrl(model.getUuid());
+        Logger.logD("TAG", "profileimage url" + url);
+        Observable<ResponseBody> profilePicDownload = AppConstants.apiInterface.PERSON_PROFILE_PIC_DOWNLOAD
+                (url, "Basic " + sessionManager.getEncoded());
+        profilePicDownload.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DisposableObserver<ResponseBody>() {
+                    @Override
+                    public void onNext(ResponseBody file) {
+                        DownloadFilesUtils downloadFilesUtils = new DownloadFilesUtils();
+                        downloadFilesUtils.saveToDisk(file, model.getUuid());
+                        Logger.logD("TAG", file.toString());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Logger.logD("TAG", e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.logD("TAG", "complete" + model.getPatientPhoto());
+                        PatientsDAO patientsDAO = new PatientsDAO();
+                        boolean updated = false;
+                        try {
+                            updated = patientsDAO.updatePatientPhoto(model.getUuid(),
+                                    AppConstants.IMAGE_PATH + model.getUuid() + ".jpg");
+                            model.setPatientImageFromDownload(AppConstants.IMAGE_PATH + model.getUuid() + ".jpg");
+                        } catch (DAOException e) {
+                            FirebaseCrashlytics.getInstance().recordException(e);
+                        }
+                        ImagesDAO imagesDAO = new ImagesDAO();
+                        boolean isImageDownloaded = false;
+                        try {
+                            isImageDownloaded = imagesDAO.insertPatientProfileImages(
+                                    AppConstants.IMAGE_PATH + model.getUuid() + ".jpg", model.getUuid());
+                        } catch (DAOException e) {
+                            FirebaseCrashlytics.getInstance().recordException(e);
+                        }
+                    }
+                });
+    }
+
     private void searchData_Available() {
         mSearchHistoryRecyclerView.setVisibility(View.VISIBLE);
         search_hint_text.setVisibility(View.VISIBLE);
         view_nopatientfound.setVisibility(View.GONE);
         search_recycelview.setVisibility(View.VISIBLE);
+
         if (sessionManager.getPreviousSearchQuery().isEmpty() && sessionManager.getPreviousSearchQuery().equalsIgnoreCase("")) {
             search_hint_text.setVisibility(View.GONE);
             allPatientsTV.setVisibility(View.VISIBLE);
@@ -483,8 +661,7 @@ public class SearchPatientActivity_New extends BaseActivity {
                     isFullyLoaded = true;
                     return;
                 }
-                if (!isFullyLoaded && newState == RecyclerView.SCROLL_STATE_IDLE &&
-                        linearLayoutManager.findLastVisibleItemPosition() == adapter.getItemCount() - 1) {
+                if (!isFullyLoaded && newState == RecyclerView.SCROLL_STATE_IDLE && linearLayoutManager.findLastVisibleItemPosition() == adapter.getItemCount() - 1) {
                     if (recent != null) {
                         if (recent.size() > 0) {
 
@@ -508,7 +685,7 @@ public class SearchPatientActivity_New extends BaseActivity {
                 return;
             }
 
-         //   patientDTOList = PatientsDAO.getAllPatientsFromDB(limit, start);    // for n iteration limit be fixed == 15 and start - offset will keep skipping each records.
+            //   patientDTOList = PatientsDAO.getAllPatientsFromDB(limit, start);    // for n iteration limit be fixed == 15 and start - offset will keep skipping each records.
             List<PatientDTO> tempList = PatientsDAO.getAllPatientsFromDB(limit, start); // for n iteration limit be fixed == 15 and start - offset will keep skipping each records.
             if (tempList.size() > 0) {
                 patientDTOList.addAll(tempList);
@@ -521,4 +698,9 @@ public class SearchPatientActivity_New extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.dispose();
+    }
 }

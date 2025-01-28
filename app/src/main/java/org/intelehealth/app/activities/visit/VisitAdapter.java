@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import org.intelehealth.app.utilities.CustomLog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,17 +33,15 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import org.intelehealth.app.R;
-import org.intelehealth.app.activities.followuppatients.FollowUpPatientAdapter_New;
 import org.intelehealth.app.app.AppConstants;
 import org.intelehealth.app.database.dao.ImagesDAO;
 import org.intelehealth.app.database.dao.PatientsDAO;
 import org.intelehealth.app.database.dao.VisitAttributeListDAO;
-import org.intelehealth.app.models.FollowUpModel;
 import org.intelehealth.app.models.PrescriptionModel;
+import org.intelehealth.app.utilities.CustomLog;
 import org.intelehealth.app.utilities.DateAndTimeUtils;
 import org.intelehealth.app.utilities.DownloadFilesUtils;
 import org.intelehealth.app.utilities.Logger;
-import org.intelehealth.app.utilities.NetworkConnection;
 import org.intelehealth.app.utilities.SessionManager;
 import org.intelehealth.app.utilities.StringUtils;
 import org.intelehealth.app.utilities.UrlModifiers;
@@ -53,6 +49,8 @@ import org.intelehealth.app.utilities.exception.DAOException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -110,7 +108,7 @@ public class VisitAdapter extends RecyclerView.Adapter<VisitAdapter.Myholder> {
 
             // Patient Photo
             //1.
-            try {
+           /* try {
                 profileImage = imagesDAO.getPatientProfileChangeTime(model.getPatientUuid());
             } catch (DAOException e) {
                 FirebaseCrashlytics.getInstance().recordException(e);
@@ -126,21 +124,21 @@ public class VisitAdapter extends RecyclerView.Adapter<VisitAdapter.Myholder> {
                 if (NetworkConnection.isOnline(context)) {
                     profilePicDownloaded(model, holder);
                 }
-            }
-
+            }*/
+            // TODO : need to remove the image download from adapter
             if (model.getPatient_photo() != null) {
                 RequestBuilder<Drawable> requestBuilder = Glide.with(holder.itemView.getContext())
                         .asDrawable().sizeMultiplier(0.3f);
                 Glide.with(context)
                         .load(model.getPatient_photo())
                         .override(50, 50)
-                        .thumbnail(requestBuilder)
+                        //.thumbnail(requestBuilder)
                         .centerCrop()
                         .skipMemoryCache(false)
-                        .diskCacheStrategy(DiskCacheStrategy.DATA)
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                         .into(holder.profile_image);
             } else {
-                holder.profile_image.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.avatar1));
+                holder.profile_image.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.avatar1));
             }
             // photo - end
 
@@ -150,7 +148,7 @@ public class VisitAdapter extends RecyclerView.Adapter<VisitAdapter.Myholder> {
                 startDate = DateAndTimeUtils.date_formatter(startDate,
                         "yyyy-MM-dd'T'HH:mm:ss.SSSZ", "dd MMM 'at' HH:mm a");    // IDA-1346
                 CustomLog.v("startdate", "startDAte: " + startDate);
-                if(sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
+                if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
                     startDate = StringUtils.en_hi_dob_three(startDate);
                 holder.fu_date_txtview.setText(startDate);
             }
@@ -173,7 +171,7 @@ public class VisitAdapter extends RecyclerView.Adapter<VisitAdapter.Myholder> {
 
             holder.fu_cardview_item.setOnClickListener(v -> {
                 Intent intent = new Intent(context, VisitDetailsActivity.class);
-                intent.putExtra("patientname", model.getFirst_name() + " " + model.getLast_name().substring(0,1));
+                intent.putExtra("patientname", model.getFirst_name() + " " + model.getLast_name().substring(0, 1));
                 intent.putExtra("patientUuid", model.getPatientUuid());
                 intent.putExtra("gender", model.getGender());
                 intent.putExtra("dob", model.getDob());
@@ -224,11 +222,19 @@ public class VisitAdapter extends RecyclerView.Adapter<VisitAdapter.Myholder> {
         }
     }
 
+    private ExecutorService executorService = Executors.newFixedThreadPool(10);
+
+    // Call this method when all tasks are done
+    public void shutDownExecutor() {
+        executorService.shutdown(); // Clean up after use
+    }
+
     // profile downlaod
     public void profilePicDownloaded(PrescriptionModel model, VisitAdapter.Myholder holder) {
+
         UrlModifiers urlModifiers = new UrlModifiers();
         String url = urlModifiers.patientProfileImageUrl(model.getPatientUuid());
-        Logger.logD("TAG", "profileimage url" + url);
+        Logger.logD("TAG", "profilePicDownloaded url" + url);
 
         Observable<ResponseBody> profilePicDownload = AppConstants.apiInterface.PERSON_PROFILE_PIC_DOWNLOAD
                 (url, "Basic " + sessionManager.getEncoded());
@@ -259,6 +265,7 @@ public class VisitAdapter extends RecyclerView.Adapter<VisitAdapter.Myholder> {
                             FirebaseCrashlytics.getInstance().recordException(e);
                         }
                         if (updated) {
+
                             RequestBuilder<Drawable> requestBuilder = Glide.with(holder.itemView.getContext())
                                     .asDrawable().sizeMultiplier(0.3f);
                             Glide.with(context)
@@ -278,8 +285,10 @@ public class VisitAdapter extends RecyclerView.Adapter<VisitAdapter.Myholder> {
                         } catch (DAOException e) {
                             FirebaseCrashlytics.getInstance().recordException(e);
                         }
-                }
+                    }
                 });
+
+
     }
 
     private void sharePresc(final PrescriptionModel model) {

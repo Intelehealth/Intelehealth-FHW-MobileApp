@@ -1,11 +1,15 @@
 package org.intelehealth.app.ayu.visit.reason;
 
+import static org.intelehealth.app.ayu.visit.VisitCreationActivity.STEP_1_VITAL_SUMMARY;
+import static org.intelehealth.app.ayu.visit.VisitCreationActivity.STEP_3_VISIT_REASON_QUESTION_SUMMARY;
 import static org.intelehealth.app.ayu.visit.common.VisitUtils.getTranslatedAssociatedSymptomQString;
 import static org.intelehealth.app.ayu.visit.common.VisitUtils.getTranslatedPatientDenies;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+
+import org.intelehealth.app.ayu.visit.common.ManageSummaryScreenTitles;
 import org.intelehealth.app.utilities.CustomLog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,10 +94,14 @@ public class VisitReasonSummaryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FeatureActiveStatus status = ((VisitCreationActivity) requireActivity()).getFeatureActiveStatus();
-        int index = status.getVitalSection() ? 2 : 1;
-        int total = status.getVitalSection() ? 4 : 3;
+        String title = ManageSummaryScreenTitles.setScreenTitle(requireActivity(), status, STEP_3_VISIT_REASON_QUESTION_SUMMARY);
         TextView tvTitle = view.findViewById(R.id.tv_sub_title);
-        tvTitle.setText(getString(R.string._visit_reason_summary, index, total));
+        tvTitle.setText(title);
+       /* FeatureActiveStatus status = ((VisitCreationActivity) requireActivity()).getFeatureActiveStatus();
+        int index = status.getVitalSection() ? 3 : 2;
+        int total = status.getVitalSection() ? 5 : 4;
+        TextView tvTitle = view.findViewById(R.id.tv_sub_title);
+        tvTitle.setText(getString(R.string._visit_reason_summary, index, total));*/
     }
 
     @Override
@@ -114,25 +122,25 @@ public class VisitReasonSummaryFragment extends Fragment {
                     getActivity().setResult(Activity.RESULT_OK);
                     getActivity().finish();
                 } else
-                    mActionListener.onFormSubmitted(VisitCreationActivity.STEP_3_PHYSICAL_EXAMINATION, mIsEditMode, null);
+                    mActionListener.onFormSubmitted(VisitCreationActivity.STEP_4_PHYSICAL_EXAMINATION, mIsEditMode, null);
             }
         });
         mAssociateSymptChangeTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mActionListener.onFormSubmitted(VisitCreationActivity.FROM_SUMMARY_RESUME_BACK_FOR_EDIT, mIsEditMode, VisitCreationActivity.STEP_2_VISIT_REASON_QUESTION_ASSOCIATE_SYMPTOMS);
+                mActionListener.onFormSubmitted(VisitCreationActivity.FROM_SUMMARY_RESUME_BACK_FOR_EDIT, mIsEditMode, VisitCreationActivity.STEP_3_VISIT_REASON_QUESTION_ASSOCIATE_SYMPTOMS);
             }
         });
         view.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mActionListener.onFormSubmitted(VisitCreationActivity.FROM_SUMMARY_RESUME_BACK_FOR_EDIT, mIsEditMode, VisitCreationActivity.STEP_2_VISIT_REASON_QUESTION);
+                mActionListener.onFormSubmitted(VisitCreationActivity.FROM_SUMMARY_RESUME_BACK_FOR_EDIT, mIsEditMode, VisitCreationActivity.STEP_3_VISIT_REASON_QUESTION);
             }
         });
         view.findViewById(R.id.img_btn_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mActionListener.onFormSubmitted(VisitCreationActivity.FROM_SUMMARY_RESUME_BACK_FOR_EDIT, mIsEditMode, VisitCreationActivity.STEP_2_VISIT_REASON_QUESTION);
+                mActionListener.onFormSubmitted(VisitCreationActivity.FROM_SUMMARY_RESUME_BACK_FOR_EDIT, mIsEditMode, VisitCreationActivity.STEP_3_VISIT_REASON_QUESTION);
             }
         });
         view.findViewById(R.id.imb_btn_refresh).setOnClickListener(new View.OnClickListener() {
@@ -241,7 +249,7 @@ public class VisitReasonSummaryFragment extends Fragment {
                     view.findViewById(R.id.tv_change).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            mActionListener.onFormSubmitted(VisitCreationActivity.FROM_SUMMARY_RESUME_BACK_FOR_EDIT, mIsEditMode, VisitCreationActivity.STEP_2_VISIT_REASON_QUESTION);
+                            mActionListener.onFormSubmitted(VisitCreationActivity.FROM_SUMMARY_RESUME_BACK_FOR_EDIT, mIsEditMode, VisitCreationActivity.STEP_3_VISIT_REASON_QUESTION);
                         }
                     });
 
@@ -387,7 +395,7 @@ public class VisitReasonSummaryFragment extends Fragment {
                     view.findViewById(R.id.tv_change).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            mActionListener.onFormSubmitted(VisitCreationActivity.FROM_SUMMARY_RESUME_BACK_FOR_EDIT, mIsEditMode, VisitCreationActivity.STEP_2_VISIT_REASON_QUESTION);
+                            mActionListener.onFormSubmitted(VisitCreationActivity.FROM_SUMMARY_RESUME_BACK_FOR_EDIT, mIsEditMode, VisitCreationActivity.STEP_3_VISIT_REASON_QUESTION);
                         }
                     });
 

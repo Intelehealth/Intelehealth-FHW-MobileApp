@@ -2464,4 +2464,347 @@
         <item>स्वयं</item>
         <item>परिवार</item>
     </string-array>
+
+    <string-array name="health_facility_name">
+        <item>Select Facility Name</item>
+        <item>Maternity department of Chui Regional United Hospital</item>
+        <item>Maternity department of Issyk-Kul Regional United Hospital</item>
+        <item>Maternity hospital of Jalal-Abad Regional United Hospital</item>
+        <item>Maternity hospital of Osh Interregional Clinical Hospital</item>
+    </string-array>
+
+    <string-array name="type_of_consultations">
+        <item>Select Consultation</item>
+        <item>In emergency form – from 30 minutes to 2 hours</item>
+        <item>In urgent form - from 3 to 24 hours</item>
+        <item>In planned form – for a day or more</item>
+    </string-array>
+    <string-array name="householdHeadReligion_en">
+        <item>@string/religion_hindu</item>
+        <item>@string/religion_muslim</item>
+        <item>@string/religion_christian</item>
+        <item>@string/religion_sikh</item>
+        <item>@string/religion_buddhist_neo_buddhist</item>
+        <item>@string/religion_other</item>
+        <item>@string/religion_no_religion</item>
+    </string-array>
+    <string-array name="householdHeadReligion_mr">
+        <item>@string/religion_hindu</item>
+        <item>@string/religion_muslim</item>
+        <item>@string/religion_christian</item>
+        <item>@string/religion_sikh</item>
+        <item>@string/religion_buddhist_neo_buddhist</item>
+        <item>@string/religion_other</item>
+        <item>@string/religion_no_religion</item>
+    </string-array>
+
+    <string-array name="householdHeadReligion">
+        <item>@string/religion_hindu</item>
+        <item>@string/religion_muslim</item>
+        <item>@string/religion_christian</item>
+        <item>@string/religion_sikh</item>
+        <item>@string/religion_buddhist_neo_buddhist</item>
+        <item>@string/religion_other</item>
+        <item>@string/religion_no_religion</item>
+    </string-array>
+
+    <string-array name="householdHeadCaste_en">
+        <item>@string/caste_schedule_caste</item>
+        <item>@string/caste_schedule_tribe</item>
+        <item>@string/caste_other_backward_caste</item>
+        <item>@string/caste_VJNT</item>
+        <item>@string/caste_general</item>
+        <item>@string/caste_dont_know</item>
+        <item>@string/caste_refused_to_answer</item>
+
+    </string-array>
+    <string-array name="householdHeadCaste_mr">
+        <item>@string/caste_schedule_caste</item>
+        <item>@string/caste_schedule_tribe</item>
+        <item>@string/caste_other_backward_caste</item>
+
+        <item>@string/caste_VJNT</item>
+        <item>@string/caste_general</item>
+        <item>@string/caste_dont_know</item>
+        <item>@string/caste_refused_to_answer</item>
+
+    </string-array>
+    <string-array name="householdHeadCaste">
+        <item>@string/caste_schedule_caste</item>
+        <item>@string/caste_schedule_tribe</item>
+        <item>@string/caste_other_backward_caste</item>
+
+        <item>@string/caste_VJNT</item>
+        <item>@string/caste_general</item>
+        <item>@string/caste_dont_know</item>
+        <item>@string/caste_refused_to_answer</item>
+
+    </string-array>
+    <string-array name="relationshipHoH_Self">
+        <item>Spouse</item>
+        <item>Son/daughter</item>
+        <item>Son/daughter in law</item>
+        <item>Grandchild</item>
+        <item>Father/mother</item>
+        <item>Father/mother-in-law</item>
+        <item>Brother/sister</item>
+        <item>Brother/sister-in-law</item>
+        <item>Niece/nephew</item>
+        <item>Grandparent/grand parent-in-law</item>
+        <item>Other relative</item>
+        <item>Adopted/foster/stepchild</item>
+        <item>Domestic servant</item>
+        <item>Other not related</item>
+        <item>Other (specify)</item>
+        <item>Not stated</item>
+    </string-array>
+    <string-array name="maritual">
+        <item>Currently married</item>
+        <item>Widowed</item>
+        <item>Divorced</item>
+        <item>Separated</item>
+        <item>Deserted</item>
+        <item>Never married</item>
+    </string-array>
+    <string-array name="phoneownership">
+        <item>None</item>
+        <item>Shared</item>
+        <item>Owns smartphone</item>
+        <item>Owns feature phone</item>
+    </string-array>
+    <string-array name="education_nas">
+        <!--        <item>Illiterate</item>-->
+        <!--        <item>Primary</item>-->
+        <!--        <item>Secondary</item>-->
+        <!--        <item>Higher Secondary</item>-->
+        <!--        <item>Graduation &amp; Higher</item>-->
+        <item>Cannot read or write</item>
+        <item>Can read and write</item>
+        <item>Primary education (till class 5)</item>
+        <item>Middle school (6th-8th)</item>
+        <item>Passed secondary school (class 10th boards)</item>
+        <item>Passed senior secondary school (12th boards)</item>
+        <item>Graduate</item>
+        <item>Postgraduate</item>
+    </string-array>
+
+    <string-array name="occupation_identification">
+        <item>Salaried Government Job</item>
+        <item>Salaried Private Job</item>
+        <item>Petty Business or Shop Owner</item>
+        <item>Technician or Craftsman/Other Skilled Work (Driver, Mason etc)</item>
+        <item>Agricultural Farmer</item>
+        <item>Tenant Farmer or Agricultural Daily Wage Worker</item>
+        <item>Daily Wage Worker (Unskilled Work)</item>
+        <item>Household Work</item>
+        <item>Student</item>
+        <item>Unemployed</item>
+        <item>Retired (With Pension)</item>
+        <item>Retired (Without Pension)</item>
+        <item>Others (Specify)</item>
+    </string-array>
+    <string-array name="relationshipHoH">
+        <item>Self</item>
+        <item>Spouse</item>
+        <item>Son/daughter</item>
+        <item>Son/daughter in law</item>
+        <item>Grandchild</item>
+        <item>Father/mother</item>
+        <item>Father/mother-in-law</item>
+        <item>Brother/sister</item>
+        <item>Brother/sister-in-law</item>
+        <item>Niece/nephew</item>
+        <item>Grandparent/grand parent-in-law</item>
+        <item>Other relative</item>
+        <item>Adopted/foster/stepchild</item>
+        <item>Domestic servant</item>
+        <item>Other not related</item>
+        <item>Other (specify)</item>
+        <item>Not stated</item>
+    </string-array>
+
+    <string-array name="bp">
+        <item>Never Checked</item>
+        <item>In past one week</item>
+        <item>Within last month</item>
+        <item>Between 1 month to 3 months ago</item>
+        <item>Between 3 months - 6 months ago</item>
+        <item>More than 6 months</item>
+    </string-array>
+    <string-array name="sugar">
+        <item>Never Checked</item>
+        <item>In past one week</item>
+        <item>Within last month</item>
+        <item>Between 1 month to 3 months ago</item>
+        <item>Between 3 months - 6 months ago</item>
+        <item>More than 6 months</item>
+    </string-array>
+    <string-array name="hb">
+        <item>Never Checked</item>
+        <item>In past one week</item>
+        <item>Within last month</item>
+        <item>Between 1 month to 3 months ago</item>
+        <item>Between 3 months-6months ago</item>
+        <item>More than 6 months</item>
+    </string-array>
+
+    <string-array name="bmi">
+        <item>Never Checked</item>
+        <item>In past one week</item>
+        <item>Within last month</item>
+        <item>Between 1 month to 3 months ago</item>
+        <item>Between 3 months-6months ago</item>
+        <item>More than 6 months</item>
+    </string-array>
+
+    <string-array name="outcomes">
+        <item>Currently married</item>
+        <item>Widowed</item>
+        <item>Divorced</item>
+        <item>Separated</item>
+        <item>Deserted</item>
+        <item>Never married</item>
+    </string-array>
+
+    <string-array name="outcome_pregnancy_en">
+
+        <item>Born alive</item>
+        <item>Still birth</item>
+        <item>Induced abortion (mtp)</item>
+        <item>Miscarriage</item>
+        <item>Currently pregnant</item>
+    </string-array>
+
+    <string-array name="outcome_how_many_pregnancy_en">
+
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+   <string-array name="place_delivery_en">
+
+        <item>Home</item>
+        <item>Sub center</item>
+        <item>Chc/ civil hospital at block level</item>
+        <item>District hospital / civil hospital at district level</item>
+        <item>Private clinic</item>
+        <item>Private hospital</item>
+    </string-array>
+
+
+    <string-array name="delivery_type_en">
+
+        <item>Normal vaginal delivery</item>
+        <item>Cesarean section c section</item>
+    </string-array>
+
+    <string-array name="pregnancy_planned_en">
+
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+
+    <string-array name="high_risk_pregnancy_en">
+
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="health_issue_reported_en">
+
+        <item>Fever</item>
+        <item>Cough/ Cold</item>
+        <item>Diarrhoea</item>
+        <item>Injury</item>
+        <item>Skin Issues</item>
+        <item>Eye /Vision issues</item>
+        <item>Joint/Bone pain</item>
+        <item>Others (Specify)</item>
+    </string-array>
+    <string-array name="primary_health_provider_en">
+
+        <item>Government doctor</item>
+        <item>Private doctor</item>
+        <item>Staff nurse</item>
+        <item>ANM</item>
+        <item>Asha</item>
+        <item>AWW</item>
+        <item>RMP</item>
+        <item>Ayush doctor</item>
+        <item>Homeopath doctor</item>
+        <item>Traditional healer/quack</item>
+        <item>Did not consult any health provider for this issue</item>
+        <item>Other (specify)</item>
+
+    </string-array>
+
+    <string-array name="referred_to_en">
+
+        <item>Not referred</item>
+        <item>Private clinic</item>
+        <item>Phc</item>
+        <item>Chc</item>
+        <item>Dh</item>
+        <item>Private hospital</item>
+        <item>Ayush center</item>
+        <item>Others (please specify)</item>
+    </string-array>
+    <string-array name="mode_transport_en">
+
+        <item>Walking</item>
+        <item>Bus</item>
+        <item>Private taxi</item>
+        <item>Shuttle taxi</item>
+        <item>Auto</item>
+        <item>Own vehicle</item>
+        <item>Friends/neighbours vehicle</item>
+        <item>Ambulance</item>
+        <item>Others (specify)</item>
+    </string-array>
+    <string-array name="score_experience_en">
+
+        <item>Dissatisfied</item>
+        <item>Below Average</item>
+        <item>Average</item>
+        <item>Good</item>
+        <item>Very Good</item>
+    </string-array>
+
+    <string-array name="child_alive">
+
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="child_pre_term">
+
+        <item>@string/yes</item>
+        <item>@string/no</item>
+    </string-array>
+    <string-array name="block" >
+
+        <item>Peth Block</item>
+        <item>Suragana Block</item>
+        <item>Other Block (specify)</item>
+    </string-array>
+    <string-array name="single_multiple_births">
+        <item>Single</item>
+        <item>Multiple</item>
+    </string-array>
+    <string-array name="sex_of_baby">
+
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="complications">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
 </resources>

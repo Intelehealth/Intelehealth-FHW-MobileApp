@@ -22,7 +22,7 @@
             android:background="@drawable/frame_10021">
 
             <!-- Frame 100167 -->
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="@dimen/fu_toolbat_txt_height"
                 android:layout_alignParentLeft="true"
@@ -35,7 +35,7 @@
                 android:weightSum="1">
 
                 <!-- Frame 100116 -->
-                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.7"
@@ -339,7 +339,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
-                                        android:text="Test:XXX543573"
+                                        android:hint="Test:XXX543573"
                                         android:textAppearance="@style/caption"
                                         android:textColor="@color/textview_color"
                                         android:textSize="@dimen/find_patient_hint_size" />
@@ -375,9 +375,13 @@
                         android:textColor="#7F7B92"
                         android:textSize="@dimen/txtsize_patdetail_14sp" />
                     <!--                android:src="@drawable/close_all_btn"-->
-                    <include layout="@layout/visit_summary_itemscard" />
+                    <include
+                        android:id="@+id/layoutVisitSummarySections"
+                        layout="@layout/visit_summary_itemscard" />
 
                 </RelativeLayout>
+                <!--Vitals and Other cards - end-->
+
                 <!--Vitals and Other cards - end-->
 
                 <!--Additional notes - start-->
@@ -617,11 +621,289 @@
                     android:layout_below="@+id/add_doc_relative"
                     android:layout_marginTop="@dimen/margin_16">
 
+                    <!--Diagnosis -->
+                    <FrameLayout
+                        android:id="@+id/flDiagnosisCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/diagnosis_vd_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/toolbar_margin_left"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:layout_marginEnd="@dimen/toolbar_margin_left"
+                            android:layout_marginBottom="@dimen/margin_10"
+                            android:elevation="16dp"
+                            app:cardCornerRadius="@dimen/margin_5"
+                            app:cardElevation="@dimen/margin_5">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <RelativeLayout
+                                    android:id="@+id/diagnosis_vd_header_relative"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/fu_card_margin_sides"
+                                    android:layout_marginTop="@dimen/fu_card_margin_sides"
+                                    android:layout_marginEnd="@dimen/fu_card_margin_sides"
+                                    android:layout_marginBottom="@dimen/fu_card_margin_sides">
+
+                                    <ImageView
+                                        android:id="@+id/diagnosis_icon"
+                                        android:layout_width="@dimen/edittext_height_44dp"
+                                        android:layout_height="@dimen/edittext_height_44dp"
+                                        android:src="@drawable/speciality_red_icon" />
+
+                                    <TextView
+                                        style="@style/text_title_style"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="@dimen/margin_8"
+                                        android:layout_toEndOf="@+id/diagnosis_icon"
+                                        android:text="@string/diagnosis" />
+
+                                    <ImageButton
+                                        android:id="@+id/btn_up_diagnosis_vd_header"
+                                        android:layout_width="@dimen/fu_icon_width"
+                                        android:layout_height="@dimen/fu_icon_height"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_centerVertical="true"
+                                        android:background="@null"
+                                        android:src="@drawable/ui2_ic_chevron_down" />
+                                </RelativeLayout>
+
+                                <!--Expanded Vitals-->
+                                <RelativeLayout
+                                    android:id="@+id/vd_diagnosis_header_expandview"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/diagnosis_vd_header_relative"
+                                    android:visibility="gone"
+                                    tools:visibility="visible">
+
+                                    <View
+                                        android:id="@+id/divider_diagnosis"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:layout_marginStart="@dimen/fu_margin_start"
+                                        android:layout_marginEnd="@dimen/fu_margin_start"
+                                        android:layout_marginBottom="@dimen/fu_card_margin_updown"
+                                        android:background="@color/notifi_divider_color" />
+
+                                    <!--Personal Sub-Child-->
+
+                                    <TextView
+                                        android:id="@+id/vd_diagnosis_value"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/divider_diagnosis"
+                                        android:layout_marginStart="@dimen/fu_margin_start"
+                                        android:layout_marginEnd="@dimen/fu_margin_start"
+                                        android:layout_marginBottom="@dimen/margin_16dp"
+                                        />
+
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/diagnosis_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/toolbar_margin_left"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:layout_marginEnd="@dimen/toolbar_margin_left"
+                            android:layout_marginBottom="@dimen/margin_10"
+                            android:elevation="16dp"
+                            app:cardCornerRadius="@dimen/margin_5"
+                            app:cardElevation="@dimen/margin_5">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/fu_card_margin_sides">
+
+                                <TextView
+                                    android:id="@+id/diagnosis_title"
+                                    style="@style/vs_title_head_14sp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/diagnosis"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textStyle="bold" />
+
+
+                                <org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout
+                                    android:id="@+id/diagnosis_text_input_lay"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/diagnosis_title"
+                                    android:layout_marginTop="@dimen/fu_margin_start"
+                                    android:layout_marginBottom="@dimen/margin_16dp"
+                                    app:hintEnabled="false"
+                                  >
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/diagnosis_text_input"
+                                        android:background="@drawable/input_edittext_border"
+                                        android:layout_width="match_parent"
+                                        android:padding="@dimen/fu_margin_start"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/enter_diagnosis"
+                                        />
+
+                                </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
+
+                    <!--Type Of Consultation -->
+                    <FrameLayout
+                        android:id="@+id/flConsultationTypeCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/flDiagnosisCard">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/consultation_type_vd_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/toolbar_margin_left"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:layout_marginEnd="@dimen/toolbar_margin_left"
+                            android:layout_marginBottom="@dimen/margin_10"
+                            android:elevation="16dp"
+                            app:cardCornerRadius="@dimen/margin_5"
+                            app:cardElevation="@dimen/margin_5">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <RelativeLayout
+                                    android:id="@+id/consultation_type_vd_header_relative"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/fu_card_margin_sides"
+                                    android:layout_marginTop="@dimen/fu_card_margin_sides"
+                                    android:layout_marginEnd="@dimen/fu_card_margin_sides"
+                                    android:layout_marginBottom="@dimen/fu_card_margin_sides">
+
+                                    <ImageView
+                                        android:id="@+id/consultation_type_icon"
+                                        android:layout_width="@dimen/edittext_height_44dp"
+                                        android:layout_height="@dimen/edittext_height_44dp"
+                                        android:src="@drawable/speciality_red_icon" />
+
+                                    <TextView
+                                        style="@style/text_title_style"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="@dimen/margin_8"
+                                        android:layout_toEndOf="@+id/consultation_type_icon"
+                                        android:text="@string/type_of_consultation" />
+
+                                    <ImageButton
+                                        android:id="@+id/btn_up_consultation_type_vd_header"
+                                        android:layout_width="@dimen/fu_icon_width"
+                                        android:layout_height="@dimen/fu_icon_height"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_centerVertical="true"
+                                        android:background="@null"
+                                        android:src="@drawable/ui2_ic_chevron_down" />
+                                </RelativeLayout>
+
+                                <!--Expanded Vitals-->
+                                <RelativeLayout
+                                    android:id="@+id/vd_consultation_type_header_expandview"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/consultation_type_vd_header_relative"
+                                    android:visibility="gone"
+                                    tools:visibility="visible">
+
+                                    <View
+                                        android:id="@+id/divider_consultation_type"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:layout_marginStart="@dimen/fu_margin_start"
+                                        android:layout_marginEnd="@dimen/fu_margin_start"
+                                        android:layout_marginBottom="@dimen/fu_card_margin_updown"
+                                        android:background="@color/notifi_divider_color" />
+
+                                    <!--Personal Sub-Child-->
+
+                                    <TextView
+                                        android:id="@+id/vd_consultation_type_value"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/divider_consultation_type"
+                                        android:layout_marginStart="@dimen/fu_margin_start"
+                                        android:layout_marginEnd="@dimen/fu_margin_start"
+                                        android:layout_marginBottom="@dimen/margin_16dp"
+                                        />
+
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/type_of_consultation_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/toolbar_margin_left"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:layout_marginEnd="@dimen/toolbar_margin_left"
+                            android:layout_marginBottom="@dimen/margin_10"
+                            android:elevation="16dp"
+                            app:cardCornerRadius="@dimen/margin_5"
+                            app:cardElevation="@dimen/margin_5">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/fu_card_margin_sides">
+
+                                <TextView
+                                    android:id="@+id/type_of_consultation_title"
+                                    style="@style/vs_title_head_14sp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/type_of_consultation"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textStyle="bold" />
+
+                                <Spinner
+                                    android:id="@+id/type_of_consultation_spinner"
+                                    style="@style/AppTheme"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/edittext_height_44dp"
+                                    android:layout_below="@+id/type_of_consultation_title"
+                                    android:layout_marginTop="@dimen/fu_margin_start"
+                                    android:layout_marginBottom="@dimen/margin_16dp"
+                                    android:entries="@array/type_of_consultations"
+                                    android:gravity="center_vertical"
+                                    android:hint="@string/select_consultation_type"
+                                    android:paddingTop="@dimen/margin_10"
+                                    android:paddingBottom="@dimen/margin_10"
+                                    />
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
 
                     <FrameLayout
                         android:id="@+id/flVdCard"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/flConsultationTypeCard">
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/special_vd_card"
@@ -747,7 +1029,6 @@
                                     android:entries="@array/speciality_values"
                                     android:gravity="center_vertical"
                                     android:hint="@string/select_speciality"
-                                    android:paddingStart="@dimen/fu_margin_start"
                                     android:paddingTop="@dimen/margin_10"
                                     android:paddingBottom="@dimen/margin_10" />
                             </RelativeLayout>
@@ -883,7 +1164,6 @@
                                     android:entries="@array/speciality_values"
                                     android:gravity="center_vertical"
                                     android:hint="@string/select_speciality"
-                                    android:paddingStart="@dimen/fu_margin_start"
                                     android:paddingTop="@dimen/margin_10"
                                     android:paddingBottom="@dimen/margin_10" />
                             </RelativeLayout>
@@ -1179,10 +1459,11 @@
             </RelativeLayout>
         </ScrollView>
         <!--Visit Details - start -->
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/bottom_btn_relative"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_alignParentBottom="true"
             android:paddingTop="@dimen/fu_margin_start"
             android:paddingBottom="@dimen/fu_card_margin_sides">
@@ -1296,7 +1577,21 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </RelativeLayout>
+            <Button
+                android:id="@+id/btnGenerateBill"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fu_btn_size"
+                android:layout_marginStart="@dimen/margin_24"
+                android:layout_marginEnd="@dimen/margin_24"
+                android:background="@drawable/ui2_common_primary_bg"
+                android:padding="@dimen/margin_12"
+                android:text="@string/generate_bill"
+                android:layout_marginTop="@dimen/margin_5"
+                android:textColor="@color/white"
+                android:textSize="@dimen/common_button_text_size"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/filter_framelayout"

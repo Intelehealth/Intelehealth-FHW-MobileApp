@@ -15,15 +15,25 @@
 package org.intelehealth.app.utilities;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.intelehealth.app.R;
 import org.intelehealth.app.app.IntelehealthApplication;
+import org.json.JSONArray;
 
 import java.io.File;
 import java.math.RoundingMode;
@@ -204,7 +214,7 @@ public final class StringUtils {
     }
 
     public static String switch_ru_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "Безграмотный";
@@ -228,7 +238,7 @@ public final class StringUtils {
     }
 
     public static String switch_kn_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "ಅಶಿಕ್ಷಿತ";
@@ -253,7 +263,7 @@ public final class StringUtils {
 
 
     public static String switch_kn_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "ಅಶಿಕ್ಷಿತ":
                 val = "Illiterate";
@@ -278,7 +288,7 @@ public final class StringUtils {
 
 
     public static String switch_ru_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Безграмотный":
                 val = "Illiterate";
@@ -302,7 +312,7 @@ public final class StringUtils {
     }
 
     public static String switch_gu_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "અશિક્ષિત";
@@ -326,7 +336,7 @@ public final class StringUtils {
     }
 
     public static String switch_gu_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "અશિક્ષિત":
                 val = "Illiterate";
@@ -350,7 +360,7 @@ public final class StringUtils {
     }
 
     public static String switch_gu_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "ગરીબીની રેખાથી ઉપર":
                 val = "APL";
@@ -365,7 +375,7 @@ public final class StringUtils {
     }
 
     public static String switch_gu_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "ગરીબીની રેખાથી ઉપર";
@@ -380,7 +390,7 @@ public final class StringUtils {
     }
 
     public static String switch_gu_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "જનરલ":
                 val = "General";
@@ -404,7 +414,7 @@ public final class StringUtils {
     }
 
     public static String switch_gu_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "General":
                 val = "જનરલ";
@@ -429,7 +439,7 @@ public final class StringUtils {
 
 
     public static String switch_hi_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "अशिक्षित";
@@ -460,7 +470,7 @@ public final class StringUtils {
 
 
     public static String switch_hi_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "अशिक्षित":
                 val = "Illiterate";
@@ -491,7 +501,7 @@ public final class StringUtils {
 
 
     public static String switch_or_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "ଅଶିକ୍ଷିତ";
@@ -516,7 +526,7 @@ public final class StringUtils {
 
 
     public static String switch_or_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "ଅଶିକ୍ଷିତ":
                 val = "Illiterate";
@@ -540,7 +550,7 @@ public final class StringUtils {
     }
 
     public static String switch_as_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "নিৰক্ষৰ";
@@ -565,7 +575,7 @@ public final class StringUtils {
 
 
     public static String switch_as_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "নিৰক্ষৰ":
                 val = "Illiterate";
@@ -589,7 +599,7 @@ public final class StringUtils {
     }
 
     public static String switch_ml_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "നിരക്ഷരൻ";
@@ -614,7 +624,7 @@ public final class StringUtils {
 
 
     public static String switch_ml_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "നിരക്ഷരൻ":
                 val = "Illiterate";
@@ -638,7 +648,7 @@ public final class StringUtils {
     }
 
     public static String switch_mr_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "निरक्षर";
@@ -663,7 +673,7 @@ public final class StringUtils {
 
 
     public static String switch_mr_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "निरक्षर":
                 val = "Illiterate";
@@ -687,7 +697,7 @@ public final class StringUtils {
     }
 
     public static String switch_te_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "నిరక్షరాస్యులు";
@@ -712,7 +722,7 @@ public final class StringUtils {
 
 
     public static String switch_te_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "నిరక్షరాస్యులు":
                 val = "Illiterate";
@@ -736,7 +746,7 @@ public final class StringUtils {
     }
 
     public static String switch_bn_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "নিরক্ষর";
@@ -761,7 +771,7 @@ public final class StringUtils {
 
 
     public static String switch_bn_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "নিরক্ষর":
                 val = "Illiterate";
@@ -785,7 +795,7 @@ public final class StringUtils {
     }
 
     public static String switch_ta_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "எழுதப்படிக்கத்தெரியாதவர்";
@@ -810,7 +820,7 @@ public final class StringUtils {
 
 
     public static String switch_ta_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "எழுதப்படிக்கத்தெரியாதவர்":
                 val = "Illiterate";
@@ -834,7 +844,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "गरीबी रेखा से ऊपर":
                 val = "APL";
@@ -849,7 +859,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "गरीबी रेखा से ऊपर";
@@ -864,7 +874,7 @@ public final class StringUtils {
     }
 
     public static String switch_ru_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "APL";
@@ -879,7 +889,7 @@ public final class StringUtils {
     }
 
     public static String switch_or_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "ଦାରିଦ୍ର୍ୟ ସୀମାରେଖା ଉପରେ":
                 val = "APL";
@@ -894,7 +904,7 @@ public final class StringUtils {
     }
 
     public static String switch_or_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "ଦାରିଦ୍ର୍ୟ ସୀମାରେଖା ଉପରେ";
@@ -909,7 +919,7 @@ public final class StringUtils {
     }
 
     public static String switch_bn_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "দারিদ্র্যসীমার উপরে":
                 val = "APL";
@@ -924,7 +934,7 @@ public final class StringUtils {
     }
 
     public static String switch_bn_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "দারিদ্র্যসীমার উপরে";
@@ -939,7 +949,7 @@ public final class StringUtils {
     }
 
     public static String switch_te_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "ఎపిఎల్":
                 val = "APL";
@@ -954,7 +964,7 @@ public final class StringUtils {
     }
 
     public static String switch_te_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "ఎపిఎల్";
@@ -969,7 +979,7 @@ public final class StringUtils {
     }
 
     public static String switch_mr_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "दारिद्र्य रेषेच्या वर":
                 val = "APL";
@@ -984,7 +994,7 @@ public final class StringUtils {
     }
 
     public static String switch_mr_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "दारिद्र्य रेषेच्या वर";
@@ -999,7 +1009,7 @@ public final class StringUtils {
     }
 
     public static String switch_as_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "এপিএল":
                 val = "APL";
@@ -1014,7 +1024,7 @@ public final class StringUtils {
     }
 
     public static String switch_as_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "এপিএল";
@@ -1029,7 +1039,7 @@ public final class StringUtils {
     }
 
     public static String switch_ml_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "എ.പി.എൽ":
@@ -1045,7 +1055,7 @@ public final class StringUtils {
     }
 
     public static String switch_ml_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "APL":
@@ -1062,7 +1072,7 @@ public final class StringUtils {
 
 
     public static String switch_ru_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "APL":
@@ -1078,7 +1088,7 @@ public final class StringUtils {
     }
 
     public static String switch_kn_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "ಬಡತನ ರೇಖೆಯ ಮೇಲೆ":
@@ -1094,7 +1104,7 @@ public final class StringUtils {
     }
 
     public static String switch_kn_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "APL":
@@ -1110,7 +1120,7 @@ public final class StringUtils {
     }
 
     public static String switch_ta_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "வறுமைக் கோட்டிற்கு மேல்":
@@ -1126,7 +1136,7 @@ public final class StringUtils {
     }
 
     public static String switch_ta_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "APL":
@@ -1142,7 +1152,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "सामान्य":
@@ -1167,7 +1177,7 @@ public final class StringUtils {
     }
 
     public static String switch_or_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "ସାଧାରଣ":
@@ -1192,7 +1202,7 @@ public final class StringUtils {
     }
 
     public static String switch_ta_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "பொது":
@@ -1217,7 +1227,7 @@ public final class StringUtils {
     }
 
     public static String switch_te_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "జనరల్":
@@ -1242,7 +1252,7 @@ public final class StringUtils {
     }
 
     public static String switch_mr_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "सामान्य":
@@ -1267,7 +1277,7 @@ public final class StringUtils {
     }
 
     public static String switch_as_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "সাধাৰণ":
@@ -1292,7 +1302,7 @@ public final class StringUtils {
     }
 
     public static String switch_mr_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1317,7 +1327,7 @@ public final class StringUtils {
     }
 
     public static String switch_ru_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1342,7 +1352,7 @@ public final class StringUtils {
     }
 
     public static String switch_ru_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "Общий":
@@ -1367,7 +1377,7 @@ public final class StringUtils {
     }
 
     public static String switch_kn_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "ಸಾಮಾನ್ಯ":
@@ -1392,7 +1402,7 @@ public final class StringUtils {
     }
 
     public static String switch_kn_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1417,7 +1427,7 @@ public final class StringUtils {
     }
 
     public static String switch_ml_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "ജനറൽ":
@@ -1442,7 +1452,7 @@ public final class StringUtils {
     }
 
     public static String switch_ml_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1467,7 +1477,7 @@ public final class StringUtils {
     }
 
     public static String switch_as_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1492,7 +1502,7 @@ public final class StringUtils {
     }
 
     public static String switch_bn_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "সাধারণ":
@@ -1517,7 +1527,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1542,7 +1552,7 @@ public final class StringUtils {
     }
 
     public static String switch_or_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1567,7 +1577,7 @@ public final class StringUtils {
     }
 
     public static String switch_te_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1592,7 +1602,7 @@ public final class StringUtils {
     }
 
     public static String switch_bn_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1617,7 +1627,7 @@ public final class StringUtils {
     }
 
     public static String switch_ta_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1733,7 +1743,7 @@ public final class StringUtils {
 
     public static String en__hi_dob(String dob) { //English dob is replaced to Hindi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "जनवरी")
                 .replace("February", "फ़रवरी")
@@ -1753,7 +1763,7 @@ public final class StringUtils {
 
 
     public static String getMessageTranslated(String message, String locale) { //English dob is replaced to Hindi text.
-        if(message == null || message.isEmpty()) return "";
+        if (message == null || message.isEmpty()) return "";
         if (locale.equalsIgnoreCase("hi")) {
             message = message
                     .replace("Otp sent successfully!", "ओटीपी सफलतापूर्वक भेजा गया!")
@@ -1775,7 +1785,7 @@ public final class StringUtils {
 
     public static String en_hi_dob_updated(String dob) { //English dob is replaced to Hindi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("Jan", "जनवरी")
                 .replace("Feb", "फ़रवरी")
@@ -1795,7 +1805,7 @@ public final class StringUtils {
 
     public static String en_hi_dob_three(String dob) { //English dob is replaced to Hindi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("Jan", "जनवरी")
                 .replace("Feb", "फ़रवरी")
@@ -1816,7 +1826,7 @@ public final class StringUtils {
 
     public static String en__gu_dob(String dob) { //English dob is replaced to Hindi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "જાન્યુઆરી")
                 .replace("February", "ફેબ્રુઆરી")
@@ -1836,7 +1846,7 @@ public final class StringUtils {
 
     public static String en__or_dob(String dob) { //English dob is replaced to Odiya text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "ଜାନୁଆରୀ")
                 .replace("February", "ଫେବୃଆରୀ")
@@ -1864,7 +1874,7 @@ public final class StringUtils {
 
     public static String en__te_dob(String dob) { //English dob is replaced to Tamil text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "జనవరి")
                 .replace("February", "ఫిబ్రవరి")
@@ -1884,7 +1894,7 @@ public final class StringUtils {
 
     public static String en__mr_dob(String dob) { //English dob is replaced to marathi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "जानेवारी")
                 .replace("February", "फेब्रुवारी")
@@ -1904,7 +1914,7 @@ public final class StringUtils {
 
     public static String en__as_dob(String dob) { //English dob is replaced to marathi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "জানুৱাৰী")
                 .replace("February", "ফেব্ৰুৱাৰী")
@@ -1924,7 +1934,7 @@ public final class StringUtils {
 
     public static String en__ml_dob(String dob) { //English dob is replaced to marathi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "ജനുവരി")
                 .replace("February", "ഫെബ്രുവരി")
@@ -1944,7 +1954,7 @@ public final class StringUtils {
 
     public static String en__kn_dob(String dob) { //English dob is replaced to marathi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "ಜನವರಿ")
                 .replace("February", "ಫೆಬ್ರುವರಿ")
@@ -1964,7 +1974,7 @@ public final class StringUtils {
 
     public static String en__ru_dob(String dob) { //English dob is replaced to Odiya text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "Январь")
                 .replace("February", "Февраль")
@@ -1984,7 +1994,7 @@ public final class StringUtils {
 
     public static String en__bn_dob(String dob) { //English dob is replaced to Bengali text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "জানুয়ারী")
                 .replace("February", "ফেব্রুয়ারী")
@@ -2004,7 +2014,7 @@ public final class StringUtils {
 
     public static String en__ta_dob(String dob) { //English dob is replaced to Tamil text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "ஜனவரி")
                 .replace("February", "பிப்ரவரி")
@@ -2072,7 +2082,7 @@ public final class StringUtils {
 
     public static String getFullMonthName(String dobString) {
         //added this logic to handle crash when dob is null
-        if(dobString == null || dobString.isEmpty()) return "";
+        if (dobString == null || dobString.isEmpty()) return "";
         return dobString
                 .replace("Jan", "January")
                 .replace("Feb", "February")
@@ -2351,7 +2361,7 @@ public final class StringUtils {
 
     public static String translateLocation(String val, String locale) {
         if (locale.equalsIgnoreCase("hi")) {
-            if(val == null || val.isEmpty()) return "";
+            if (val == null || val.isEmpty()) return "";
             switch (val) {
                 case "Telemedicine Clinic 1":
                     val = "टेलीमेडिसिन क्लीनिक 1";
@@ -2423,7 +2433,7 @@ public final class StringUtils {
 
     public static String switch_hi_en_country(String val, String locale) {
         if (locale.equalsIgnoreCase("hi")) {
-            if(val == null || val.isEmpty()) return "";
+            if (val == null || val.isEmpty()) return "";
             switch (val) {
                 case "India":
                     val = "इंडिया";
@@ -3571,7 +3581,7 @@ public final class StringUtils {
     }
 
     public static String getTranslatedDays(String val, String locale) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         if (locale.equalsIgnoreCase("as")) {
             switch (val) {
@@ -3600,8 +3610,7 @@ public final class StringUtils {
                     return val;
             }
 
-        }
-        else if (locale.equalsIgnoreCase("bn")) {
+        } else if (locale.equalsIgnoreCase("bn")) {
             switch (val) {
                 case "Sunday":
                     val = "রবিবার";
@@ -3628,8 +3637,7 @@ public final class StringUtils {
                     return val;
             }
 
-        }
-        else if (locale.equalsIgnoreCase("gu")) {
+        } else if (locale.equalsIgnoreCase("gu")) {
             switch (val) {
                 case "Sunday":
                     val = "રવિવાર";
@@ -3657,8 +3665,7 @@ public final class StringUtils {
                     return val;
             }
 
-        }
-        else if (locale.equalsIgnoreCase("hi")) {
+        } else if (locale.equalsIgnoreCase("hi")) {
             switch (val) {
                 case "Sunday":
                     val = "रविवार";
@@ -4057,7 +4064,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_guardian_type(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "मां" -> val = "Mother";
             case "पिता" -> val = "Father";
@@ -4071,7 +4078,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_guardian_type_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Mother" -> val = "मां";
             case "Father" -> val = "पिता";
@@ -4085,7 +4092,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_contact_type(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "स्वयं" -> val = "Self";
             case "परिवार" -> val = "Family";
@@ -4097,7 +4104,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_contact_type_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Self" -> val = "स्वयं";
             case "Family" -> val = "परिवार";
@@ -4207,6 +4214,7 @@ public final class StringUtils {
 
     /**
      * Setting local language for Gender data.
+     *
      * @param context
      * @param genderView
      * @param patient
@@ -4231,7 +4239,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4241,7 +4249,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4251,7 +4259,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4261,7 +4269,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4271,7 +4279,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4281,7 +4289,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4291,7 +4299,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4322,7 +4330,33 @@ public final class StringUtils {
     }
 
     /**
+     * returning string instead of setting data to textview
+     * @param context
+     * @param dob
+     * @param gender
+     * @return
+     */
+    public static String setGenderAgeLocal(Context context, String dob, String gender) {
+        String age = DateAndTimeUtils.getAge_FollowUp(dob, context);
+
+        int genderResId;
+        if (gender.equalsIgnoreCase("M")) {
+            genderResId = R.string.identification_screen_checkbox_male;
+        } else if (gender.equalsIgnoreCase("F")) {
+            genderResId = R.string.identification_screen_checkbox_female;
+        } else if (gender.equalsIgnoreCase("O")) {
+            genderResId = R.string.identification_screen_checkbox_other;
+        } else {
+            return gender + " " + age;
+        }
+
+        String localizedGender = context.getResources().getString(genderResId);
+        return  localizedGender + " " + age;
+    }
+
+    /**
      * Setting local language for Gender data.
+     *
      * @param context
      * @param genderView
      * @param patient
@@ -4347,7 +4381,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4357,7 +4391,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4367,7 +4401,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4377,7 +4411,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4387,7 +4421,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4397,7 +4431,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4407,7 +4441,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4437,11 +4471,11 @@ public final class StringUtils {
         }
     }
 
-    public static boolean isValidPassword(String passwd){
-        if(passwd==null || passwd.isEmpty()) return false;
+    public static boolean isValidPassword(String passwd) {
+        if (passwd == null || passwd.isEmpty()) return false;
         //String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}"; // with special character
         String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}"; // without special character
-       return passwd.matches(pattern);
+        return passwd.matches(pattern);
     }
 
     public static String convertCtoF(String temperature) {
@@ -4454,4 +4488,579 @@ public final class StringUtils {
         resultVal = nf.format(roundOff);
         return resultVal;
     }
+
+    /*
+        public static String getSelectedCheckboxes(ViewGroup viewGroup, String locale, Context context, String otherString) {
+            if (viewGroup == null)
+                return null;
+
+            Configuration configuration = new Configuration(IntelehealthApplication.getAppContext().getResources().getConfiguration());
+            configuration.setLocale(new Locale("en"));
+            String text = "-";
+
+            JSONArray result = new JSONArray();
+            Log.d("devchk", "getSelectedCheckboxes: childcount = "+viewGroup.getChildCount());
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View childAt = viewGroup.getChildAt(i);
+                if (childAt instanceof CheckBox) {
+                    if (((CheckBox) childAt).isChecked()) {
+                        text = ((CheckBox) childAt).getText().toString();
+
+                        if (text.equalsIgnoreCase(context.getString(R.string.other_please_specify)) ||
+                                text.equalsIgnoreCase(context.getString(R.string.others)) ||
+                                text.equalsIgnoreCase(context.getString(R.string.other_please_specify)) ||
+                                text.equalsIgnoreCase(context.getString(R.string.other)) ||
+                                text.equalsIgnoreCase(context.getString(R.string.other_specify))
+                        ) {
+                            text = getSurveyString(text, locale, configuration, context);
+                            text = text.concat(" : " + otherString);
+                            result.put(text);
+                        } else
+                            result.put(getSurveyString(text, locale, configuration, context));
+                    }
+                }
+            }
+            Log.v("checkbox", "checkboxarray: \n" + result.toString());
+            return result.toString();
+        }
+    */
+    public static String getSurveyString(String text, String locale, Configuration configuration, Context context) {
+        if (locale.equalsIgnoreCase("mr")) {
+
+            if (context.getString(R.string.sale_of_cereal_production).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.sale_of_cereal_production);
+
+            if (context.getString(R.string.sale_of_animals_or_animal_products).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.sale_of_animals_or_animal_products);
+
+            if (context.getString(R.string.agricultural_wage_labor_employed_for_farm_work).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.agricultural_wage_labor_employed_for_farm_work);
+
+            if (context.getString(R.string.salaried_worker_fixed_monthly_salary).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.salaried_worker_fixed_monthly_salary);
+
+            if (context.getString(R.string.self_employed_non_agricultural_petty_business).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.self_employed_non_agricultural_petty_business);
+
+            if (context.getString(R.string.daily_labor_unskilled_work_agricultural_non_agricultural).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.daily_labor_unskilled_work_agricultural_non_agricultural);
+
+            if (context.getString(R.string.nrega).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.nrega);
+
+            if (context.getString(R.string.seasonal_labor).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.seasonal_labor);
+
+            if (context.getString(R.string.pension).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.pension);
+
+            if (context.getString(R.string.remittances_checkbox).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.remittances_checkbox);
+
+            if (context.getString(R.string.no_paid_work).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.no_paid_work);
+
+            if (context.getString(R.string.other_please_specify).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.other_please_specify);
+
+            if (context.getString(R.string.other_please_specify).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.other_please_specify);
+
+            if (context.getString(R.string.electricity).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.electricity);
+
+            if (context.getString(R.string.lpg_natural_gas).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.lpg_natural_gas);
+
+            if (context.getString(R.string.biogas_checkbox).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.biogas_checkbox);
+
+            if (context.getString(R.string.kerosene).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.kerosene);
+
+            if (context.getString(R.string.coal_lignite).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.coal_lignite);
+
+            if (context.getString(R.string.charcoal).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.charcoal);
+
+            if (context.getString(R.string.wood).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.wood);
+
+            if (context.getString(R.string.straw_shrubs_grass).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.straw_shrubs_grass);
+
+            if (context.getString(R.string.agricultural_crop_waste).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.agricultural_crop_waste);
+
+            if (context.getString(R.string.dung_cakes).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.dung_cakes);
+
+            if (context.getString(R.string.lantern).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.lantern);
+
+            if (context.getString(R.string.kerosene_lamp).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.kerosene_lamp);
+
+            if (context.getString(R.string.candle).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.candle);
+
+            if (context.getString(R.string.electric).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.electric);
+
+            if (context.getString(R.string.lpg).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.lpg);
+
+            if (context.getString(R.string.solar_energy).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.solar_energy);
+
+            if (context.getString(R.string.none).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.none);
+
+            if (context.getString(R.string.piped_into_dwelling).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.piped_into_dwelling);
+
+            if (context.getString(R.string.piped_into_yard_plot).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.piped_into_yard_plot);
+
+            if (context.getString(R.string.public_tap_standpipe).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.public_tap_standpipe);
+
+            if (context.getString(R.string.tube_well_borehole).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.tube_well_borehole);
+
+            if (context.getString(R.string.protected_well_checkbox).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.protected_well_checkbox);
+
+            if (context.getString(R.string.unprotected_well).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.unprotected_well);
+
+            if (context.getString(R.string.protected_spring).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.protected_spring);
+
+            if (context.getString(R.string.unprotected_spring).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.unprotected_spring);
+
+            if (context.getString(R.string.rainwater).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.rainwater);
+
+            if (context.getString(R.string.tanker_truck).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.tanker_truck);
+
+            if (context.getString(R.string.cart_with_small_tank).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.cart_with_small_tank);
+
+            if (context.getString(R.string.surface_water).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.surface_water);
+
+            if (context.getString(R.string.common_hand_pump).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.common_hand_pump);
+
+            if (context.getString(R.string.hand_pump_at_home).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.hand_pump_at_home);
+
+            if (context.getString(R.string.what_do_you_usually_do_to_the_water_to_make_it_safer_to_drink).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.what_do_you_usually_do_to_the_water_to_make_it_safer_to_drink);
+
+            if (context.getString(R.string.boil).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.boil);
+
+            if (context.getString(R.string.use_alum).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.use_alum);
+
+            if (context.getString(R.string.add_bleach_chlorine_tablets_drops).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.add_bleach_chlorine_tablets_drops);
+
+            if (context.getString(R.string.strain_through_a_cloth).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.strain_through_a_cloth);
+
+            if (context.getString(R.string.use_water_filter_ceramic_sand_composite_etc).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.use_water_filter_ceramic_sand_composite_etc);
+
+            if (context.getString(R.string.use_electronic_purifier).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.use_electronic_purifier);
+
+            if (context.getString(R.string.let_it_stand_and_settle).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.let_it_stand_and_settle);
+
+            if (context.getString(R.string.flush_to_piped_sewer_system).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.flush_to_piped_sewer_system);
+
+            if (context.getString(R.string.flush_to_septic_tank).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.flush_to_septic_tank);
+
+            if (context.getString(R.string.flush_to_pit_latrine).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.flush_to_pit_latrine);
+
+            if (context.getString(R.string.flush_to_somewhere_else).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.flush_to_somewhere_else);
+
+            if (context.getString(R.string.flush_dont_know_where).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.flush_dont_know_where);
+
+            if (context.getString(R.string.ventilated_improved_pit_biogas_latrine).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.ventilated_improved_pit_biogas_latrine);
+
+            if (context.getString(R.string.pit_latrine_with_slab).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.pit_latrine_with_slab);
+
+            if (context.getString(R.string.pit_latrine_without_slab_open_pit).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.pit_latrine_without_slab_open_pit);
+
+            if (context.getString(R.string.twin_pit_composting_toilet).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.twin_pit_composting_toilet);
+
+            if (context.getString(R.string.dry_toilet).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.dry_toilet);
+
+            if (context.getString(R.string.communal_toilet).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.communal_toilet);
+
+            if (context.getString(R.string.no_facility_uses_open_space_or_field).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.no_facility_uses_open_space_or_field);
+
+            if (context.getString(R.string.not_treated).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.not_treated);
+
+            if (context.getString(R.string.no_measures_taken_for_purification_drinking_as_it_is).equalsIgnoreCase(text)) {
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.no_measures_taken_for_purification_drinking_as_it_is);
+            }
+
+            if (context.getString(R.string.starch_staple_food).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.starch_staple_food);
+
+            if (context.getString(R.string.beans_and_peas).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.beans_and_peas);
+
+            if (context.getString(R.string.nuts_and_seeds).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.nuts_and_seeds);
+
+            if (context.getString(R.string.dairy).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.dairy);
+
+            if (context.getString(R.string.eggs).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.eggs);
+
+            if (context.getString(R.string.flesh_food).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.flesh_food);
+
+            if (context.getString(R.string.any_vegetables).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.any_vegetables);
+
+            if (context.getString(R.string.village_tank).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.village_tank);
+
+            if (context.getString(R.string.open_well).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.open_well);
+
+            if (context.getString(R.string.hand_pump_checkbox).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.hand_pump_checkbox);
+
+            if (context.getString(R.string.bore_well).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.bore_well);
+
+            if (context.getString(R.string.river).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.river);
+
+            if (context.getString(R.string.pond).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.pond);
+
+            if (context.getString(R.string.other).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.other);
+
+            if (context.getString(R.string.others).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.others);
+
+            if (context.getString(R.string.other_please_specify).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.other_please_specify);
+
+            if (context.getString(R.string.other_please_specify).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.other_please_specify);
+
+            if (context.getString(R.string.other_specify).equalsIgnoreCase(text))
+                return context.createConfigurationContext(configuration).getResources().getString(R.string.other_specify);
+        }
+        return text;
+    }
+
+    public static String getSelectedCheckboxes(ViewGroup viewGroup, String locale, Context context, String otherString) {
+        if (viewGroup == null)
+            return null;
+
+        Configuration configuration = new Configuration(IntelehealthApplication.getAppContext().getResources().getConfiguration());
+        configuration.setLocale(new Locale("en"));
+        String text = "-";
+
+        JSONArray result = new JSONArray();
+        Log.d("devchk", "getSelectedCheckboxes: Total child count = " + viewGroup.getChildCount());
+
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+            View childAt = viewGroup.getChildAt(i);
+
+            // Log child view type
+            Log.d("devchk", "Child " + i + ": Class = " + childAt.getClass().getSimpleName());
+
+            // If the child is a CheckBox, process it as before
+            if (childAt instanceof CheckBox) {
+                if (((CheckBox) childAt).isChecked()) {
+                    text = ((CheckBox) childAt).getText().toString();
+
+                    if (text.equalsIgnoreCase(context.getString(R.string.other_please_specify)) ||
+                            text.equalsIgnoreCase(context.getString(R.string.others)) ||
+                            text.equalsIgnoreCase(context.getString(R.string.other_please_specify)) ||
+                            text.equalsIgnoreCase(context.getString(R.string.other)) ||
+                            text.equalsIgnoreCase(context.getString(R.string.other_specify))) {
+                        text = getSurveyString(text, locale, configuration, context);
+                        text = text.concat(" : " + otherString);
+                        result.put(text);
+                    } else {
+                        result.put(getSurveyString(text, locale, configuration, context));
+                    }
+                }
+            } else {
+                // Log extra details for other view types if applicable
+                if (childAt instanceof TextView) {
+                    Log.d("devchk", "Child " + i + ": Text = " + ((TextView) childAt).getText());
+                } else if (childAt instanceof ViewGroup) {
+                    Log.d("devchk", "Child " + i + " is a nested ViewGroup with child count = " + ((ViewGroup) childAt).getChildCount());
+                } else {
+                    Log.d("devchk", "Child " + i + ": Unknown view type");
+                }
+            }
+        }
+
+        Log.v("checkbox", "checkbox array: \n" + result.toString());
+        return result.toString();
+    }
+
+    public static String getHouseholdHeadReligion(String text, Context context, String locale) {
+        Context updatedContext;
+
+        if (locale.equalsIgnoreCase("mr")) {
+            Configuration configuration = new Configuration(IntelehealthApplication.getAppContext().getResources().getConfiguration());
+            configuration.setLocale(new Locale("en"));
+            updatedContext = context.createConfigurationContext(configuration);
+
+            if (context.getString(R.string.religion_hindu).equalsIgnoreCase(text)) {
+                return updatedContext.getString(R.string.religion_hindu);
+            }
+
+            if (context.getString(R.string.religion_muslim).equalsIgnoreCase(text)) {
+                return updatedContext.getString(R.string.religion_muslim);
+            }
+
+            if (context.getString(R.string.religion_christian).equalsIgnoreCase(text)) {
+                return updatedContext.getString(R.string.religion_christian);
+            }
+
+            if (context.getString(R.string.religion_sikh).equalsIgnoreCase(text)) {
+                return updatedContext.getString(R.string.religion_sikh);
+            }
+
+            if (context.getString(R.string.religion_buddhist_neo_buddhist).equalsIgnoreCase(text)) {
+                return updatedContext.getString(R.string.religion_buddhist_neo_buddhist);
+            }
+
+            if (context.getString(R.string.religion_other).equalsIgnoreCase(text)) {
+                return updatedContext.getString(R.string.religion_other);
+            }
+
+            if (context.getString(R.string.religion_no_religion).equalsIgnoreCase(text)) {
+                return updatedContext.getString(R.string.religion_no_religion);
+            }
+        }
+
+        return text;
+    }
+
+    public static String getHouseholdHeadReligionEdit(String text, Context context, String locale) {
+        Context updatedContext;
+
+        if (locale.equalsIgnoreCase("mr")) {
+            Configuration configuration = new Configuration(IntelehealthApplication.getAppContext().getResources().getConfiguration());
+            configuration.setLocale(new Locale("en"));
+            updatedContext = context.createConfigurationContext(configuration);
+
+            if (updatedContext.getString(R.string.religion_hindu).equalsIgnoreCase(text)) {
+                return context.getString(R.string.religion_hindu);
+            }
+
+            if (updatedContext.getString(R.string.religion_muslim).equalsIgnoreCase(text)) {
+                return context.getString(R.string.religion_muslim);
+            }
+
+            if (updatedContext.getString(R.string.religion_christian).equalsIgnoreCase(text)) {
+                return context.getString(R.string.religion_christian);
+            }
+
+            if (updatedContext.getString(R.string.religion_sikh).equalsIgnoreCase(text)) {
+                return context.getString(R.string.religion_sikh);
+            }
+
+            if (updatedContext.getString(R.string.religion_buddhist_neo_buddhist).equalsIgnoreCase(text)) {
+                return context.getString(R.string.religion_buddhist_neo_buddhist);
+            }
+
+            if (updatedContext.getString(R.string.religion_other).equalsIgnoreCase(text)) {
+                return context.getString(R.string.religion_other);
+            }
+
+            if (updatedContext.getString(R.string.religion_no_religion).equalsIgnoreCase(text)) {
+                return context.getString(R.string.religion_no_religion);
+            }
+        }
+
+        return text;
+    }
+
+    public int getIndex(AutoCompleteTextView autoCompleteTextView, String target) {
+        ListAdapter adapter = autoCompleteTextView.getAdapter();
+        if (adapter != null) {
+            for (int i = 0; i < adapter.getCount(); i++) {
+                if (adapter.getItem(i).toString().equalsIgnoreCase(target)) {
+                    return i; // Return the index if found
+                }
+            }
+        }
+        return -1; // Return -1 if not found
+    }
+    public static String getPreTermEdit(String val, String locale) {
+        if (locale.equalsIgnoreCase("mr")) {
+            switch (val) {
+                case "Yes":
+                    val = "होय";
+                    break;
+                case "No":
+                    val = "नाही";
+                    break;
+                default:
+                    return val;
+            }
+        }
+
+        return val;
+    }
+
+    public static String getPreTerm(String val, String locale) {
+        if (locale.equalsIgnoreCase("mr")) {
+            switch (val) {
+                case "होय":
+                    val = "Yes";
+                    break;
+                case "नाही":
+                    val = "No";
+                    break;
+                default:
+                    return val;
+            }
+        }
+        return val;
+    }
+    public static String getWaterSourceDistance(String text, Context context, String locale) {
+        Context updatedContext;
+
+        if (locale.equalsIgnoreCase("mr")) {
+            Configuration configuration = new Configuration(IntelehealthApplication.getAppContext().getResources().getConfiguration());
+            configuration.setLocale(new Locale("en"));
+            updatedContext = context.createConfigurationContext(configuration);
+
+            if (context.getString(R.string.meter).equalsIgnoreCase(text)) {
+                return updatedContext.getString(R.string.meter);
+            }
+
+            if (context.getString(R.string.km).equalsIgnoreCase(text)) {
+                return updatedContext.getString(R.string.km);
+            }
+        }
+
+        return text;
+    }
+
+    public static String getWaterSourceDistanceEdit(String text, Context context, String locale) {
+        Context updatedContext;
+
+        if (locale.equalsIgnoreCase("mr")) {
+            Configuration configuration = new Configuration(IntelehealthApplication.getAppContext().getResources().getConfiguration());
+            configuration.setLocale(new Locale("en"));
+            updatedContext = context.createConfigurationContext(configuration);
+
+            if (text.contains(updatedContext.getString(R.string.meter))) {
+                return context.getString(R.string.meter);
+            }
+
+            if (text.contains(updatedContext.getString(R.string.km))) {
+                return context.getString(R.string.km);
+            }
+        }
+
+        return text;
+    }
+    public static String getCultivableLand(String text, Context context, String locale) {
+        if (locale.equalsIgnoreCase("mr")) {
+            Configuration configuration = new Configuration(IntelehealthApplication.getAppContext().getResources().getConfiguration());
+            configuration.setLocale(new Locale("en"));
+            Context updatedContext = context.createConfigurationContext(configuration);
+
+            if (context.getString(R.string.hectare).equalsIgnoreCase(text)) {
+                return updatedContext.getString(R.string.hectare);
+            }
+
+            if (context.getString(R.string.acre).equalsIgnoreCase(text)) {
+                return updatedContext.getString(R.string.acre);
+            }
+
+            if (context.getString(R.string.bigha).equalsIgnoreCase(text)) {
+                return updatedContext.getString(R.string.bigha);
+            }
+
+            if (context.getString(R.string.gunta).equalsIgnoreCase(text)) {
+                return updatedContext.getString(R.string.gunta);
+            }
+        }
+
+        return text;
+    }
+
+    public static String getCultivableLandEdit(String text, Context context, String locale) {
+
+        if (locale.equalsIgnoreCase("mr")) {
+            Configuration configuration = new Configuration(IntelehealthApplication.getAppContext().getResources().getConfiguration());
+            configuration.setLocale(new Locale("en"));
+            Context updatedContext = context.createConfigurationContext(configuration);
+
+            if (text.contains(updatedContext.getText(R.string.hectare))) {
+                return context.getString(R.string.hectare);
+            }
+
+            if (text.contains(updatedContext.getText(R.string.acre))) {
+                return context.getString(R.string.acre);
+            }
+
+            if (text.contains(updatedContext.getText(R.string.bigha))) {
+                return context.getString(R.string.bigha);
+            }
+
+            if (text.contains(updatedContext.getText(R.string.gunta))) {
+                return context.getString(R.string.gunta);
+            }
+        }
+
+        return text;
+    }
+    public static boolean validateFields(List<View> mandatoryFields) {
+        boolean result = true;
+        for (View mandatoryField : mandatoryFields) {
+            if (mandatoryField instanceof EditText) {
+                if (TextUtils.isEmpty(((EditText) mandatoryField).getText())) {
+                    result = false;
+                }
+            } else if (mandatoryField instanceof RadioGroup) {
+                result = ((RadioGroup) mandatoryField).getCheckedRadioButtonId() != -1;
+            } else if (mandatoryField instanceof Spinner) {
+                result = ((Spinner) mandatoryField).getSelectedItemPosition() != 0;
+            }
+        }
+        return result;
+    }
+
 }

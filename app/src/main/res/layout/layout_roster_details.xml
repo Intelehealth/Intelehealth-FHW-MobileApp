@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="activeStatus"
+            type="Boolean" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="@dimen/margin_20"
+        android:visibility="@{activeStatus ? View.VISIBLE : View.GONE}"
+        android:layout_marginEnd="24dp"
+        app:cardCornerRadius="@dimen/margin_8"
+        app:cardElevation="@dimen/margin_5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginTop="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:orientation="vertical">
+
+            <!--Personal Header-->
+            <RelativeLayout
+                android:id="@+id/relative_general_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/general_icon"
+                    android:layout_width="@dimen/edittext_height_44dp"
+                    android:layout_height="@dimen/edittext_height_44dp"
+                    android:src="@drawable/general_roster_icon_unselected" />
+
+                <TextView
+                    android:id="@+id/label_general"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_toEndOf="@+id/general_icon"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/general_roster_details"
+                    android:textAppearance="@style/patdetail_header1" />
+
+                <LinearLayout
+                    android:id="@+id/general_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/edit_change_patdetail"
+                    android:paddingHorizontal="4dp">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/edit"
+                        app:tint="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="@string/change"
+                        android:textAlignment="center"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/relative_pregnancy_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20">
+
+                <ImageView
+                    android:id="@+id/pregnancy_icon"
+                    android:layout_width="@dimen/edittext_height_44dp"
+                    android:layout_height="@dimen/edittext_height_44dp"
+                    android:src="@drawable/pregnancy_roster_icon_unselected" />
+
+                <TextView
+                    android:id="@+id/label_pregnancy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_toEndOf="@+id/pregnancy_icon"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/pregnancy_roster_details"
+                    android:textAppearance="@style/patdetail_header1" />
+
+                <LinearLayout
+                    android:id="@+id/pregnancy_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/edit_change_patdetail"
+                    android:paddingHorizontal="4dp">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/edit"
+                        app:tint="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="@string/change"
+                        android:textAlignment="center"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_health_service_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20">
+
+                <ImageView
+                    android:id="@+id/health_service_icon"
+                    android:layout_width="@dimen/edittext_height_44dp"
+                    android:layout_height="@dimen/edittext_height_44dp"
+                    android:src="@drawable/health_service_roster_icon_unselected" />
+
+                <TextView
+                    android:id="@+id/label_health_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_toEndOf="@+id/health_service_icon"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/health_service_roster_details"
+                    android:textAppearance="@style/patdetail_header1" />
+
+                <LinearLayout
+                    android:id="@+id/health_service_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/edit_change_patdetail"
+                    android:paddingHorizontal="4dp">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/edit"
+                        app:tint="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="@string/change"
+                        android:textAlignment="center"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

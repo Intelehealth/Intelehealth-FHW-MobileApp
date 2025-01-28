@@ -140,6 +140,12 @@ object PatientRegFieldsUtils {
                     PatientRegConfigKeys.VILLAGE_TOWN_CITY -> cityVillage = it
                     PatientRegConfigKeys.ADDRESS_1 -> address1 = it
                     PatientRegConfigKeys.ADDRESS_2 -> address2 = it
+                    PatientRegConfigKeys.PROVINCES -> province = it
+                    PatientRegConfigKeys.CITIES -> city = it
+                    PatientRegConfigKeys.REGISTRATION_ADDRESS_OF_HF -> registrationAddressOfHf = it
+                    PatientRegConfigKeys.BLOCK -> block = it
+                    PatientRegConfigKeys.HOUSEHOLD_NUMBER -> householdNumber = it
+
                 }
             }
         }
@@ -155,6 +161,17 @@ object PatientRegFieldsUtils {
                     PatientRegConfigKeys.SOCIAL_CATEGORY -> socialCategory = it
                     PatientRegConfigKeys.EDUCATION -> education = it
                     PatientRegConfigKeys.ECONOMIC_CATEGORY -> economicCategory = it
+
+                    PatientRegConfigKeys.TMH_CASE_SUMMARY -> tmhCaseNumber = it
+                    PatientRegConfigKeys.REQUEST_ID -> requestId = it
+                    PatientRegConfigKeys.RELATIVE_PHONE_NUM -> relativePhoneNumber = it
+                    PatientRegConfigKeys.DISCIPLINE -> discipline = it
+                    PatientRegConfigKeys.DEPARTMENT -> department = it
+
+                    PatientRegConfigKeys.INN -> inn = it
+                    PatientRegConfigKeys.CODE_OF_HEALTHY_FACILITY -> codeOfHealthyFacility = it
+                    PatientRegConfigKeys.HEALTH_FACILITY_NAME -> healthFacilityName = it
+                    PatientRegConfigKeys.CODE_OF_DEPARTMENT -> codeOfDepartment = it
                 }
             }
         }

@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="204dp"
+    android:height="140dp"
+    android:viewportWidth="204"
+    android:viewportHeight="140">
+  <path
+      android:pathData="M182.56,20.75C190.47,26.7 197.81,33.27 204,41C204,73.67 204,106.34 204,140C137.34,140 70.68,140 2,140C0.28,131.4 -0.39,124.2 -0.38,115.56C-0.37,114.9 -0.37,114.24 -0.37,113.56C-0.25,81.85 12.34,54.05 34.59,31.39C74.08,-7.46 137.87,-10.58 182.56,20.75Z"
+      android:fillColor="@color/colorAccentLightCard"/>
+</vector>

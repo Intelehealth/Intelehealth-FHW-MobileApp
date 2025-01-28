@@ -62,6 +62,7 @@ public class TooltipWindow {
         if (tipWindow != null && tipWindow.isShowing())
             tipWindow.dismiss();
     }
+
     Handler handler = new Handler(Looper.getMainLooper()) {
         public void handleMessage(android.os.Message msg) {
             if (msg.what == MSG_DISMISS_TOOLTIP) {

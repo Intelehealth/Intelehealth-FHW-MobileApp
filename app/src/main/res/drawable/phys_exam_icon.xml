@@ -4,39 +4,39 @@
     android:viewportWidth="44"
     android:viewportHeight="44">
     <path
-        android:fillColor="@color/colorPrimaryLightCard"
+        android:fillColor="@color/colorAccentLightCard"
         android:pathData="M22,22m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0" />
     <path
         android:fillColor="#00000000"
         android:pathData="M27.651,17.207C29.17,17.207 30.401,15.976 30.401,14.457C30.401,12.938 29.17,11.707 27.651,11.707C26.133,11.707 24.901,12.938 24.901,14.457C24.901,15.976 26.133,17.207 27.651,17.207Z"
         android:strokeWidth="1.33"
-        android:strokeColor="@color/colorPrimary" />
+        android:strokeColor="@color/colorAccent" />
     <path
         android:fillColor="#00000000"
         android:pathData="M32.401,20.824C32.401,20.207 31.901,19.707 31.284,19.707H24.019C23.401,19.707 22.901,20.208 22.901,20.824C22.901,20.824 22.901,26.362 22.901,26.456C22.901,29.08 25.028,31.206 27.651,31.206C30.275,31.206 32.401,29.08 32.401,26.456C32.401,26.362 32.401,20.824 32.401,20.824Z"
         android:strokeWidth="1.33"
-        android:strokeColor="@color/colorPrimary" />
+        android:strokeColor="@color/colorAccent" />
     <path
-        android:fillColor="@color/colorPrimary"
+        android:fillColor="@color/colorAccent"
         android:pathData="M13.75,16C14.44,16 15,15.44 15,14.75C15,14.06 14.44,13.5 13.75,13.5C13.06,13.5 12.5,14.06 12.5,14.75C12.5,15.44 13.06,16 13.75,16Z" />
     <path
-        android:fillColor="@color/colorPrimary"
+        android:fillColor="@color/colorAccent"
         android:pathData="M18.75,16C19.44,16 20,15.44 20,14.75C20,14.06 19.44,13.5 18.75,13.5C18.06,13.5 17.5,14.06 17.5,14.75C17.5,15.44 18.06,16 18.75,16Z" />
     <path
-        android:fillColor="@color/colorPrimary"
+        android:fillColor="@color/colorAccent"
         android:pathData="M27.75,24C28.44,24 29,23.44 29,22.75C29,22.06 28.44,21.5 27.75,21.5C27.06,21.5 26.5,22.06 26.5,22.75C26.5,23.44 27.06,24 27.75,24Z" />
     <path
         android:fillColor="#00000000"
         android:pathData="M13.75,14.75H13.42C11.664,14.75 10.634,16.727 11.641,18.166L16.25,24.75L20.57,18.104C21.509,16.66 20.473,14.75 18.75,14.75"
         android:strokeWidth="1.33"
-        android:strokeColor="@color/colorPrimary"
+        android:strokeColor="@color/colorAccent"
         android:strokeLineCap="round"
         android:strokeLineJoin="round" />
     <path
         android:fillColor="#00000000"
         android:pathData="M16.25,25V25.5C16.25,28.676 18.824,31.25 22,31.25C25.176,31.25 27.75,28.676 27.75,25.5V23.25"
         android:strokeWidth="1.33"
-        android:strokeColor="@color/colorPrimary"
+        android:strokeColor="@color/colorAccent"
         android:strokeLineCap="round"
         android:strokeLineJoin="round" />
 </vector>

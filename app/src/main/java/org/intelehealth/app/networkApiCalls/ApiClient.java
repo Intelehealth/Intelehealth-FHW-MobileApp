@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.intelehealth.app.BuildConfig;
+import org.intelehealth.app.networkApiCalls.interceptors.TokenSetupInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -44,8 +45,10 @@ public class ApiClient {
     public static <S> S createService(Class<S> serviceClass) {
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         client.addInterceptor(loggingInterceptor);
+        client.addInterceptor(new TokenSetupInterceptor());
         client.connectTimeout(60, TimeUnit.SECONDS);
         client.readTimeout(60, TimeUnit.SECONDS);
         client.writeTimeout(60, TimeUnit.SECONDS);

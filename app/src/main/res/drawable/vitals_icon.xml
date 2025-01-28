@@ -4,21 +4,21 @@
     android:viewportWidth="44"
     android:viewportHeight="44">
     <path
-        android:fillColor="@color/colorPrimaryLightCard"
+        android:fillColor="@color/colorAccentLightCard"
         android:pathData="M22,22m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0" />
     <path
         android:fillColor="#00000000"
         android:pathData="M24.5,24.069C24.5,21.42 24.5,15.201 24.5,14.75C24.5,13.37 23.381,12.25 22,12.25C20.619,12.25 19.5,13.37 19.5,14.75C19.5,15.721 19.5,21.013 19.5,24.069C18.441,24.841 17.75,26.088 17.75,27.5C17.75,29.847 19.653,31.75 22,31.75C24.347,31.75 26.25,29.847 26.25,27.5C26.25,26.088 25.559,24.841 24.5,24.069Z"
         android:strokeWidth="1.33"
-        android:strokeColor="@color/colorPrimary"
+        android:strokeColor="@color/colorAccent"
         android:strokeLineJoin="round" />
     <path
-        android:fillColor="@color/colorPrimary"
+        android:fillColor="@color/colorAccent"
         android:pathData="M22,30C23.381,30 24.5,28.881 24.5,27.5C24.5,26.119 23.381,25 22,25C20.619,25 19.5,26.119 19.5,27.5C19.5,28.881 20.619,30 22,30Z" />
     <path
         android:fillColor="#00000000"
         android:pathData="M22,26.75V18.75"
         android:strokeWidth="1.33"
-        android:strokeColor="@color/colorPrimary"
+        android:strokeColor="@color/colorAccent"
         android:strokeLineCap="round" />
 </vector>

@@ -36,6 +36,9 @@
         <action
             android:id="@+id/navigationOtherToDetails"
             app:destination="@id/activityPatientDetails" />
+        <action
+            android:id="@+id/navigationOtherToRoster"
+            app:destination="@id/activityRosterQuestionnaire" />
     </fragment>
 
     <activity
@@ -58,4 +61,20 @@
             app:nullable="true" />
 
     </activity>
+    <activity
+        android:id="@+id/activityRosterQuestionnaire"
+        android:name="org.intelehealth.app.ui.rosterquestionnaire.ui.RosterQuestionnaireMainActivity"
+        tools:layout="@layout/activity_roster_questionnaire_main">
+        <argument
+            android:name="patientUuid"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="tag"
+            app:argType="string"
+            app:nullable="true" />
+
+    </activity>
+
 </navigation>

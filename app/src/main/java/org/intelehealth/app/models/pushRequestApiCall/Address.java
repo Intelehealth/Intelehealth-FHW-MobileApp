@@ -73,4 +73,39 @@ public class Address {
         this.postalCode = postalCode;
     }
 
+    public String getAddress3() {
+        return address3;
+    }
+
+    public void setAddress3(String address3) {
+        this.address3 = address3;
+    }
+
+    public String getAddress6() {
+        return address6;
+    }
+
+    public void setAddress6(String address6) {
+        this.address6 = address6;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    @SerializedName("address3")
+    @Expose
+    private String address3;
+
+    @SerializedName("address6")
+    @Expose
+    private String address6;
+
+    @SerializedName("countyDistrict")
+    @Expose
+    private String district;
 }

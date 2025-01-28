@@ -12,7 +12,13 @@ import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+
+import org.intelehealth.app.BuildConfig;
+
 import org.intelehealth.app.utilities.CustomLog;
+
+import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +50,7 @@ import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
 import com.google.gson.Gson;
 
+import org.intelehealth.app.BuildConfig;
 import org.intelehealth.app.R;
 import org.intelehealth.app.ayu.visit.common.OnItemSelection;
 import org.intelehealth.app.ayu.visit.common.VisitUtils;
@@ -53,7 +60,9 @@ import org.intelehealth.app.knowledgeEngine.Node;
 import org.intelehealth.app.knowledgeEngine.PhysicalExam;
 import org.intelehealth.app.models.AnswerResult;
 import org.intelehealth.app.shared.FirstLetterUpperCaseInputFilter;
+import org.intelehealth.app.utilities.CustomLog;
 import org.intelehealth.app.utilities.DialogUtils;
+import org.intelehealth.app.utilities.FlavorKeys;
 import org.intelehealth.app.utilities.SessionManager;
 import org.intelehealth.app.utilities.WindowsUtils;
 import org.json.JSONObject;
@@ -315,9 +324,16 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
 
             Node _mNode = mPhysicalExam.getExamNode(position).getOption(0);
             final String parent_name = mPhysicalExam.getExamParentNodeName(position);
-            String nodeText = parent_name + " : " + _mNode.findDisplay();
+            String nodeText = (BuildConfig.FLAVOR_client == FlavorKeys.KCDO || BuildConfig.FLAVOR_client == FlavorKeys.UNFPA) ?
+                    _mNode.findDisplay() :
+                    parent_name + " : " + _mNode.findDisplay();
 
             genericViewHolder.tvQuestion.setText(nodeText);
+
+            //hiding default text if input type is text
+            if(_mNode.getInputType().equals("text")){
+                genericViewHolder.tvQuestionDesc.setVisibility(View.GONE);
+            }
 
             if (genericViewHolder.node.getJobAidFile() != null && !genericViewHolder.node.getJobAidFile().isEmpty()) {
                 genericViewHolder.referenceContainerLinearLayout.setVisibility(View.VISIBLE);
@@ -365,7 +381,7 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
 
             String type = genericViewHolder.node.getInputType();
             CustomLog.v(TAG, "onBindViewHolder Type - " + type);
-            CustomLog.v(TAG, "onBindViewHolder Node - " + new Gson().toJson(genericViewHolder.node));
+            //CustomLog.v(TAG, "onBindViewHolder Node - " + new Gson().toJson(genericViewHolder.node));
             if (type == null || type.isEmpty() && (genericViewHolder.node.getOptionsList() != null && !genericViewHolder.node.getOptionsList().isEmpty())) {
                 type = "options";
             }
@@ -703,68 +719,68 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
         i10.setColorFilter(ContextCompat.getColor(mContext, R.color.gray_3));
 
         if (range == 0) {
-            tv0.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+            tv0.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
             tv0.setTextSize(16);
             tv0.setTypeface(tv0.getTypeface(), Typeface.BOLD);
 
             i0.setColorFilter(ContextCompat.getColor(mContext, R.color.colorPrimary));
 
         } else if (range == 1) {
-            tv1.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+            tv1.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
             tv1.setTextSize(16);
             tv1.setTypeface(tv1.getTypeface(), Typeface.BOLD);
 
             i1.setColorFilter(ContextCompat.getColor(mContext, R.color.colorPrimary));
         } else if (range == 2) {
-            tv2.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+            tv2.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
             tv2.setTextSize(16);
             tv2.setTypeface(tv2.getTypeface(), Typeface.BOLD);
 
             i2.setColorFilter(ContextCompat.getColor(mContext, R.color.colorPrimary));
         } else if (range == 3) {
-            tv3.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+            tv3.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
             tv3.setTextSize(16);
             tv3.setTypeface(tv3.getTypeface(), Typeface.BOLD);
 
             i3.setColorFilter(ContextCompat.getColor(mContext, R.color.colorPrimary));
         } else if (range == 4) {
-            tv4.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+            tv4.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
             tv4.setTextSize(16);
             tv4.setTypeface(tv4.getTypeface(), Typeface.BOLD);
 
             i4.setColorFilter(ContextCompat.getColor(mContext, R.color.colorPrimary));
         } else if (range == 5) {
-            tv5.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+            tv5.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
             tv5.setTextSize(16);
             tv5.setTypeface(tv5.getTypeface(), Typeface.BOLD);
 
             i5.setColorFilter(ContextCompat.getColor(mContext, R.color.colorPrimary));
         } else if (range == 6) {
-            tv6.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+            tv6.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
             tv6.setTextSize(16);
             tv6.setTypeface(tv6.getTypeface(), Typeface.BOLD);
 
             i6.setColorFilter(ContextCompat.getColor(mContext, R.color.colorPrimary));
         } else if (range == 7) {
-            tv7.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+            tv7.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
             tv7.setTextSize(16);
             tv7.setTypeface(tv7.getTypeface(), Typeface.BOLD);
 
             i7.setColorFilter(ContextCompat.getColor(mContext, R.color.colorPrimary));
         } else if (range == 8) {
-            tv8.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+            tv8.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
             tv8.setTextSize(16);
             tv8.setTypeface(tv8.getTypeface(), Typeface.BOLD);
 
             i8.setColorFilter(ContextCompat.getColor(mContext, R.color.colorPrimary));
         } else if (range == 9) {
-            tv9.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+            tv9.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
             tv9.setTextSize(16);
             tv9.setTypeface(tv9.getTypeface(), Typeface.BOLD);
 
             i9.setColorFilter(ContextCompat.getColor(mContext, R.color.colorPrimary));
         } else if (range == 10) {
-            tv10.setTextColor(ContextCompat.getColor(mContext,R.color.colorPrimary));
+            tv10.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
             tv10.setTextSize(16);
             tv10.setTypeface(tv10.getTypeface(), Typeface.BOLD);
 
@@ -897,7 +913,11 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
                 case "date":
                     node.setShowCalendarHeader(true);
                     //askDate(questionNode, context, adapter);
-                    addDateView(node, holder, index);
+                    if (node.getText().contains("Rescheduled")) {
+                        addFutureDateView(node, holder, index);
+                    } else {
+                        addDateView(node, holder, index);
+                    }
                     break;
                 case "location":
                     //askLocation(questionNode, context, adapter);
@@ -1063,7 +1083,7 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
 
                     if (holder.isParallelMultiNestedNode && !isLastNodeSubmit) {
                         holder.selectedNestedOptionIndex += 1;
-                        holder.nestedQuestionsListingAdapter.addItem(options.get(holder.selectedNestedOptionIndex));
+                        holder.nestedQuestionsListingAdapter.addItem(TAG, options.get(holder.selectedNestedOptionIndex));
 
                     } else if (!selectedNode.isContainsTheQuestionBeforeOptions()) {
                         mOnItemSelection.onSelect(node, index, isSkipped, selectedNode);
@@ -1072,7 +1092,7 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
                             mOnItemSelection.onSelect(node, index, isSkipped, selectedNode);
                         else {
                             holder.selectedNestedOptionIndex += 1;
-                            holder.nestedQuestionsListingAdapter.addItem(options.get(holder.selectedNestedOptionIndex));
+                            holder.nestedQuestionsListingAdapter.addItem(TAG, options.get(holder.selectedNestedOptionIndex));
                         }
                     }
                     //VisitUtils.scrollNow(holder.nestedRecyclerView, 1000, 0, 300);
@@ -1096,6 +1116,11 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
                 @Override
                 public void onImageRemoved(int nodeIndex, int imageIndex, String image) {
 
+                }
+
+                @Override
+                public void onTerminalNodeAnsweredForParentUpdate(String parentNodeId) {
+                    selectedNode.setDataCaptured(true);
                 }
             });
             holder.nestedQuestionsListingAdapter.setLoadedIds(mLoadedIds);
@@ -1121,22 +1146,22 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
 
                     if (mIsEditMode) {
                         for (int i = 0; i < options.size(); i++) {
-                            holder.nestedQuestionsListingAdapter.addItem(options.get(i));
+                            holder.nestedQuestionsListingAdapter.addItem(TAG, options.get(i));
                         }
                     } else if (holder.selectedNestedOptionIndex > 0) {
                         holder.selectedNestedOptionIndex = 0;
                         CustomLog.v(TAG, "holder.selectedNestedOptionIndex 1 - " + (holder.selectedNestedOptionIndex));
-                        holder.nestedQuestionsListingAdapter.addItem(options.get(holder.selectedNestedOptionIndex));
+                        holder.nestedQuestionsListingAdapter.addItem(TAG, options.get(holder.selectedNestedOptionIndex));
                        /* for (int i = 0; i <= holder.selectedNestedOptionIndex; i++) {
                             if (options.size() < i) {
                                 holder.nestedQuestionsListingAdapter.addItem(options.get(i));
                             }
                         }*/
                     } else {
-                        holder.nestedQuestionsListingAdapter.addItem(options.get(holder.selectedNestedOptionIndex));
+                        holder.nestedQuestionsListingAdapter.addItem(TAG, options.get(holder.selectedNestedOptionIndex));
                     }
                 } else {
-                    holder.nestedQuestionsListingAdapter.addItem(selectedNode);
+                    holder.nestedQuestionsListingAdapter.addItem(TAG, selectedNode);
                 }
                 holder.isParallelMultiNestedNode = options.size() > 1;
 
@@ -1772,7 +1797,7 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
                         mOnItemSelection.onSelect(node, index, isSkipped, selectedNode);
                     else {
                         holder.selectedNestedOptionIndex += 1;
-                        holder.nestedQuestionsListingAdapter.addItem(options.get(holder.selectedNestedOptionIndex));
+                        holder.nestedQuestionsListingAdapter.addItem(TAG, options.get(holder.selectedNestedOptionIndex));
                     }
                     //VisitUtils.scrollNow(holder.nestedRecyclerView, 1000, 0, 300);
                 }
@@ -1796,6 +1821,10 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
                 public void onImageRemoved(int nodeIndex, int imageIndex, String image) {
 
                 }
+                @Override
+                public void onTerminalNodeAnsweredForParentUpdate(String parentNodeId) {
+                    selectedNode.setDataCaptured(true);
+                }
             });
             holder.nestedQuestionsListingAdapter.setLoadedIds(mLoadedIds);
             holder.nestedRecyclerView.setAdapter(holder.nestedQuestionsListingAdapter);
@@ -1809,16 +1838,16 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
                 holder.nestedQuestionsListingAdapter.clearItems();
                 if (mIsEditMode) {
                     for (int i = 0; i < options.size(); i++) {
-                        holder.nestedQuestionsListingAdapter.addItem(options.get(i));
+                        holder.nestedQuestionsListingAdapter.addItem(TAG, options.get(i));
                     }
                 } else if (holder.selectedNestedOptionIndex > 0) {
                     for (int i = 0; i <= holder.selectedNestedOptionIndex; i++) {
                         if (options.size() < i) {
-                            holder.nestedQuestionsListingAdapter.addItem(options.get(i));
+                            holder.nestedQuestionsListingAdapter.addItem(TAG, options.get(i));
                         }
                     }
                 } else {
-                    holder.nestedQuestionsListingAdapter.addItem(options.get(holder.selectedNestedOptionIndex));
+                    holder.nestedQuestionsListingAdapter.addItem(TAG, options.get(holder.selectedNestedOptionIndex));
                 }
                 holder.isParallelMultiNestedNode = options.size() > 1;
 
@@ -2249,7 +2278,7 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
         adaptador.setDropDownViewResource(R.layout.ui2_custome_dropdown_item_view);
 
         numberRangeSpinner.setAdapter(adaptador);
-        numberRangeSpinner.setPopupBackgroundDrawable(ContextCompat.getDrawable(mContext,R.drawable.popup_menu_background));
+        numberRangeSpinner.setPopupBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.popup_menu_background));
 
 
         numberRangeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -2284,7 +2313,7 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
         adaptador1.setDropDownViewResource(R.layout.ui2_custome_dropdown_item_view);
 
         durationTypeSpinner.setAdapter(adaptador1);
-        durationTypeSpinner.setPopupBackgroundDrawable(ContextCompat.getDrawable(mContext,R.drawable.popup_menu_background));
+        durationTypeSpinner.setPopupBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.popup_menu_background));
 
         durationTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -2709,6 +2738,7 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     private void addDateView(Node node, GenericViewHolder holder, int index) {
+        holder.singleComponentContainer.removeAllViews();
         holder.singleComponentContainer.setVisibility(View.VISIBLE);
         View view = View.inflate(mContext, R.layout.visit_reason_date, null);
         final Button submitButton = view.findViewById(R.id.btn_submit);
@@ -2822,6 +2852,103 @@ public class QuestionsListingAdapter extends RecyclerView.Adapter<RecyclerView.V
         boolean isParentNodeIsMandatory = mItemList.get(index).isRequired();
         if (isParentNodeIsMandatory)
             skipButton.setVisibility(View.GONE);
+        holder.singleComponentContainer.addView(view);
+    }
+
+    private void addFutureDateView(Node node, GenericViewHolder holder, int index) {
+        holder.singleComponentContainer.setVisibility(View.VISIBLE);
+        View view = View.inflate(mContext, R.layout.visit_reason_date, null);
+        final Button submitButton = view.findViewById(R.id.btn_submit);
+        submitButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, node.isDataCaptured() ? R.drawable.ic_baseline_check_18_white : 0, 0);
+        submitButton.setBackgroundResource(node.isDataCaptured() ? R.drawable.ui2_common_primary_bg : R.drawable.ui2_common_button_bg_submit);
+
+        final TextView displayDateButton = view.findViewById(R.id.btn_view_date);
+        final TextView calendarHeader = view.findViewById(R.id.date_header);
+
+        final CalendarView calendarView = view.findViewById(R.id.cav_date);
+
+        // Restrict past dates by setting minDate to the current time
+        calendarView.setMinDate(System.currentTimeMillis());
+        calendarView.setMaxDate(System.currentTimeMillis() + (1000L * 60 * 60 * 24 * 365)); // Allow up to 1 year ahead
+
+        Button skipButton = view.findViewById(R.id.btn_skip);
+        String oldValue = node.getLanguage();
+
+        if (node.isSkipped()) {
+            skipButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_18_white, 0);
+            skipButton.setBackgroundResource(R.drawable.ui2_common_primary_bg);
+            AdapterUtils.setToDisable(submitButton);
+        }
+        if (node.isDataCaptured()) {
+            displayDateButton.setText(oldValue);
+            displayDateButton.setTag(oldValue);
+        }
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                Calendar cal = Calendar.getInstance();
+                cal.set(year, month, dayOfMonth);
+                Date date = cal.getTime();
+
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MMM/yyyy", Locale.ENGLISH);
+                SimpleDateFormat simpleDateFormatLocal = new SimpleDateFormat("dd/MMM/yyyy", new Locale(new SessionManager(mContext).getAppLanguage()));
+
+                String dateString = simpleDateFormat.format(date);
+                displayDateButton.setText(simpleDateFormatLocal.format(date));
+                displayDateButton.setTag(dateString);
+
+                VisitUtils.scrollNow(mRecyclerView, 400, 0, 400, mIsEditMode, mLoadedIds.contains(mItemList.get(index).getId()));
+                AdapterUtils.setToDefault(submitButton);
+                AdapterUtils.setToDefault(skipButton);
+            }
+        });
+
+        holder.skipButton.setVisibility(View.GONE);
+        if (!holder.node.isRequired()) skipButton.setVisibility(View.VISIBLE);
+        else skipButton.setVisibility(View.GONE);
+
+        skipButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                node.setSkipped(true);
+                AdapterUtils.setToDisable(submitButton);
+                AdapterUtils.buttonProgressAnimation(mContext, skipButton, false, new AdapterUtils.OnFinishActionListener() {
+                    @Override
+                    public void onFinish() {
+                        node.setSelected(false);
+                        mOnItemSelection.onSelect(node, index, true, null);
+                    }
+                });
+            }
+        });
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String d = (String) displayDateButton.getTag();
+                if (d == null || d.equalsIgnoreCase("null") || !d.contains("/")) {
+                    Toast.makeText(mContext, mContext.getString(R.string.please_select_date), Toast.LENGTH_SHORT).show();
+                } else {
+                    node.addLanguage(d);
+                    node.setSelected(true);
+                    holder.node.setSelected(true);
+                    node.setDataCaptured(true);
+                    holder.node.setDataCaptured(true);
+
+                    AdapterUtils.setToDisable(skipButton);
+                    AdapterUtils.buttonProgressAnimation(mContext, submitButton, true, new AdapterUtils.OnFinishActionListener() {
+                        @Override
+                        public void onFinish() {
+                            mOnItemSelection.onSelect(node, index, false, null);
+                        }
+                    });
+                }
+            }
+        });
+
+        boolean isParentNodeIsMandatory = mItemList.get(index).isRequired();
+        if (isParentNodeIsMandatory) skipButton.setVisibility(View.GONE);
         holder.singleComponentContainer.addView(view);
     }
 
