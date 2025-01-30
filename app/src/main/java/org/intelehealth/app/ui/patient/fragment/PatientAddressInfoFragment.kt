@@ -210,7 +210,7 @@ class PatientAddressInfoFragment : BasePatientFragment(R.layout.fragment_patient
             //province
             binding.textInputLayProvince.tag = it
             val adapter: ArrayAdapter<String> = ArrayAdapterUtils.getObjectArrayAdapter(
-                requireContext(), it.provinces
+                requireContext(), LanguageUtils.getProvinceByLocal(it)
             )
             binding.autoCompleteProvince.setAdapter(adapter)
 
@@ -226,12 +226,13 @@ class PatientAddressInfoFragment : BasePatientFragment(R.layout.fragment_patient
                 val provincesAndCities: ProvincesAndCities =
                     binding.textInputLayProvince.tag as ProvincesAndCities
                 patient.province = provincesAndCities.provinces[i]
+                patient.codeOfHealthFacility = LanguageUtils.getCodeOfHf(provincesAndCities.provinces[i])
             }
 
             //cities
             binding.textInputLayCity.tag = it
             val cityAdapter: ArrayAdapter<String> = ArrayAdapterUtils.getObjectArrayAdapter(
-                requireContext(), it.cities
+                requireContext(), LanguageUtils.getCityByLocal(it)
             )
             binding.autoCompleteCity.setAdapter(cityAdapter)
 

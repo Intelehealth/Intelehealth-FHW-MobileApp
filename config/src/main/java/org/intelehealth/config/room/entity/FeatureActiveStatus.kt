@@ -3,6 +3,7 @@ package org.intelehealth.config.room.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.security.Signature
 
 /**
  * Created by Vaghela Mithun R. on 29-05-2024 - 17:25.
@@ -34,7 +35,11 @@ data class FeatureActiveStatus(
     val diagnosisAtSecondaryLevel: Boolean = false,
 
     @SerializedName("type_of_consultation")
-    val typeOfConsultation: Boolean = false
+    val typeOfConsultation: Boolean = false,
+
+    @SerializedName("mobile_e_signature")
+    val mobileESignature: Boolean = false
+
 ) {
     var videoSection: Boolean = true
     var chatSection: Boolean = true

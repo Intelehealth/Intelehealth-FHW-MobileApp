@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IHUtils</string>
+    //Camera Permissions
+    <string name="util_permission_camera_rationale">Для показа предварительного просмотра изображения с камеры необходимо разрешение на доступ к камере.</string>
+    <string name="util_permission_camera_denied">Разрешение на камеру отклонено. Пожалуйста, рассмотрите возможность его предоставления, чтобы получить доступ к камере!</string>
+    <string name="util_permission_camera_never_askagain">В разрешении на съемку отказано и просьба больше никогда не спрашивать.</string>
+    <string name="util_button_allow">Позволять</string>
+    <string name="util_button_deny">Отрицать</string>
+    <string name="util_button_ok">Хорошо</string>
+    <string name="util_button_cancel">Отменить</string>
+    <string name="util_picture_taken">Фото сделано</string>
+    <string name="util_switch_flash">Переключить вспышку</string>
+    <string name="util_switch_camera">Переключить камеру</string>
+    <string name="util_flash_auto">Вспышка автоматическая</string>
+    <string name="util_flash_off">Вспышка выключена</string>
+    <string name="util_flash_on">Вспышка включена</string>
+    <string name="util_title_activity_camera">Камера</string>
+    <string name="util_cancel">Отмена</string>
+    <string name="util_take_image">Сделать снимок</string>
+    <string name="util_photo">ФОТО</string>
+</resources>

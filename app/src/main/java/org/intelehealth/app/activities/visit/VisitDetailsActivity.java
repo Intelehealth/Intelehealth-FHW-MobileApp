@@ -516,8 +516,11 @@ public class VisitDetailsActivity extends BaseActivity implements NetworkUtils.I
             // Time - end
 
             visit_startDate = DateAndTimeUtils.date_formatter(visit_startDate, "yyyy-MM-dd", "dd MMMM yyyy");
-            if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
+            if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")){
                 visit_startDate = StringUtils.en__hi_dob(visit_startDate);
+            }else if(sessionManager.getAppLanguage().equalsIgnoreCase("ru")){
+                visit_startDate = StringUtils.en__ru_dob(visit_startDate);
+            }
             CustomLog.v("Followup", "foramted date: " + visit_startDate);
             visit_startDate_txt.setText(visit_startDate);
         }
@@ -552,16 +555,22 @@ public class VisitDetailsActivity extends BaseActivity implements NetworkUtils.I
             followup_relative_block.setVisibility(View.VISIBLE);
             yes_no_followup_relative.setVisibility(View.VISIBLE);
             followupDate = DateAndTimeUtils.date_formatter(followupDate, "yyyy-MM-dd", "dd MMMM");
-            if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
+            if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")){
                 followupDate = StringUtils.en__hi_dob(followupDate);
+            }else if(sessionManager.getAppLanguage().equalsIgnoreCase("ru")){
+                followupDate = StringUtils.en__ru_dob(followupDate);
+            }
             if (followupDate != null && !followupDate.isEmpty()) {
                 followupDate_txt.setText(getResources().getString(R.string.follow_up_on) + " " + followupDate);
                 followup_info.setText(getResources().getString(R.string.please_take) + " " + patientName + getResources().getString(R.string.s_follow_up_visit));
 
                 if (DateAndTimeUtils.isCurrentDateBeforeFollowUpDate(originalFollowUpDate, "yyyy-MM-dd")) {
                     String followUpAcceptText = getResources().getString(R.string.doctor_suggested_follow_up_on, followUpDate_format);
-                    if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
+                    if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")){
                         followUpAcceptText = StringUtils.en__hi_dob(followUpAcceptText);
+                    }else if(sessionManager.getAppLanguage().equalsIgnoreCase("ru")){
+                        followUpAcceptText = StringUtils.en__ru_dob(followUpAcceptText);
+                    }
                     followup_accept_text.setText(followUpAcceptText);
                 } else {
                     followup_accept_text.setText(getResources().getString(R.string.follow_up_date_arrived));

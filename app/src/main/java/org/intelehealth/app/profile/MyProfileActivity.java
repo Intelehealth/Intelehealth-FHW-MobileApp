@@ -2,6 +2,7 @@ package org.intelehealth.app.profile;
 
 import static org.intelehealth.app.syncModule.SyncUtils.syncNow;
 import static org.intelehealth.app.utilities.StringUtils.en_hi_dob_updated;
+import static org.intelehealth.app.utilities.StringUtils.en_ru_dob_three;
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
@@ -1365,6 +1366,8 @@ public class MyProfileActivity extends BaseActivity implements SendSelectedDateI
                 tvDob.setText(dateToshow1 + ", " + splitedDate[2]);
                 if (sessionManager.getAppLanguage() != null && sessionManager.getAppLanguage().equalsIgnoreCase("hi")) {
                     tvDob.setText(en_hi_dob_updated(dateToshow1) + ", " + splitedDate[2]);
+                }else if(sessionManager.getAppLanguage() != null && sessionManager.getAppLanguage().equalsIgnoreCase("ru")){
+                    tvDob.setText(en_ru_dob_three(dateToshow1) + ", " + splitedDate[2]);
                 }
                 myProfilePOJO.setNewDateOfBirth(dateToshow1 + ", " + splitedDate[2]);
                 if (tvErrorDob.getVisibility() == View.VISIBLE) tvErrorDob.setVisibility(View.GONE);

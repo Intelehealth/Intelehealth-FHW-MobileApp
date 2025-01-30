@@ -1446,8 +1446,11 @@ public class PrescriptionActivity extends BaseActivity implements NetworkUtils.I
                     no_followup_txt.setVisibility(View.GONE);
                 }
                 String followUpDate_format = DateAndTimeUtils.date_formatter(followUpDate, "yyyy-MM-dd", "dd MMMM,yyyy");
-                if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
+                if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")){
                     followUpDate_format = StringUtils.en__hi_dob(followUpDate_format);
+                }else if(sessionManager.getAppLanguage().equalsIgnoreCase("ru")){
+                    followUpDate_format = StringUtils.en__ru_dob(followUpDate_format);
+                }
                 followup_date_txt.setText(followUpDate_format);
                 CustomLog.v("Prescriotion", "followUpDate - " + followUpDate);
 

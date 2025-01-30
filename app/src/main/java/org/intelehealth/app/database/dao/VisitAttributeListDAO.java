@@ -3,6 +3,7 @@ package org.intelehealth.app.database.dao;
 import static org.intelehealth.app.utilities.UuidDictionary.ADDITIONAL_NOTES;
 import static org.intelehealth.app.utilities.UuidDictionary.CONSULTATION_TYPE;
 import static org.intelehealth.app.utilities.UuidDictionary.DIAGNOSIS;
+import static org.intelehealth.app.utilities.UuidDictionary.E_SIGNATURE;
 import static org.intelehealth.app.utilities.UuidDictionary.PRESCRIPTION_LINK;
 import static org.intelehealth.app.utilities.UuidDictionary.SPECIALITY;
 
@@ -73,7 +74,8 @@ public class VisitAttributeListDAO {
                     visitDTO.getVisit_attribute_type_uuid().equalsIgnoreCase(ADDITIONAL_NOTES) ||
                     visitDTO.getVisit_attribute_type_uuid().equalsIgnoreCase(PRESCRIPTION_LINK) ||
                     visitDTO.getVisit_attribute_type_uuid().equalsIgnoreCase(DIAGNOSIS) ||
-                    visitDTO.getVisit_attribute_type_uuid().equalsIgnoreCase(CONSULTATION_TYPE)) {
+                    visitDTO.getVisit_attribute_type_uuid().equalsIgnoreCase(CONSULTATION_TYPE) ||
+                    visitDTO.getVisit_attribute_type_uuid().equalsIgnoreCase(E_SIGNATURE)) {
                 createdRecordsCount = db.insertWithOnConflict("tbl_visit_attribute", null, values, SQLiteDatabase.CONFLICT_REPLACE);
 
 //                if (createdRecordsCount != -1) {

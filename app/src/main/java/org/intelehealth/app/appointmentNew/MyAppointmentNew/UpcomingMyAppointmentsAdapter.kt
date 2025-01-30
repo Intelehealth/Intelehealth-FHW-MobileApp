@@ -118,37 +118,24 @@ class UpcomingMyAppointmentsAdapter(
                             holder.tvDate.setTextColor(context.getColor(R.color.colorPrimary1))
                         } else {
                             if (hours > 1) {
-                                if (sessionManager.appLanguage.equals(
-                                        "en",
-                                        ignoreCase = true
-                                    )
-                                ) timeText =
-                                    context.getString(R.string.`in`) + " " + hours + " " + context.getString(
-                                        R.string.hours
-                                    ) + " " +
-                                            mins + " " + context.getString(R.string.minutes_txt) + " " +
-                                            context.getString(R.string.at) + " " + appointmentInfoModel.slotTime else if (sessionManager.appLanguage.equals(
-                                        "hi",
-                                        ignoreCase = true
-                                    )
-                                ) timeText =
+                                if (sessionManager.appLanguage.equals("hi", ignoreCase = true))
+                                                timeText =
                                     (hours.toString() + " " + context.getString(R.string.hours) + " " + mins + " " + context.getString(
                                         R.string.minutes_txt
                                     ) + " "
                                             + context.getString(R.string.`in`) + "  " + appointmentInfoModel.slotTime + " " + context.getString(
                                         R.string.at
                                     ))
+                                else{
+                                    timeText =
+                                        context.getString(R.string.`in`) + " " + hours + " " + context.getString(
+                                            R.string.hours
+                                        ) + " " +
+                                                mins + " " + context.getString(R.string.minutes_txt) + " " +
+                                                context.getString(R.string.at) + " " + appointmentInfoModel.slotTime
+                                }
                             } else {
                                 if (sessionManager.appLanguage.equals(
-                                        "en",
-                                        ignoreCase = true
-                                    )
-                                ) timeText =
-                                    context.getString(R.string.`in`) + " " + hours + " " + context.getString(
-                                        R.string.hour
-                                    ) + " " +
-                                            mins + " " + context.getString(R.string.minutes_txt) + " " +
-                                            context.getString(R.string.at) + " " + appointmentInfoModel.slotTime else if (sessionManager.appLanguage.equals(
                                         "hi",
                                         ignoreCase = true
                                     )
@@ -159,6 +146,14 @@ class UpcomingMyAppointmentsAdapter(
                                             + context.getString(R.string.`in`) + "  " + appointmentInfoModel.slotTime + " " + context.getString(
                                         R.string.at
                                     ))
+                                else{
+                                    timeText =
+                                        context.getString(R.string.`in`) + " " + hours + " " + context.getString(
+                                            R.string.hour
+                                        ) + " " +
+                                                mins + " " + context.getString(R.string.minutes_txt) + " " +
+                                                context.getString(R.string.at) + " " + appointmentInfoModel.slotTime
+                                }
                             }
                             holder.tvDate.text = timeText
                             holder.tvDate.setTextColor(context.getColor(R.color.colorPrimary1))

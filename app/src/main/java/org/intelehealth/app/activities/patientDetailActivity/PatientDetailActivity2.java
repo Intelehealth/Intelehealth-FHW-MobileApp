@@ -128,6 +128,7 @@ import org.intelehealth.app.utilities.DateAndTimeUtils;
 import org.intelehealth.app.utilities.DialogUtils;
 import org.intelehealth.app.utilities.DownloadFilesUtils;
 import org.intelehealth.app.utilities.FileUtils;
+import org.intelehealth.app.utilities.LanguageUtils;
 import org.intelehealth.app.utilities.Logger;
 import org.intelehealth.app.utilities.NetworkConnection;
 import org.intelehealth.app.utilities.NetworkUtils;
@@ -2065,7 +2066,7 @@ public class PatientDetailActivity2 extends BaseActivity implements NetworkUtils
         if (patientDTO.getProvince() != null && !patientDTO.getProvince().
 
                 equals("")) {
-            provinceTv.setText(patientDTO.getProvince());
+            provinceTv.setText(LanguageUtils.getProvince(patientDTO.getProvince()));
         } else {
             provinceTv.setText(getString(R.string.not_provided));
         }
@@ -2074,7 +2075,7 @@ public class PatientDetailActivity2 extends BaseActivity implements NetworkUtils
         if (patientDTO.getCity() != null && !patientDTO.getCity().
 
                 equals("")) {
-            cityTv.setText(patientDTO.getCity());
+            cityTv.setText(LanguageUtils.getCity(patientDTO.getCity()));
         } else {
             cityTv.setText(getString(R.string.not_provided));
         }
@@ -2110,7 +2111,7 @@ public class PatientDetailActivity2 extends BaseActivity implements NetworkUtils
         if (patientDTO.getHealthFacilityName() != null && !patientDTO.getHealthFacilityName().
 
                 equals("")) {
-            healthFacilityNameTv.setText(patientDTO.getHealthFacilityName());
+            healthFacilityNameTv.setText(StringUtils.getHealthyFacilityName(patientDTO.getHealthFacilityName(), sessionManager.getCurrentLang()));
         } else {
             healthFacilityNameTv.setText(getString(R.string.not_provided));
         }

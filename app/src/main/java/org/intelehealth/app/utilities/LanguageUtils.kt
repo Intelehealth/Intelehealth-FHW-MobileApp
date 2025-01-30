@@ -24,6 +24,8 @@ object LanguageUtils {
     private const val STATE_DISTRICT_JSON = "state_district_tehsil.json"
     private const val PROVINCE_AND_CITIES_JSON = "province_and_cities.json"
 
+    private var provincesAndCities: ProvincesAndCities? = null
+
     @JvmStatic
     fun getLocalLang(): String {
         val context = IntelehealthApplication.getAppContext()
@@ -37,12 +39,29 @@ object LanguageUtils {
 
     @JvmStatic
     fun getProvince(province: String): String? {
-        return getProvincesAndCities().provinces.find { it == province }
+        val locations = getProvincesAndCities()
+        val index =  getProvincesAndCities().provinces.indexOf(province)
+        return when(getLocalLang()){
+            "ru"-> locations.provinces_ru[index]
+            else -> locations.provinces[index]
+        }
     }
 
     @JvmStatic
     fun getCity(city: String): String? {
-        return getProvincesAndCities().cities.find { it == city }
+        val locations = getProvincesAndCities()
+        val index =  getProvincesAndCities().cities.indexOf(city)
+        return when(getLocalLang()){
+            "ru"-> locations.cities_ru[index]
+            else -> locations.cities[index]
+        }
+    }
+
+    @JvmStatic
+    fun getCodeOfHf(province: String): String? {
+        if(province.isEmpty()) return ""
+        val codeMap =  getProvincesAndCities().code_of_hf.find { it.contains(province) }
+        return codeMap?.split(":")?.last()
     }
 
     @JvmStatic
@@ -70,10 +89,14 @@ object LanguageUtils {
         val context = IntelehealthApplication.getAppContext()
         val jsonObject = FileUtils.encodeJSON(context, PROVINCE_AND_CITIES_JSON)
 
-        return Gson().fromJson(
-            jsonObject.toString(),
-            ProvincesAndCities::class.java
-        )
+        if(provincesAndCities == null){
+            provincesAndCities =  Gson().fromJson(
+                jsonObject.toString(),
+                ProvincesAndCities::class.java
+            )
+        }
+
+        return provincesAndCities!!
     }
 
     @JvmStatic
@@ -146,5 +169,19 @@ object LanguageUtils {
             return if (index > 0) array[index]
             else ""
         } else dbString
+    }
+
+    fun getProvinceByLocal(it: ProvincesAndCities): List<String> {
+        return when(getLocalLang()){
+            "ru"-> it.provinces_ru
+            else -> it.provinces
+        }
+    }
+
+    fun getCityByLocal(it: ProvincesAndCities): List<String> {
+        return when(getLocalLang()){
+            "ru"-> it.cities_ru
+            else -> it.cities
+        }
     }
 }

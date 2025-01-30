@@ -1,13 +1,17 @@
 package org.intelehealth.app.ui.patient.fragment
 
+import android.os.Build
 import android.os.Bundle
+import android.text.InputType
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.databinding.OnRebindCallback
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.github.ajalt.timberkt.Timber
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
+import org.intelehealth.app.BuildConfig
 import org.intelehealth.app.R
 import org.intelehealth.app.app.AppConstants
 import org.intelehealth.app.databinding.FragmentPatientOtherInfoBinding
@@ -15,6 +19,7 @@ import org.intelehealth.app.models.dto.PatientDTO
 import org.intelehealth.app.ui.filter.FirstLetterUpperCaseInputFilter
 import org.intelehealth.app.utilities.ArrayAdapterUtils
 import org.intelehealth.app.utilities.CustomLog
+import org.intelehealth.app.utilities.FlavorKeys
 import org.intelehealth.app.utilities.LanguageUtils
 import org.intelehealth.app.utilities.PatientRegFieldsUtils
 import org.intelehealth.app.utilities.PatientRegStage
@@ -60,6 +65,8 @@ class PatientOtherInfoFragment : BasePatientFragment(R.layout.fragment_patient_o
         super.onPatientDataLoaded(patient)
         Timber.d { "onPatientDataLoaded" }
         Timber.d { Gson().toJson(patient) }
+        patient.codeOfHealthFacility = LanguageUtils.getCodeOfHf(patient.province)
+
         binding.patient = patient
         binding.isEditMode = patientViewModel.isEditMode
         fetchPersonalInfoConfig()
@@ -67,16 +74,16 @@ class PatientOtherInfoFragment : BasePatientFragment(R.layout.fragment_patient_o
 
     private fun fetchPersonalInfoConfig() {
 
-       /* patientViewModel.fetchOtherRegFields().observe(viewLifecycleOwner) {
-            binding.otherInfoConfig = PatientRegFieldsUtils.buildPatientOtherInfoConfig(it)
-            setupSocialCategory()
-            setupEducations()
-            setupHealthFacility()
-            setupEconomicCategory()
-            applyFilter()
-            setInputTextChangListener()
-            setClickListener()
-        }*/
+        /* patientViewModel.fetchOtherRegFields().observe(viewLifecycleOwner) {
+             binding.otherInfoConfig = PatientRegFieldsUtils.buildPatientOtherInfoConfig(it)
+             setupSocialCategory()
+             setupEducations()
+             setupHealthFacility()
+             setupEconomicCategory()
+             applyFilter()
+             setInputTextChangListener()
+             setClickListener()
+         }*/
 
         lifecycleScope.launch {
             patientViewModel.fetchOtherRegFieldsSuspended().let {
@@ -88,7 +95,18 @@ class PatientOtherInfoFragment : BasePatientFragment(R.layout.fragment_patient_o
                 applyFilter()
                 setInputTextChangListener()
                 setClickListener()
+                setupCodeOfHealthFacilityTextField()
             }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setupCodeOfHealthFacilityTextField() {
+        if (BuildConfig.FLAVOR_client == FlavorKeys.UNFPA) {
+            binding.textInputCodeOfHealthyFacility.isEnabled = false
+            binding.textInputCodeOfHealthyFacility.isClickable = false
+            binding.textInputCodeOfHealthyFacility.isFocusableInTouchMode = false
+            binding.textInputCodeOfHealthyFacility.inputType = InputType.TYPE_NULL
         }
     }
 

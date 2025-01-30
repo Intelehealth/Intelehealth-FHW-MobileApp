@@ -132,4 +132,11 @@
     <string name="select_consultation_type">Select Consulation Type</string>
     <string name="enter_diagnosis">Enter Diagnosis</string>
     <string name="diagnosis_required">Diagnosis Required</string>
+    <string name="blackout">Blackout</string>
+    <string name="to_disable_notification_between_below_time_period_switch_on_the_blackout_period">To disable notification between below time period. switch on the blackout period</string>
+    <string name="signature">Signature</string>
+    <string name="generate">Generate</string>
+    <string name="type_name_to_generate_signature">Type name to generate signature.</string>
+    <string name="enter_signature">Enter Signature</string>
+    <string name="from_9_00_pm_to_6_00_am">From 9:00 PM To 6:00 AM</string>
 </resources>

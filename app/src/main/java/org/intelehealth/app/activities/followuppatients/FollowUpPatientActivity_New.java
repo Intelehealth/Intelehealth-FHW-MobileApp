@@ -509,6 +509,8 @@ public class FollowUpPatientActivity_New extends BaseActivity {
             String tagName1 = filterOptionsModel.getFilterValue();
             if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")) {
                 tagName1 = StringUtils.en_hi_dob_updated(tagName);
+            }else if (sessionManager.getAppLanguage().equalsIgnoreCase("ru")) {
+                tagName1 = StringUtils.en__ru_dob(tagName);
             }
             int paddingDp = (int) TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP, 10f, getResources().getDisplayMetrics());

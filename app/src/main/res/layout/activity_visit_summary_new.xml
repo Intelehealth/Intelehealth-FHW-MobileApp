@@ -606,8 +606,6 @@
 
                 </RelativeLayout>
 
-                <!--Doctor Speciality card-->
-
 
                 <!--Visibility - start -->
                 <RelativeLayout
@@ -895,6 +893,7 @@
                         </androidx.cardview.widget.CardView>
                     </FrameLayout>
 
+                    <!--Doctor Speciality -->
                     <FrameLayout
                         android:id="@+id/flVdCard"
                         android:layout_width="match_parent"
@@ -1395,6 +1394,176 @@
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
+
+                    <!--E-Signature -->
+                    <FrameLayout
+                        android:id="@+id/flSignatureCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/cvFollowup">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/signature_vd_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible"
+                            android:layout_marginStart="@dimen/toolbar_margin_left"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:layout_marginEnd="@dimen/toolbar_margin_left"
+                            android:layout_marginBottom="@dimen/margin_10"
+                            android:elevation="16dp"
+                            app:cardCornerRadius="@dimen/margin_5"
+                            app:cardElevation="@dimen/margin_5">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <RelativeLayout
+                                    android:id="@+id/signature_vd_header_relative"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/fu_card_margin_sides"
+                                    android:layout_marginTop="@dimen/fu_card_margin_sides"
+                                    android:layout_marginEnd="@dimen/fu_card_margin_sides"
+                                    android:layout_marginBottom="@dimen/fu_card_margin_sides">
+
+                                    <ImageView
+                                        android:id="@+id/signature_vs_icon"
+                                        android:layout_width="@dimen/edittext_height_44dp"
+                                        android:layout_height="@dimen/edittext_height_44dp"
+                                        android:src="@drawable/speciality_red_icon" />
+
+                                    <TextView
+                                        style="@style/text_title_style"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="@dimen/margin_8"
+                                        android:layout_toEndOf="@+id/signature_vs_icon"
+                                        android:text="@string/signature" />
+
+                                    <ImageButton
+                                        android:id="@+id/btn_up_signature_vd_header"
+                                        android:layout_width="@dimen/fu_icon_width"
+                                        android:layout_height="@dimen/fu_icon_height"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_centerVertical="true"
+                                        android:background="@null"
+                                        android:src="@drawable/ui2_ic_chevron_down" />
+                                </RelativeLayout>
+
+                                <!--Expanded Vitals-->
+                                <RelativeLayout
+                                    android:id="@+id/vd_signature_header_expandview"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/signature_vd_header_relative"
+                                    android:visibility="gone"
+                                    tools:visibility="visible">
+
+                                    <View
+                                        android:id="@+id/signature_divider"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:layout_marginStart="@dimen/fu_margin_start"
+                                        android:layout_marginEnd="@dimen/fu_margin_start"
+                                        android:background="@color/notifi_divider_color" />
+
+                                    <TextView
+                                        android:id="@+id/signature_vd_text"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:padding="15dp"
+                                        app:fontFamily="@font/notera_font"
+                                        android:textSize="@dimen/text_50sp"
+                                        android:gravity="center"
+                                        android:layout_below="@+id/signature_divider"
+                                        />
+
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <!--Visibility - end -->
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/signature_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:layout_marginStart="@dimen/toolbar_margin_left"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:layout_marginEnd="@dimen/toolbar_margin_left"
+                            android:layout_marginBottom="@dimen/margin_10"
+                            android:elevation="16dp"
+                            app:cardCornerRadius="@dimen/margin_5"
+                            app:cardElevation="@dimen/margin_5">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/fu_card_margin_sides">
+
+                                <TextView
+                                    android:id="@+id/signature_divider_title"
+                                    style="@style/vs_title_head_14sp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/signature"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:id="@+id/signature_generation_lay"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/signature_divider_title"
+                                    android:layout_marginTop="@dimen/margin_10"
+                                    android:weightSum="10">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/signatureTextInput"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="10"
+                                        android:background="@drawable/input_edittext_border"
+                                        android:gravity="top"
+                                        android:digits="@string/validation_latter_with_space_only"
+                                        android:inputType="text"
+                                        android:minLines="1"
+                                        android:padding="@dimen/fu_margin_start"
+                                        android:textColorHint="@color/edittext_hint_color"
+                                        android:textSize="@dimen/find_patient_hint_size" />
+
+                                    <Button
+                                        android:id="@+id/signature_generate_bt"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="3"
+                                        android:visibility="gone"
+                                        android:layout_marginBottom="@dimen/margin_5"
+                                        android:layout_marginHorizontal="@dimen/margin_10"
+                                        android:background="@drawable/ui2_common_primary_bg"
+                                        android:text="@string/generate"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/common_button_text_size"
+                                        />
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/signature_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="15dp"
+                                    app:fontFamily="@font/notera_font"
+                                    android:textSize="@dimen/text_50sp"
+                                    android:gravity="center"
+                                    android:layout_below="@+id/signature_generation_lay"
+                                    />
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
 
                 </RelativeLayout>
 

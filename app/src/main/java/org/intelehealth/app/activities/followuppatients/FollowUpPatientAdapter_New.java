@@ -180,8 +180,11 @@ public class FollowUpPatientAdapter_New extends RecyclerView.Adapter<FollowUpPat
                             holder.fu_date_txtview.setTextColor(context.getColor(R.color.red));
                         }
                         String followupDate = DateAndTimeUtils.date_formatter(followupDateTime, "yyyy-MM-dd hh:mm a", "dd-MM-yyyy, HH:mm");
-                        if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
+                        if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")){
                             followupDate = StringUtils.en__hi_dob(followupDate);
+                        }else if(sessionManager.getAppLanguage().equalsIgnoreCase("ru")){
+                            followupDate = StringUtils.en__ru_dob(followupDate);
+                        }
                         holder.fu_date_txtview.setText(followupDate);
                     } catch (ParseException e) {
                         e.printStackTrace();
@@ -220,17 +223,16 @@ public class FollowUpPatientAdapter_New extends RecyclerView.Adapter<FollowUpPat
         long minutes = second / 60;
         // check for appointment but prescription not given and visit not completed
         if (minutes > 0) {
-            if (sessionManager.getAppLanguage().equalsIgnoreCase("en")) {
-                return context.getString(R.string.in) + " " + getTimeDuration(minutes);
-            } else if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")) {
+            if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")) {
                 return getTimeDuration(minutes) +
                         context.getString(R.string.in);
+            }else {
+                return context.getString(R.string.in) + " " + getTimeDuration(minutes);
             }
         } else {
             minutes = Math.abs(minutes);
             return getTimeDuration(minutes) + " " + context.getString(R.string.over);
         }
-        return "";
     }
 
     private String getTimeDuration(long minutes) {

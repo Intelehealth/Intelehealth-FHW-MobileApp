@@ -415,8 +415,12 @@ public class CustomCalendarViewUI2 extends DialogFragment {
         List<CalendarViewMonthModel> monthsList = new ArrayList<>();
         String[] monthsArray = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         SessionManager sessionManager = new SessionManager(context);
-        if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
+        if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")){
             monthsArray = new String[]{"जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"};
+        }else if(sessionManager.getAppLanguage().equalsIgnoreCase("ru")){
+            monthsArray = new String[]{"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
+        }
+
         int[] monthsNoArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
         for (int i = 0; i < monthsArray.length; i++) {
             CalendarViewMonthModel model1 = new CalendarViewMonthModel(monthsArray[i], monthsNoArray[i], false);

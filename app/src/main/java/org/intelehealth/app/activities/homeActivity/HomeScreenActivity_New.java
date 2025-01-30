@@ -1061,8 +1061,12 @@ public class HomeScreenActivity_New extends BaseActivity implements NetworkUtils
         loadLastSelectedFragment();
         //toolbarHome.setVisibility(View.VISIBLE);
         String lastSync = getResources().getString(R.string.last_sync) + ": " + sessionManager.getLastSyncDateTime();
-        if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
+        if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")){
             lastSync = StringUtils.en__hi_dob(lastSync);
+        }else if(sessionManager.getAppLanguage().equalsIgnoreCase("ru")){
+            lastSync = StringUtils.en__ru_dob(lastSync);
+        }
+
         tvAppLastSync.setText(lastSync);
 
         //ui2.0 update user details in  nav header
@@ -1168,8 +1172,12 @@ public class HomeScreenActivity_New extends BaseActivity implements NetworkUtils
 
             String sync_text = setLastSyncTime(getString(R.string.last_synced) + " \n" + sessionManager.getLastSyncDateTime());
             String lastSync = getResources().getString(R.string.last_sync) + ": " + sessionManager.getLastSyncDateTime();
-            if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
+            if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")){
                 lastSync = StringUtils.en__hi_dob(lastSync);
+            }else if(sessionManager.getAppLanguage().equalsIgnoreCase("ru")){
+                lastSync = StringUtils.en__ru_dob(lastSync);
+            }
+
             tvAppLastSync.setText(lastSync);
 
 

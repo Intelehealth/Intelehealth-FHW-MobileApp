@@ -148,8 +148,11 @@ public class VisitAdapter extends RecyclerView.Adapter<VisitAdapter.Myholder> {
                 startDate = DateAndTimeUtils.date_formatter(startDate,
                         "yyyy-MM-dd'T'HH:mm:ss.SSSZ", "dd MMM 'at' HH:mm a");    // IDA-1346
                 CustomLog.v("startdate", "startDAte: " + startDate);
-                if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
+                if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")){
                     startDate = StringUtils.en_hi_dob_three(startDate);
+                }else if(sessionManager.getAppLanguage().equalsIgnoreCase("ru")){
+                    startDate = StringUtils.en_ru_dob_three(startDate);
+                }
                 holder.fu_date_txtview.setText(startDate);
             }
 

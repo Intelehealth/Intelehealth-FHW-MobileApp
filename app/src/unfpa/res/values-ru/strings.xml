@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">UNFPA</string>
+    <string name="intro_title_1">Кто мы??</string>
+    <string name="intro_tagline_1">"Arogya Path - это инновационная телемедицинская платформа, предназначенная для преодоления разрыва в доступе к медицинской помощи в отдаленных регионах путем подключения медицинского работника и пациента к виртуальному врачу для предоставления высококачественных медицинских услуг"</string>
+    <string name="intro_title_2">Принимать визиты пациентов</string>
+    <string name="intro_tagline_2">Платформа основана на Ayu, программируемом цифровом ассистенте, который поддерживает медицинских работников с помощью научно обоснованных протоколов первичной медико-санитарной помощи на региональных языках</string>
+    <string name="intro_title_3">Дать рекомендации</string>
+    <string name="intro_tagline_3">"Облачная платформа с открытым исходным кодом, разработанная для среды с низким потреблением ресурсов, в сочетании с индивидуальной стратегией внедрения создает цифровое медицинское решение для достижения впечатляющих результатов в области здравоохранения"</string>
+
+    <string name="are_you_sure_you_want_to_send_visit">Are you sure you want to send the visit?</string>
+    <string name="send_visit">Отправить запрос на консультацию?</string>
+    <string name="visit_successfully_sent">Запрос на консультацию успешно отправлен!</string>
+    <string name="patient_visit_sent">Запрос на консультацию успешно отправлен!</string>
+    <string name="visit_data_failed">Запрос на консультацию успешно сохранен!</string>
+    <string name="visit_uploaded_failed">Запрос на консультацию успешно сохранен.</string>
+
+    <string name="type_or_select_reason">Введите причину</string>
+    <string name="select_one_or_multiple_reasons">Укажите одну или несколько причин</string>
+</resources>

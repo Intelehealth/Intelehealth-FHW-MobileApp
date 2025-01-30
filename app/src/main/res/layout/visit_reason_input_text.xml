@@ -30,6 +30,7 @@
         android:layout_marginTop="@dimen/margin_16"
         android:background="@drawable/ui2_common_button_bg_submit"
         android:drawablePadding="8dip"
+        android:maxWidth="200dp"
         android:minWidth="100dip"
         android:paddingHorizontal="@dimen/padding_7"
         android:paddingVertical="@dimen/padding_7"

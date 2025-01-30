@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="guardian_type">
+        <item>Мать</item>
+        <item>Отец</item>
+        <item>Бабушка/дедушка</item>
+        <item>Супруг</item>
+    </string-array>
+
+    <string-array name="contact_type">
+        <item>Личный</item>
+        <item>Члена семьи</item>
+    </string-array>
+
+    <string-array name="health_facility_name">
+        <item>Выберите</item>
+        <item>Родильное отделение Чуйской областной объединенной больницы</item>
+        <item>Родильное отделение Иссыкульской областной объединенной больницы</item>
+        <item>Родильный стационар Жалал-Абадской областной объединенной больницы</item>
+        <item>Родильный стационар Ошской межобластной клинической больницы</item>
+    </string-array>
+
+    <string-array name="type_of_consultations">
+        <item>Выберите необходимую консультацию</item>
+        <item>Экстренная консультация от 30 минут до 3 часов</item>
+        <item>Срочная консультация от 3 до 24 часов</item>
+        <item>Запланированная консультация</item>
+    </string-array>
+</resources>

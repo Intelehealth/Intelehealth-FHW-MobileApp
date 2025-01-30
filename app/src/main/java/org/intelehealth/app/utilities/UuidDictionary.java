@@ -84,6 +84,7 @@ public class UuidDictionary {
     public static final String VISIT_UPLOAD_TIME = "e76eee5e-9d73-4d07-8f30-16b77e626ccf";
     public static final String DIAGNOSIS = "672b025f-2d21-4dfb-8230-ffbc50c255d8";
     public static final String CONSULTATION_TYPE = "262632db-8cfe-47dd-b3b6-a8ed65d489cd";
+    public static final String E_SIGNATURE = "49d6b810-19fa-43ca-9fc5-ae62b4d16bfb";
 
 
 

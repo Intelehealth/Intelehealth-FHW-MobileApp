@@ -611,6 +611,7 @@
                             style="@style/AppTheme.InputBox.Address1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:enabled="false"
                             android:hint="@string/enter_code"
                             android:text="@{patient.codeOfDepartment}" />
                     </org.intelehealth.app.ui.custom.RightAlignErrorTextInputLayout>

@@ -37,6 +37,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.gson.Gson;
 
+import org.intelehealth.app.BuildConfig;
 import org.intelehealth.app.R;
 import org.intelehealth.app.activities.complaintNodeActivity.CustomArrayAdapter;
 import org.intelehealth.app.activities.questionNodeActivity.QuestionsAdapter;
@@ -44,7 +45,9 @@ import org.intelehealth.app.app.IntelehealthApplication;
 import org.intelehealth.app.ayu.visit.common.VisitUtils;
 import org.intelehealth.app.models.AnswerResult;
 import org.intelehealth.app.utilities.CustomLog;
+import org.intelehealth.app.utilities.FlavorKeys;
 import org.intelehealth.app.utilities.InputFilterMinMax;
+import org.intelehealth.app.utilities.ProtocolKeys;
 import org.intelehealth.app.utilities.SessionManager;
 import org.intelehealth.ihutils.ui.CameraActivity;
 import org.json.JSONArray;
@@ -111,6 +114,8 @@ public class Node implements Serializable {
     private String display_malyalam;
     private String display_marathi;
     private String display_assamese;
+
+    private String display_russian;
     private String language;
     private String choiceType;
     private String inputType;
@@ -300,6 +305,14 @@ public class Node implements Serializable {
                 this.display_kannada = this.display;
             }
 
+            this.display_russian = jsonNode.optString("display-ru");
+            if (this.display_russian.isEmpty()) {
+                this.display_russian = jsonNode.optString("display-ru");
+            }
+            if (this.display_russian.isEmpty()) {
+                this.display_russian = this.display;
+            }
+
             this.language = jsonNode.optString("language");
             if (this.language.isEmpty()) {
                 this.language = this.text;
@@ -390,6 +403,7 @@ public class Node implements Serializable {
         this.display_telugu = source.display_telugu;
         this.display_kannada = source.display_kannada;
         this.display_assamese = source.display_assamese;
+        this.display_russian = source.display_russian;
         this.display_malyalam = source.display_malyalam;
         this.display_marathi = source.display_marathi;
         this.optionsList = source.optionsList;
@@ -1612,7 +1626,7 @@ public class Node implements Serializable {
 
 //        String locale = Locale.getDefault().getLanguage();
         String locale = sessionManager.getCurrentLang();
-
+        CustomLog.i(TAG, "findDisplay:" + locale);
         switch (locale) {
             case "en": {
                 //CustomLog.i(TAG, "findDisplay: eng");
@@ -1748,6 +1762,24 @@ public class Node implements Serializable {
             case "kn": {
                 if (display_kannada != null && !display_kannada.isEmpty()) {
                     return display_kannada;
+                } else {
+                    if (display == null || display.isEmpty()) {
+                        return text;
+                    } else {
+                        return display;
+                    }
+                }
+            }
+            case "ru": {
+                if (display_russian != null && !display_russian.isEmpty()) {
+                    if (display_russian.equals(ProtocolKeys.VISIT_REASON) && BuildConfig.FLAVOR_client == FlavorKeys.UNFPA) {
+                        if (display == null || display.isEmpty()) {
+                            return text;
+                        } else {
+                            return display;
+                        }
+                    }
+                    return display_russian;
                 } else {
                     if (display == null || display.isEmpty()) {
                         return text;

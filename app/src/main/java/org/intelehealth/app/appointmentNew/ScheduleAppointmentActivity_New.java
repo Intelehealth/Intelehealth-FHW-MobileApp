@@ -301,8 +301,11 @@ public class ScheduleAppointmentActivity_New extends BaseActivity implements Net
         yearToCompare = String.valueOf(currentYear);
         SimpleDateFormat month_date = new SimpleDateFormat("MMMM", Locale.ENGLISH);
         String month_name = month_date.format(calendarInstance.getTime());
-        if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
+        if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")){
             month_name = StringUtils.en__hi_dob(month_name);
+        }else if(sessionManager.getAppLanguage().equalsIgnoreCase("ru")){
+            month_name = StringUtils.en__ru_dob(month_name);
+        }
         tvSelectedMonthYear.setText(month_name + ", " + currentYear);
         currentMonth = calendarInstance.get(Calendar.MONTH) + 1;
         monthToCompare = String.valueOf(currentMonth);

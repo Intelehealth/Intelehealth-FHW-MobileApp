@@ -204,7 +204,7 @@ public final class StringUtils {
     }
 
     public static String switch_ru_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "Безграмотный";
@@ -228,7 +228,7 @@ public final class StringUtils {
     }
 
     public static String switch_kn_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "ಅಶಿಕ್ಷಿತ";
@@ -253,7 +253,7 @@ public final class StringUtils {
 
 
     public static String switch_kn_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "ಅಶಿಕ್ಷಿತ":
                 val = "Illiterate";
@@ -278,7 +278,7 @@ public final class StringUtils {
 
 
     public static String switch_ru_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Безграмотный":
                 val = "Illiterate";
@@ -302,7 +302,7 @@ public final class StringUtils {
     }
 
     public static String switch_gu_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "અશિક્ષિત";
@@ -326,7 +326,7 @@ public final class StringUtils {
     }
 
     public static String switch_gu_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "અશિક્ષિત":
                 val = "Illiterate";
@@ -350,7 +350,7 @@ public final class StringUtils {
     }
 
     public static String switch_gu_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "ગરીબીની રેખાથી ઉપર":
                 val = "APL";
@@ -365,7 +365,7 @@ public final class StringUtils {
     }
 
     public static String switch_gu_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "ગરીબીની રેખાથી ઉપર";
@@ -380,7 +380,7 @@ public final class StringUtils {
     }
 
     public static String switch_gu_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "જનરલ":
                 val = "General";
@@ -404,7 +404,7 @@ public final class StringUtils {
     }
 
     public static String switch_gu_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "General":
                 val = "જનરલ";
@@ -429,7 +429,7 @@ public final class StringUtils {
 
 
     public static String switch_hi_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "अशिक्षित";
@@ -460,7 +460,7 @@ public final class StringUtils {
 
 
     public static String switch_hi_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "अशिक्षित":
                 val = "Illiterate";
@@ -491,7 +491,7 @@ public final class StringUtils {
 
 
     public static String switch_or_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "ଅଶିକ୍ଷିତ";
@@ -516,7 +516,7 @@ public final class StringUtils {
 
 
     public static String switch_or_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "ଅଶିକ୍ଷିତ":
                 val = "Illiterate";
@@ -540,7 +540,7 @@ public final class StringUtils {
     }
 
     public static String switch_as_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "নিৰক্ষৰ";
@@ -565,7 +565,7 @@ public final class StringUtils {
 
 
     public static String switch_as_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "নিৰক্ষৰ":
                 val = "Illiterate";
@@ -589,7 +589,7 @@ public final class StringUtils {
     }
 
     public static String switch_ml_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "നിരക്ഷരൻ";
@@ -614,7 +614,7 @@ public final class StringUtils {
 
 
     public static String switch_ml_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "നിരക്ഷരൻ":
                 val = "Illiterate";
@@ -638,7 +638,7 @@ public final class StringUtils {
     }
 
     public static String switch_mr_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "निरक्षर";
@@ -663,7 +663,7 @@ public final class StringUtils {
 
 
     public static String switch_mr_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "निरक्षर":
                 val = "Illiterate";
@@ -687,7 +687,7 @@ public final class StringUtils {
     }
 
     public static String switch_te_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "నిరక్షరాస్యులు";
@@ -712,7 +712,7 @@ public final class StringUtils {
 
 
     public static String switch_te_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "నిరక్షరాస్యులు":
                 val = "Illiterate";
@@ -736,7 +736,7 @@ public final class StringUtils {
     }
 
     public static String switch_bn_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "নিরক্ষর";
@@ -761,7 +761,7 @@ public final class StringUtils {
 
 
     public static String switch_bn_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "নিরক্ষর":
                 val = "Illiterate";
@@ -785,7 +785,7 @@ public final class StringUtils {
     }
 
     public static String switch_ta_education_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Illiterate":
                 val = "எழுதப்படிக்கத்தெரியாதவர்";
@@ -810,7 +810,7 @@ public final class StringUtils {
 
 
     public static String switch_ta_education(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "எழுதப்படிக்கத்தெரியாதவர்":
                 val = "Illiterate";
@@ -834,7 +834,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "गरीबी रेखा से ऊपर":
                 val = "APL";
@@ -849,7 +849,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "गरीबी रेखा से ऊपर";
@@ -864,7 +864,7 @@ public final class StringUtils {
     }
 
     public static String switch_ru_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "APL";
@@ -879,7 +879,7 @@ public final class StringUtils {
     }
 
     public static String switch_or_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "ଦାରିଦ୍ର୍ୟ ସୀମାରେଖା ଉପରେ":
                 val = "APL";
@@ -894,7 +894,7 @@ public final class StringUtils {
     }
 
     public static String switch_or_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "ଦାରିଦ୍ର୍ୟ ସୀମାରେଖା ଉପରେ";
@@ -909,7 +909,7 @@ public final class StringUtils {
     }
 
     public static String switch_bn_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "দারিদ্র্যসীমার উপরে":
                 val = "APL";
@@ -924,7 +924,7 @@ public final class StringUtils {
     }
 
     public static String switch_bn_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "দারিদ্র্যসীমার উপরে";
@@ -939,7 +939,7 @@ public final class StringUtils {
     }
 
     public static String switch_te_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "ఎపిఎల్":
                 val = "APL";
@@ -954,7 +954,7 @@ public final class StringUtils {
     }
 
     public static String switch_te_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "ఎపిఎల్";
@@ -969,7 +969,7 @@ public final class StringUtils {
     }
 
     public static String switch_mr_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "दारिद्र्य रेषेच्या वर":
                 val = "APL";
@@ -984,7 +984,7 @@ public final class StringUtils {
     }
 
     public static String switch_mr_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "दारिद्र्य रेषेच्या वर";
@@ -999,7 +999,7 @@ public final class StringUtils {
     }
 
     public static String switch_as_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "এপিএল":
                 val = "APL";
@@ -1014,7 +1014,7 @@ public final class StringUtils {
     }
 
     public static String switch_as_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "APL":
                 val = "এপিএল";
@@ -1029,7 +1029,7 @@ public final class StringUtils {
     }
 
     public static String switch_ml_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "എ.പി.എൽ":
@@ -1045,7 +1045,7 @@ public final class StringUtils {
     }
 
     public static String switch_ml_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "APL":
@@ -1062,7 +1062,7 @@ public final class StringUtils {
 
 
     public static String switch_ru_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "APL":
@@ -1078,7 +1078,7 @@ public final class StringUtils {
     }
 
     public static String switch_kn_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "ಬಡತನ ರೇಖೆಯ ಮೇಲೆ":
@@ -1094,7 +1094,7 @@ public final class StringUtils {
     }
 
     public static String switch_kn_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "APL":
@@ -1110,7 +1110,7 @@ public final class StringUtils {
     }
 
     public static String switch_ta_economic(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "வறுமைக் கோட்டிற்கு மேல்":
@@ -1126,7 +1126,7 @@ public final class StringUtils {
     }
 
     public static String switch_ta_economic_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "APL":
@@ -1142,7 +1142,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "सामान्य":
@@ -1167,7 +1167,7 @@ public final class StringUtils {
     }
 
     public static String switch_or_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "ସାଧାରଣ":
@@ -1192,7 +1192,7 @@ public final class StringUtils {
     }
 
     public static String switch_ta_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "பொது":
@@ -1217,7 +1217,7 @@ public final class StringUtils {
     }
 
     public static String switch_te_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "జనరల్":
@@ -1242,7 +1242,7 @@ public final class StringUtils {
     }
 
     public static String switch_mr_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "सामान्य":
@@ -1267,7 +1267,7 @@ public final class StringUtils {
     }
 
     public static String switch_as_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "সাধাৰণ":
@@ -1292,7 +1292,7 @@ public final class StringUtils {
     }
 
     public static String switch_mr_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1317,7 +1317,7 @@ public final class StringUtils {
     }
 
     public static String switch_ru_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1342,7 +1342,7 @@ public final class StringUtils {
     }
 
     public static String switch_ru_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "Общий":
@@ -1367,7 +1367,7 @@ public final class StringUtils {
     }
 
     public static String switch_kn_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "ಸಾಮಾನ್ಯ":
@@ -1392,7 +1392,7 @@ public final class StringUtils {
     }
 
     public static String switch_kn_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1417,7 +1417,7 @@ public final class StringUtils {
     }
 
     public static String switch_ml_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "ജനറൽ":
@@ -1442,7 +1442,7 @@ public final class StringUtils {
     }
 
     public static String switch_ml_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1467,7 +1467,7 @@ public final class StringUtils {
     }
 
     public static String switch_as_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1492,7 +1492,7 @@ public final class StringUtils {
     }
 
     public static String switch_bn_caste(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "সাধারণ":
@@ -1517,7 +1517,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1542,7 +1542,7 @@ public final class StringUtils {
     }
 
     public static String switch_or_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1567,7 +1567,7 @@ public final class StringUtils {
     }
 
     public static String switch_te_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1592,7 +1592,7 @@ public final class StringUtils {
     }
 
     public static String switch_bn_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1617,7 +1617,7 @@ public final class StringUtils {
     }
 
     public static String switch_ta_caste_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         switch (val) {
             case "General":
@@ -1733,7 +1733,7 @@ public final class StringUtils {
 
     public static String en__hi_dob(String dob) { //English dob is replaced to Hindi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "जनवरी")
                 .replace("February", "फ़रवरी")
@@ -1753,7 +1753,7 @@ public final class StringUtils {
 
 
     public static String getMessageTranslated(String message, String locale) { //English dob is replaced to Hindi text.
-        if(message == null || message.isEmpty()) return "";
+        if (message == null || message.isEmpty()) return "";
         if (locale.equalsIgnoreCase("hi")) {
             message = message
                     .replace("Otp sent successfully!", "ओटीपी सफलतापूर्वक भेजा गया!")
@@ -1768,6 +1768,21 @@ public final class StringUtils {
                     .replace("Otp incorrect!", "ओटीपी गलत है।")
                     .replace("Password reset successful.", "पासवर्ड रीसेट सफल रहा।")
                     .replace("No user exists!", "कोई उपयोगकर्ता मौजूद नहीं है!");
+        } else if (locale.equalsIgnoreCase("ru")) {
+            message = message
+                    .replace("Otp sent successfully!", "Раозвый пароль отправлен успешно!")
+                    .replace("Пользователя с таким номером телефона/электронной почтой/именем нет.",
+                            "इस फ़ोन नंबर/ईमेल के साथ कोई उपयोगकर्ता मौजूद नहीं है।")
+                    .replace("Для данного пользователя нет обновленного номера телефона/электронной почты.",
+                            "इस उपयोगकर्ता नाम के लिए कोई फ़ोन नंबर/ईमेल अपडेट नहीं किया गया है।")
+                    .replace("Пользователя с таким именем нет.",
+                            "इस उपयोगकर्ता नाम के साथ कोई उपयोगकर्ता मौजूद नहीं है।")
+                    .replace("Otp verified successfully!", "Верификация разового пароля прошла успешно!")
+                    .replace("Otp expired!", "Время разового пароля истекло!")
+                    .replace("Otp incorrect!", "Неверный разовый пароль!")
+                    .replace("Password reset successful.", "Сброс пароля прошел успешно!")
+                    .replace("No user exists!", "Такого пользователя нет!");
+
         }
         return message;
     }
@@ -1775,7 +1790,7 @@ public final class StringUtils {
 
     public static String en_hi_dob_updated(String dob) { //English dob is replaced to Hindi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("Jan", "जनवरी")
                 .replace("Feb", "फ़रवरी")
@@ -1795,7 +1810,7 @@ public final class StringUtils {
 
     public static String en_hi_dob_three(String dob) { //English dob is replaced to Hindi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("Jan", "जनवरी")
                 .replace("Feb", "फ़रवरी")
@@ -1813,10 +1828,30 @@ public final class StringUtils {
         return mdob_text;
     }
 
+    public static String en_ru_dob_three(String dob) { //English dob is replaced to Russian text.
+        //added this logic to handle crash when dob is null
+        if (dob == null || dob.isEmpty()) return "";
+        String mdob_text = dob
+                .replace("Jan", "Январь")
+                .replace("Feb", "Февраль")
+                .replace("Mar", "Март")
+                .replace("Apr", "Апрель")
+                .replace("May", "Май")
+                .replace("Jun", "Июнь")
+                .replace("Jul", "Июль")
+                .replace("Aug", "Август")
+                .replace("Sep", "Сентябрь")
+                .replace("Oct", "Октябрь")
+                .replace("Nov", "Ноябрь")
+                .replace("Dec", "Декабрь");
+
+        return mdob_text;
+    }
+
 
     public static String en__gu_dob(String dob) { //English dob is replaced to Hindi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "જાન્યુઆરી")
                 .replace("February", "ફેબ્રુઆરી")
@@ -1836,7 +1871,7 @@ public final class StringUtils {
 
     public static String en__or_dob(String dob) { //English dob is replaced to Odiya text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "ଜାନୁଆରୀ")
                 .replace("February", "ଫେବୃଆରୀ")
@@ -1864,7 +1899,7 @@ public final class StringUtils {
 
     public static String en__te_dob(String dob) { //English dob is replaced to Tamil text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "జనవరి")
                 .replace("February", "ఫిబ్రవరి")
@@ -1884,7 +1919,7 @@ public final class StringUtils {
 
     public static String en__mr_dob(String dob) { //English dob is replaced to marathi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "जानेवारी")
                 .replace("February", "फेब्रुवारी")
@@ -1904,7 +1939,7 @@ public final class StringUtils {
 
     public static String en__as_dob(String dob) { //English dob is replaced to marathi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "জানুৱাৰী")
                 .replace("February", "ফেব্ৰুৱাৰী")
@@ -1924,7 +1959,7 @@ public final class StringUtils {
 
     public static String en__ml_dob(String dob) { //English dob is replaced to marathi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "ജനുവരി")
                 .replace("February", "ഫെബ്രുവരി")
@@ -1944,7 +1979,7 @@ public final class StringUtils {
 
     public static String en__kn_dob(String dob) { //English dob is replaced to marathi text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "ಜನವರಿ")
                 .replace("February", "ಫೆಬ್ರುವರಿ")
@@ -1964,7 +1999,7 @@ public final class StringUtils {
 
     public static String en__ru_dob(String dob) { //English dob is replaced to Odiya text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "Январь")
                 .replace("February", "Февраль")
@@ -1984,7 +2019,7 @@ public final class StringUtils {
 
     public static String en__bn_dob(String dob) { //English dob is replaced to Bengali text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "জানুয়ারী")
                 .replace("February", "ফেব্রুয়ারী")
@@ -2004,7 +2039,7 @@ public final class StringUtils {
 
     public static String en__ta_dob(String dob) { //English dob is replaced to Tamil text.
         //added this logic to handle crash when dob is null
-        if(dob == null || dob.isEmpty()) return "";
+        if (dob == null || dob.isEmpty()) return "";
         String mdob_text = dob
                 .replace("January", "ஜனவரி")
                 .replace("February", "பிப்ரவரி")
@@ -2072,7 +2107,7 @@ public final class StringUtils {
 
     public static String getFullMonthName(String dobString) {
         //added this logic to handle crash when dob is null
-        if(dobString == null || dobString.isEmpty()) return "";
+        if (dobString == null || dobString.isEmpty()) return "";
         return dobString
                 .replace("Jan", "January")
                 .replace("Feb", "February")
@@ -2351,7 +2386,7 @@ public final class StringUtils {
 
     public static String translateLocation(String val, String locale) {
         if (locale.equalsIgnoreCase("hi")) {
-            if(val == null || val.isEmpty()) return "";
+            if (val == null || val.isEmpty()) return "";
             switch (val) {
                 case "Telemedicine Clinic 1":
                     val = "टेलीमेडिसिन क्लीनिक 1";
@@ -2368,7 +2403,25 @@ public final class StringUtils {
                 default:
                     return val;
             }
-
+        } else if (locale.equalsIgnoreCase("ru")) {
+            //these string will change after getting updated string
+            if (val == null || val.isEmpty()) return "";
+            switch (val) {
+                case "Telemedicine Clinic 1":
+                    val = "Название больницы 1";
+                    break;
+                case "Telemedicine Clinic 2":
+                    val = "Название больницы 2";
+                    break;
+                case "Telemedicine Clinic 3":
+                    val = "Название больницы 3";
+                    break;
+                case "Remote":
+                    val = "Remote";
+                    break;
+                default:
+                    return val;
+            }
         }
         return val;
     }
@@ -2423,7 +2476,7 @@ public final class StringUtils {
 
     public static String switch_hi_en_country(String val, String locale) {
         if (locale.equalsIgnoreCase("hi")) {
-            if(val == null || val.isEmpty()) return "";
+            if (val == null || val.isEmpty()) return "";
             switch (val) {
                 case "India":
                     val = "इंडिया";
@@ -3571,7 +3624,7 @@ public final class StringUtils {
     }
 
     public static String getTranslatedDays(String val, String locale) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
 
         if (locale.equalsIgnoreCase("as")) {
             switch (val) {
@@ -3600,8 +3653,7 @@ public final class StringUtils {
                     return val;
             }
 
-        }
-        else if (locale.equalsIgnoreCase("bn")) {
+        } else if (locale.equalsIgnoreCase("bn")) {
             switch (val) {
                 case "Sunday":
                     val = "রবিবার";
@@ -3628,8 +3680,7 @@ public final class StringUtils {
                     return val;
             }
 
-        }
-        else if (locale.equalsIgnoreCase("gu")) {
+        } else if (locale.equalsIgnoreCase("gu")) {
             switch (val) {
                 case "Sunday":
                     val = "રવિવાર";
@@ -3657,8 +3708,7 @@ public final class StringUtils {
                     return val;
             }
 
-        }
-        else if (locale.equalsIgnoreCase("hi")) {
+        } else if (locale.equalsIgnoreCase("hi")) {
             switch (val) {
                 case "Sunday":
                     val = "रविवार";
@@ -4057,7 +4107,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_guardian_type(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "मां" -> val = "Mother";
             case "पिता" -> val = "Father";
@@ -4071,7 +4121,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_guardian_type_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Mother" -> val = "मां";
             case "Father" -> val = "पिता";
@@ -4085,7 +4135,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_contact_type(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "स्वयं" -> val = "Self";
             case "परिवार" -> val = "Family";
@@ -4097,7 +4147,7 @@ public final class StringUtils {
     }
 
     public static String switch_hi_contact_type_edit(String val) {
-        if(val == null || val.isEmpty()) return "";
+        if (val == null || val.isEmpty()) return "";
         switch (val) {
             case "Self" -> val = "स्वयं";
             case "Family" -> val = "परिवार";
@@ -4207,6 +4257,7 @@ public final class StringUtils {
 
     /**
      * Setting local language for Gender data.
+     *
      * @param context
      * @param genderView
      * @param patient
@@ -4231,7 +4282,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4241,7 +4292,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4251,7 +4302,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4261,7 +4312,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4271,7 +4322,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4281,7 +4332,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4291,7 +4342,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
             } else {
                 genderView.setText(gender + " " + age);
@@ -4316,6 +4367,16 @@ public final class StringUtils {
             } else {
                 genderView.setText(gender + " " + age);
             }
+        } else if (sessionManager.getAppLanguage().equalsIgnoreCase("ru")) {
+            if (gender.equalsIgnoreCase("M")) {
+                genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + " " + age);
+            } else if (gender.equalsIgnoreCase("F")) {
+                genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + " " + age);
+            } else if (gender.equalsIgnoreCase("O")) {
+                genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + " " + age);
+            } else {
+                genderView.setText(gender + " " + age);
+            }
         } else {
             genderView.setText(gender + " " + age);
         }
@@ -4323,6 +4384,7 @@ public final class StringUtils {
 
     /**
      * returning string instead of setting data to textview
+     *
      * @param context
      * @param dob
      * @param gender
@@ -4343,11 +4405,12 @@ public final class StringUtils {
         }
 
         String localizedGender = context.getResources().getString(genderResId);
-        return  localizedGender + " " + age;
+        return localizedGender + " " + age;
     }
 
     /**
      * Setting local language for Gender data.
+     *
      * @param context
      * @param genderView
      * @param patient
@@ -4372,7 +4435,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4382,7 +4445,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4392,7 +4455,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4402,7 +4465,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4412,7 +4475,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4422,7 +4485,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4432,7 +4495,7 @@ public final class StringUtils {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
             } else if (gender.equalsIgnoreCase("F")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
-            }  else if (gender.equalsIgnoreCase("O")) {
+            } else if (gender.equalsIgnoreCase("O")) {
                 genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
             } else {
                 genderView.setText(gender + ", " + age);
@@ -4457,16 +4520,26 @@ public final class StringUtils {
             } else {
                 genderView.setText(gender + ", " + age);
             }
+        } else if (sessionManager.getAppLanguage().equalsIgnoreCase("ru")) {
+            if (gender.equalsIgnoreCase("M")) {
+                genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_male) + ", " + age);
+            } else if (gender.equalsIgnoreCase("F")) {
+                genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_female) + ", " + age);
+            } else if (gender.equalsIgnoreCase("O")) {
+                genderView.setText(context.getResources().getString(R.string.identification_screen_checkbox_other) + ", " + age);
+            } else {
+                genderView.setText(gender + ", " + age);
+            }
         } else {
             genderView.setText(gender + ", " + age);
         }
     }
 
-    public static boolean isValidPassword(String passwd){
-        if(passwd==null || passwd.isEmpty()) return false;
+    public static boolean isValidPassword(String passwd) {
+        if (passwd == null || passwd.isEmpty()) return false;
         //String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}"; // with special character
         String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}"; // without special character
-       return passwd.matches(pattern);
+        return passwd.matches(pattern);
     }
 
     public static String convertCtoF(String temperature) {
@@ -4478,5 +4551,45 @@ public final class StringUtils {
         double roundOff = Math.round(b * 100.0) / 100.0;
         resultVal = nf.format(roundOff);
         return resultVal;
+    }
+
+    public static String getTypeOfConsultation(String consultationType, String lan) {
+        if (consultationType == null || consultationType.isEmpty()) return "";
+        if (lan.equalsIgnoreCase("ru")) {
+            switch (consultationType) {
+                case "In emergency form – from 30 minutes to 2 hours" ->
+                        consultationType = "Экстренная консультация от 30 минут до 3 часов";
+                case "In urgent form - from 3 to 24 hours" ->
+                        consultationType = "Срочная консультация от 3 до 24 часов";
+                case "In planned form – for a day or more" ->
+                        consultationType = "Запланированная консультация";
+                default -> {
+                    return consultationType;
+                }
+            }
+        }
+
+        return consultationType;
+    }
+
+    public static String getHealthyFacilityName(String consultationType, String lan) {
+        if (consultationType == null || consultationType.isEmpty()) return "";
+        if (lan.equalsIgnoreCase("ru")) {
+            switch (consultationType) {
+                case "Maternity department of Chui Regional United Hospital" ->
+                        consultationType = "Родильное отделение Чуйской областной объединенной больницы";
+                case "Maternity department of Issyk-Kul Regional United Hospital" ->
+                        consultationType = "Родильное отделение Иссыкульской областной объединенной больницы";
+                case "Maternity hospital of Jalal-Abad Regional United Hospital" ->
+                        consultationType = "Родильный стационар Жалал-Абадской областной объединенной больницы";
+                case "Maternity hospital of Osh Interregional Clinical Hospital" ->
+                        consultationType = "Родильный стационар Ошской межобластной клинической больницы";
+                default -> {
+                    return consultationType;
+                }
+            }
+        }
+
+        return consultationType;
     }
 }

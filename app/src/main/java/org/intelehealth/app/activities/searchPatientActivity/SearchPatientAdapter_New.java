@@ -177,8 +177,11 @@ public class SearchPatientAdapter_New extends RecyclerView.Adapter<SearchPatient
 
                     fu_item_calendar.setVisibility(View.VISIBLE);
                     String visitDate = model.getVisit_startdate();
-                    if (sessionManager.getAppLanguage().equalsIgnoreCase("hi"))
+                    if (sessionManager.getAppLanguage().equalsIgnoreCase("hi")){
                         visitDate = StringUtils.en_hi_dob_three(visitDate);
+                    }else if(sessionManager.getAppLanguage().equalsIgnoreCase("ru")){
+                        visitDate = StringUtils.en_ru_dob_three(visitDate);
+                    }
                     search_date_relative.setVisibility(View.VISIBLE);
                     search_date_relative.setText(visitDate);
                 } else {

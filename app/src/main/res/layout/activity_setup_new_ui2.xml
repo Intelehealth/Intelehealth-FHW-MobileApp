@@ -37,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_setup"
+        android:layout_toStartOf="@+id/setupIm"
         android:layout_marginStart="@dimen/tv_setup_note_margin_start"
         android:layout_marginTop="@dimen/tv_setup_note_margin_top"
         android:gravity="start"
@@ -45,6 +46,7 @@
         android:textSize="@dimen/common_hint_text_size" />
 
     <ImageView
+        android:id="@+id/setupIm"
         android:layout_width="@dimen/iv_setup_width"
         android:layout_height="@dimen/iv_setup_height"
         android:layout_below="@+id/iv_back_arrow"
